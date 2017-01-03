@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   # root 'welcome#index'
   devise_for :users, :controllers => { omniauth_callbacks: "omniauth_callbacks" }
 
-  root to: "home#index"
+  root to: "cases#index"
   resources :cases
 
   # Example of regular route:
