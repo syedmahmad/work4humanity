@@ -14,7 +14,7 @@ class CasesController < ApplicationController
 	end
 
 	def show
-		@case
+
 	end
 
 	def create
