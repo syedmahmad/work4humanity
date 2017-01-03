@@ -2,9 +2,10 @@ class User < ActiveRecord::Base
 
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable
-  devise :database_authenticatable, :registerable,
+  devise :database_authenticatable, :registerable, :confirmable,
     :recoverable, :rememberable, :trackable, :validatable, :omniauthable
   # validates_format_of :email, :without => TEMP_EMAIL_REGEX, on: :update
+  enum u_type: [:volunteer]
 
   def self.find_for_oauth(auth, signed_in_resource = nil)
 
@@ -23,7 +24,7 @@ class User < ActiveRecord::Base
       # Get the existing user by email if the provider gives us a verified email.
       # If no verified email was provided we assign a temporary email and ask the
       # user to verify it on the next step via UsersController.finish_signup
-      email_is_verified = auth.info.email && (auth.info.verified || auth.info.verified_email)
+      email_is_verified = auth.info.email
       email = auth.info.email if email_is_verified
       user = User.where(:email => email).first if email
 
@@ -33,9 +34,11 @@ class User < ActiveRecord::Base
           name: auth.extra.raw_info.name,
           #username: auth.info.nickname || auth.uid,
           email: email,
+          u_type: 0,
           password: Devise.friendly_token[0,20]
         )
         user.skip_confirmation!
+
         user.save!
       end
     end
