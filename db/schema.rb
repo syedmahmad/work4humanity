@@ -16,6 +16,26 @@ ActiveRecord::Schema.define(version: 20170103100252) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "attachments", force: :cascade do |t|
+    t.integer  "case_id"
+    t.string   "attachment_file_name"
+    t.string   "attachment_content_type"
+    t.integer  "attachment_file_size"
+    t.datetime "attachment_updated_at"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  add_index "attachments", ["case_id"], name: "index_attachments_on_case_id", using: :btree
+
+  create_table "cases", force: :cascade do |t|
+    t.string   "title"
+    t.text     "description"
+    t.integer  "amount_required"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
   create_table "hospitals", force: :cascade do |t|
     t.string   "name"
     t.string   "city"
