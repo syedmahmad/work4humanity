@@ -10,8 +10,8 @@
             %p= @case.description
             %h4 Requested Amount:
             %p= @case.amount_required
-            %h4 Attachment(s):
             - if @case.attachments.present?
+              %h4 Attachment(s):
               %ul.attachment_list
                 - @case.attachments.each do |f|
                   %li
