@@ -1,0 +1,31 @@
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title Work4humanity
+    %meta{:content => "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0", :name => "viewport"}/
+    / Fav and touch icons
+    %link{:href => "/assets/ico/apple-touch-icon-144-precomposed.png", :rel => "apple-touch-icon-precomposed", :sizes => "144x144"}/
+    %link{:href => "/assets/ico/apple-touch-icon-114-precomposed.png", :rel => "apple-touch-icon-precomposed", :sizes => "114x114"}/
+    %link{:href => "/assets/ico/apple-touch-icon-72-precomposed.png", :rel => "apple-touch-icon-precomposed", :sizes => "72x72"}/
+    %link{:href => "/assets/ico/apple-touch-icon-57-precomposed.png", :rel => "apple-touch-icon-precomposed"}/
+    = favicon_link_tag 'ico/favicon.ico'
+    = csrf_meta_tags
+    / Import google fonts - Heading first/ text second
+    %link{:href => "https://fonts.googleapis.com/css?family=Open+Sans:400,600,700|Droid+Sans:400,700", :rel => "stylesheet", :type => "text/css"}/
+    /[if lt IE 9]
+      <link href="https://fonts.googleapis.com/css?family=Open+Sans:400" rel="stylesheet" type="text/css"/>
+      <link href="https://fonts.googleapis.com/css?family=Open+Sans:600" rel="stylesheet" type="text/css"/>
+      <link href="https://fonts.googleapis.com/css?family=Open+Sans:700" rel="stylesheet" type="text/css"/>
+      <link href="https://fonts.googleapis.com/css?family=Droid+Sans:400" rel="stylesheet" type="text/css"/>
+      <link href="https://fonts.googleapis.com/css?family=Droid+Sans:700" rel="stylesheet" type="text/css"/>
+      <script type="text/javascript" src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    = stylesheet_link_tag 'application', media: 'all'
+  %body{:class => "#{yield :body_class}"}
+    #content{:class => "application_content #{controller_name}"}
+    / Start .content-wrapper
+    .content-wrapper
+      =# render '/layouts/partials/top_alert'
+      .outlet
+        = yield
+    .clearfix
+    = javascript_include_tag 'application'

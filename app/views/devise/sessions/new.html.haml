@@ -15,3 +15,23 @@
   .actions
     = f.submit "Log in"
 = render "devise/shared/links"
+- content_for :body_class do
+  login-page
+
+
+#login.animated.bounceIn
+  %a{:href => root_path}= image_tag 'logo.png', alt: 'sprFlat Logo', id: 'logo'
+  / Start .login-wrapper
+  .login-wrapper
+    %ul#myTab.nav.nav-tabs.nav-justified.bn
+      %li.active
+        %a{"data-toggle" => "tab", :href => "#log-in"}= t('authorisation.tab.log-in')
+    #myTabContent.tab-content.bn
+      #log-in.tab-pane.active
+        .social-buttons.text-center.mt10
+          %a.btn.btn-primary.btn-alt.btn-round.btn-lg.mr10{:href => "$"}
+            %i.fa-facebook.s24
+          %a.btn.btn-info.btn-alt.btn-round.btn-lg{:href => "#"}
+            %i.fa-linkedin.s24
+        
+  / End #.login-wrapper
