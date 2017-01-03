@@ -12,5 +12,6 @@
  *
  *= require_tree .
  *= require main
+ *= require font-awesome.min
  *= require_self
  */
