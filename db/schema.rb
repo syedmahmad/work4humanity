@@ -18,12 +18,12 @@ ActiveRecord::Schema.define(version: 20170103094543) do
 
   create_table "attachments", force: :cascade do |t|
     t.integer  "case_id"
-    t.string   "attached_file_file_name"
-    t.string   "attached_file_content_type"
-    t.integer  "attached_file_file_size"
-    t.datetime "attached_file_updated_at"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.string   "attachment_file_name"
+    t.string   "attachment_content_type"
+    t.integer  "attachment_file_size"
+    t.datetime "attachment_updated_at"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
   add_index "attachments", ["case_id"], name: "index_attachments_on_case_id", using: :btree

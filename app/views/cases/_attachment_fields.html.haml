@@ -1,4 +1,7 @@
 .nested-fields
   .field
-    = f.file_field :attached_file
+    = f.file_field :attachment
+  - if f.object.persisted?
+    = f.object.attachment_file_name  
   = link_to_remove_association "Remove attachment", f, class: 'btn btn-danger'
+  

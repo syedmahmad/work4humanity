@@ -24,7 +24,7 @@ class CasesController < ApplicationController
 
 	private
 	def case_params
-		params.require(:case).permit(:title, :description, :amount_required, attachments_attributes: [:id, :attached_file])
+		params.require(:case).permit(:title, :description, :amount_required, attachments_attributes: [:id, :attachment])
 	end	
 
 	def set_case
