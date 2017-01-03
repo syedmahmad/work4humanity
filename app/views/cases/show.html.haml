@@ -4,15 +4,17 @@
       .col-md-8.col-md-offset-2
         .panel.panel-default.panelMove.toggle.panelRefresh.panelClose
           .panel-heading.case_study_heading
-            %h4.panel-title= @case.title
+            %h2.panel-title= @case.title
           .panel-body
-            %h5 Description
+            %h4 Description:
             %p= @case.description
-            %h5 Requested Amount
+            %h4 Requested Amount:
             %p= @case.amount_required
-            %h5 Attachment
-            =@case.attachments.each do |f|
-              =image_tag f.attachment.url
+            %h4 Attachment(s):
+            - if @case.attachments.present?
+              %ul.attachment_list
+                - @case.attachments.each do |f|
+                  %li
+                    = image_tag f.attachment.url(:medium)
         = link_to 'Back', cases_path, class: 'btn btn-primary'
-
 

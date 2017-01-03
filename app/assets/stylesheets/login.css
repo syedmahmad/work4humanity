@@ -1,0 +1,6 @@
+body.login-page{
+  background: #3c763d;
+}
+body.login-page #login .login-wrapper{
+  border-radius: 27px;
+}
