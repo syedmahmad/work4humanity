@@ -28,6 +28,8 @@ gem "paperclip", "~> 5.0.0"
 
 gem 'devise'
 
+gem 'omniauth'
+
 gem 'omniauth-facebook'
 
 gem "twitter-bootstrap-rails"
