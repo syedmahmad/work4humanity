@@ -1,7 +1,18 @@
-%h4= @case.title
-%p= @case.description
-%p= @case.amount_required
-=@case.attachments.each do |f|
-    =image_tag f.attachment.url
+.container
+  .outlet
+    .row
+      .col-md-8.col-md-offset-2
+        .panel.panel-default.panelMove.toggle.panelRefresh.panelClose
+          .panel-heading.case_study_heading
+            %h4.panel-title= @case.title
+          .panel-body
+            %h5 Description
+            %p= @case.description
+            %h5 Requested Amount
+            %p= @case.amount_required
+            %h5 Attachment
+            =@case.attachments.each do |f|
+              =image_tag f.attachment.url
+        = link_to 'Back', cases_path, class: 'btn btn-primary'
 
-= link_to 'Back', cases_path, class: 'btn btn-primary'
+
