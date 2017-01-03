@@ -7,11 +7,12 @@
   .login-wrapper
     %ul#myTab.nav.nav-tabs.nav-justified.bn
       %li.active
-        %a{"data-toggle" => "tab", :href => "#log-in"}= t('authorisation.tab.log-in')
+        %a{"data-toggle" => "tab", :href => "#log-in"}
+          Login for Volunteers
     #myTabContent.tab-content.bn
       #log-in.tab-pane.active
-        .social-buttons.text-center.mt10
-          %a.btn.btn-primary.btn-alt.btn-round.btn-lg.mr10.mb20{:href => "$"}
+        .social-buttons.text-center.mt10.mt20.mb50
+          %a.btn.btn-primary.btn-alt.btn-round.btn-lg.mr10{:href => "$"}
             %i.fa.fa-facebook.s24
             Facebook
   / End #.login-wrapper
