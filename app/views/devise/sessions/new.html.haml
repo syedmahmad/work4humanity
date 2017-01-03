@@ -12,7 +12,7 @@
     #myTabContent.tab-content.bn
       #log-in.tab-pane.active
         .social-buttons.text-center.mt10.mt20.mb50
-          %a.btn.btn-primary.btn-alt.btn-round.btn-lg.mr10{:href => "$"}
+          %a.btn.btn-primary.btn-alt.btn-round.btn-lg.mr10{:href => omniauth_authorize_path(resource_name, :facebook)}
             %i.fa.fa-facebook.s24
             Facebook
   / End #.login-wrapper

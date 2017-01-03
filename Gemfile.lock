@@ -216,6 +216,7 @@ DEPENDENCIES
   haml
   jbuilder (~> 2.0)
   jquery-rails
+  omniauth
   omniauth-facebook
   paperclip (~> 5.0.0)
   pg
@@ -229,4 +230,4 @@ DEPENDENCIES
   web-console (~> 2.0)
 
 BUNDLED WITH
-   1.13.6
+   1.10.5
