@@ -1,0 +1,7 @@
+%h4= @case.title
+%p= @case.description
+%p= @case.amount_required
+=@case.attachments.each do |f|
+    =image_tag f.attachment.url
+
+= link_to 'Back', cases_path, class: 'btn btn-primary'
