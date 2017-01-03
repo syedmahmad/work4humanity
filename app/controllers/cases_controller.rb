@@ -27,8 +27,6 @@ class CasesController < ApplicationController
 	end
 
 	def update
-		puts "jsdfkhasdfkjahsdf hcajkfhaskj hfkajhfafdafa\n"*4
-		params.inspect
 		@case.update(case_params)
 		redirect_to case_path
 	end
@@ -40,7 +38,7 @@ class CasesController < ApplicationController
 
 	private
 	def case_params
-		params.require(:case).permit(:title, :description, :amount_required, attachments_attributes: [:id, :attachment])
+		params.require(:case).permit(:title, :description, :amount_required, attachments_attributes: [:id, :attachment, :_destroy])
 	end
 
 	def set_case
