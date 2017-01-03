@@ -28,9 +28,13 @@ gem "paperclip", "~> 5.0.0"
 
 gem 'devise'
 
+gem 'omniauth'
+
 gem 'omniauth-facebook'
 
 gem "twitter-bootstrap-rails"
+
+gem 'simple_form'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
