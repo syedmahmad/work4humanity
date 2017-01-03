@@ -1,0 +1,19 @@
+.container
+	.row
+		.col-md-8.col-md-offset-2
+			= form_for @case, html: { multipart: true } do |f|
+				.form-group
+					= f.label 'Title'
+					= f.text_field :title, class: 'form-control'
+				.form-group
+					= f.label 'Description'
+					= f.text_area :description, class: 'form-control'
+				.form-group
+					= f.label 'Amount Required'
+					= f.text_field :amount_required, class: 'form-control'
+				= f.fields_for :attachments do |att|
+					= render 'attachment_fields', f: att
+				.links.form-group
+					= link_to_add_association 'Add Attachment', f, :attachments, class: 'btn btn-primary'
+				.form-group
+					= f.submit 'Create', class: 'btn btn-primary'

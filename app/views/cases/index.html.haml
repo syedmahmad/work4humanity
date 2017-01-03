@@ -1,1 +1,14 @@
-%h1 All Cases
+.container
+	.row
+		%h1 All Cases
+		.col-md-12
+			= link_to 'Create a new case', new_case_path, class: 'btn btn-primary'
+	.col-md-8.col-md-offset-2
+		- @cases.each do |case_obj| 
+			.col-md-12
+				%h4
+					= case_obj.title
+				%p
+					= case_obj.description
+				= link_to 'Edit this case', edit_case_path(case_obj),class: 'btn btn-primary'
+
