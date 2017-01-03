@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
       email_is_verified = auth.info.email
       email = auth.info.email if email_is_verified
       user = User.where(:email => email).first if email
-
+      image_url = auth.info.image
       # Create the user if it's a new registration
       if user.nil?
         user = User.new(
@@ -35,6 +35,7 @@ class User < ActiveRecord::Base
           #username: auth.info.nickname || auth.uid,
           email: email,
           u_type: 0,
+          image_url: image_url,
           password: Devise.friendly_token[0,20]
         )
         user.skip_confirmation!
