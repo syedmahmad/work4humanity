@@ -1,37 +1,18 @@
-%h2 Log in
-= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true
-  .field
-    = f.label :password
-    %br/
-    = f.password_field :password, autocomplete: "off"
-  - if devise_mapping.rememberable?
-    .field
-      = f.check_box :remember_me
-      = f.label :remember_me
-  .actions
-    = f.submit "Log in"
-= render "devise/shared/links"
 - content_for :body_class do
   login-page
 
-
 #login.animated.bounceIn
-  %a{:href => root_path}= image_tag 'logo.png', alt: 'sprFlat Logo', id: 'logo'
+  %h2.color-white.text-align-centre Work4Humanity
   / Start .login-wrapper
   .login-wrapper
     %ul#myTab.nav.nav-tabs.nav-justified.bn
       %li.active
-        %a{"data-toggle" => "tab", :href => "#log-in"}= t('authorisation.tab.log-in')
+        %a{"data-toggle" => "tab", :href => "#log-in"}
+          Login for Volunteers
     #myTabContent.tab-content.bn
       #log-in.tab-pane.active
-        .social-buttons.text-center.mt10
+        .social-buttons.text-center.mt10.mt20.mb50
           %a.btn.btn-primary.btn-alt.btn-round.btn-lg.mr10{:href => "$"}
-            %i.fa-facebook.s24
-          %a.btn.btn-info.btn-alt.btn-round.btn-lg{:href => "#"}
-            %i.fa-linkedin.s24
-        
+            %i.fa.fa-facebook.s24
+            Facebook
   / End #.login-wrapper

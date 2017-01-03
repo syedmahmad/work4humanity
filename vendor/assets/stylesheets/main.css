@@ -555,6 +555,9 @@ a.text-lime:hover {
 .absolute {
   position: absolute;
 }
+.text-align-centre{
+  text-align: center;
+}
 /* -----------------------------------------
    Body styles
 ----------------------------------------- */
