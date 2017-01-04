@@ -23,7 +23,7 @@ Rails.application.routes.draw do
     end
   end
 
-
+  get 'not_authorized' => 'home#not_authorized'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

@@ -1,7 +1,8 @@
 class DonationsController < ApplicationController
 
   before_action :authenticate_user!
-  before_action :set_donation, only: [:edit, :show, :update, :destroy, :accept, :reject, :receive]
+  before_action :set_donation, only: [:edit, :show, :update, :destroy, :accept, :reject, :receive, :authorize_donation]
+  before_action :authorize_donation, only: [:index, :new, :create, :destroy, :accept, :reject, :receive, :show]
 
   def index
     @donations = Donation.all
@@ -48,6 +49,10 @@ class DonationsController < ApplicationController
 
   def set_donation
     @donation = Donation.find(params[:id])
+  end
+
+  def authorize_donation
+    authorize (@donation || current_user.donations.build)
   end
 
 end

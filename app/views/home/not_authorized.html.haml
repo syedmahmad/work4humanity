@@ -1,0 +1,12 @@
+.container
+  .outlet
+    .row
+      .col-md-8.col-md-offset-2
+        .panel.panel-default.panelMove.toggle.panelRefresh.panelClose
+          .panel-heading.case_study_heading
+            %h2.panel-title Not Authorized
+          .panel-body
+            %p
+              We are sorry but you tried to access a page you had no authorization for.        
+            = link_to 'Back to site', root_path, class: 'btn btn-primary'
+

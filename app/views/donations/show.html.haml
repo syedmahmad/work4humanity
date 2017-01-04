@@ -10,8 +10,9 @@
             %p= @donation.amount
             %h4 Status:
             %p= @donation.status.titleize
-        = link_to 'Back', donations_user_path, class: 'btn btn-primary'
+        = link_to 'Back', get_donations_path, class: 'btn btn-primary'
         .pull-right
-          = link_to 'Accept', accept_donation_path(@donation), method: :post, class: 'btn btn-success'
-          = link_to 'Reject', reject_donation_path(@donation), method: :post, class: 'btn btn-danger'
-          = link_to 'Receive', receive_donation_path(@donation), method: :post, class: 'btn btn-info'
+          - if policy(:donation).accept?
+            = link_to 'Accept', accept_donation_path(@donation), method: :post, class: 'btn btn-success'
+            = link_to 'Reject', reject_donation_path(@donation), method: :post, class: 'btn btn-danger'
+            = link_to 'Receive', receive_donation_path(@donation), method: :post, class: 'btn btn-info'
