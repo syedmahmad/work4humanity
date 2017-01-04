@@ -1,0 +1,16 @@
+.container
+  .outlet
+    .row
+      .col-md-8.col-md-offset-2
+        .panel.panel-default.panelMove.toggle.panelRefresh.panelClose
+          .panel-heading.case_study_heading
+            %h2.panel-title= Donation
+          .panel-body
+            %h4 Amount:
+            %p= @donation.amount
+            %h4 Status:
+            %p= @donation.status.titleize
+        = link_to 'Back', donations_user_path, class: 'btn btn-primary'
+        .pull-right
+          = link_to 'Accept', accept_donation_path(@donation), method: :post, class: 'btn btn-success'
+          = link_to 'Reject', reject_donation_path(@donation), method: :post, class: 'btn btn-danger'
