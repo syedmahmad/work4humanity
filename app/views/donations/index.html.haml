@@ -10,5 +10,7 @@
           = "Amount: #{donation_obj.amount}"
         %p
           = "Status: #{donation_obj.status.titleize}"
+        - if policy(donation_obj).edit?
+          = link_to 'Edit this donation', edit_donation_path(donation_obj) ,class: 'btn btn-primary'
         = link_to 'Delete this donation', donation_path(donation_obj), method: :delete, data: { confirm: "You sure?" } ,class: 'btn btn-danger'
         = link_to 'View this donation', donation_path(donation_obj) ,class: 'btn btn-info'

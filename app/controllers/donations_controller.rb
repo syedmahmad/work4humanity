@@ -2,7 +2,7 @@ class DonationsController < ApplicationController
 
   before_action :authenticate_user!
   before_action :set_donation, only: [:edit, :show, :update, :destroy, :accept, :reject, :receive, :authorize_donation]
-  before_action :authorize_donation, only: [:index, :new, :create, :destroy, :accept, :reject, :receive, :show]
+  before_action :authorize_donation, only: [:index, :new, :create, :edit, :update, :destroy, :accept, :reject, :receive, :show]
 
   def index
     @donations = Donation.all
@@ -19,6 +19,15 @@ class DonationsController < ApplicationController
 
   def show
 
+  end
+
+  def edit
+
+  end
+
+  def update
+    @donation.update(donation_params)
+    redirect_to donations_user_path(@donation.user)
   end
 
   def accept

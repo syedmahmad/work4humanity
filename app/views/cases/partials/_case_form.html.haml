@@ -24,4 +24,4 @@
 							.links.form-group.col-md-8.col-md-offset-2
 								= link_to_add_association 'Add Attachment', f, :attachments, class: 'btn btn-primary'
 							.form-group.col-md-8.col-md-offset-2
-								= f.submit 'Create', class: 'btn btn-primary'
+								= f.submit "#{donation_button_text(@case)}", class: 'btn btn-primary'
