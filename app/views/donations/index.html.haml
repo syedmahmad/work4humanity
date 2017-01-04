@@ -1,12 +1,12 @@
 .container
   .row
     %h1 All Donations
-    .col-md-12
-      = link_to 'Create a new donation', new_donation_path, class: 'btn btn-primary'
   .col-md-8.col-md-offset-2
     - @donations.each do |donation_obj|
       .col-md-12
         %h4
+          = "Name: #{donation_obj.user.name}"
+        %p
           = "Amount: #{donation_obj.amount}"
         %p
           = "Status: #{donation_obj.status.titleize}"

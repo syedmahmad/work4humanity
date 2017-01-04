@@ -13,6 +13,10 @@ class User < ActiveRecord::Base
     self.u_type == 'admin' 
   end
 
+  def is_volunteer?
+    self.u_type == 'volunteer'
+  end
+
   def self.find_for_oauth(auth, signed_in_resource = nil)
 
     # Get the identity and user if they exist

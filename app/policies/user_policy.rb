@@ -6,4 +6,10 @@ class UserPolicy
     @user = model
   end
 
+  def donations?
+  	puts "@@@@@@@@@@@!!!!!!!!!!!!!!!!!!!!!\n"*12
+  	puts @user == current_user
+  	@user == current_user
+  end
+
 end

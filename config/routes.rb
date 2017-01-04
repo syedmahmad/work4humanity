@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     member do
       post 'accept'
       post 'reject'
+      post 'receive'
     end
   end
 
@@ -22,7 +23,7 @@ Rails.application.routes.draw do
     end
   end
 
-
+  get 'not_authorized' => 'home#not_authorized'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

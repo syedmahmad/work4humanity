@@ -6,7 +6,35 @@ class DonationPolicy
   	@donation = model
   end
 
-  def index
+  def index?
+  	is_admin?
+  end
+
+  def new?
+  	is_volunteer?
+  end
+
+  def create?
+  	is_volunteer?
+  end
+
+  def show?
+  	is_admin? || @donation.user == current_user
+  end
+
+  def destroy?
+  	is_admin?
+  end
+
+  def accept?
+  	is_admin?
+  end
+
+  def reject?
+  	is_admin?
+  end
+
+  def receive?
   	is_admin?
   end
 
@@ -15,6 +43,10 @@ class DonationPolicy
   def is_admin?
   	current_user.is_admin?
   end	
+
+  def is_volunteer?
+  	current_user.is_volunteer?
+  end
 
   
 
