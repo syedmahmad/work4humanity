@@ -9,6 +9,20 @@ Rails.application.routes.draw do
 
   root to: "cases#index"
   resources :cases
+  resources :donations do
+    member do
+      post 'accept'
+      post 'reject'
+      post 'receive'
+    end
+  end
+
+  resources :users, only: [] do
+    member do
+      get 'donations'
+    end
+  end
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
