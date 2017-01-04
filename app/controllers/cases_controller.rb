@@ -2,14 +2,14 @@ class CasesController < ApplicationController
 
 	before_action :authenticate_user!
 	before_action :set_case, only: [:edit, :show, :update, :destroy, :authorize_case]
-	before_action :authorize_case
+	before_action :authorize_case, only: [:new, :create, :edit, :update, :destroy]
 
 	def index
 		@cases = Case.all
 	end
 
 	def new
-		@case = current_user.case.new
+		@case = current_user.cases.build
 	end
 
 	def show
@@ -45,7 +45,7 @@ class CasesController < ApplicationController
 	end
 
 	def authorize_case
-		authorize (@case || current_user.donations.build)
+		authorize (@case || current_user.cases.build)
 	end
 
 end
