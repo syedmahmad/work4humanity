@@ -8,7 +8,12 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { omniauth_callbacks: "omniauth_callbacks" }
 
   root to: "cases#index"
-  resources :cases
+  resources :cases do
+    member do 
+      get 'allocate_funds'
+      post 'confirm_funds_allocation'
+    end  
+  end   
   resources :donations do
     member do
       post 'accept'

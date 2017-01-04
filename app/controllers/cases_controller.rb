@@ -1,8 +1,8 @@
 class CasesController < ApplicationController
 
 	before_action :authenticate_user!
-	before_action :set_case, only: [:edit, :show, :update, :destroy, :authorize_case]
-	before_action :authorize_case, only: [:new, :create, :edit, :update, :destroy]
+	before_action :set_case, only: [:edit, :show, :update, :destroy, :authorize_case, :allocate_funds, :confirm_funds_allocation]
+	before_action :authorize_case, only: [:new, :create, :edit, :update, :destroy, :allocate_funds, :confirm_funds_allocation]
 
 	def index
 		@cases = Case.all
@@ -35,9 +35,21 @@ class CasesController < ApplicationController
 		redirect_to cases_path
 	end
 
+	def allocate_funds
+		@available_balance = Donation.all.pluck(:amount).sum
+	end
+
+	def confirm_funds_allocation
+		
+	end
+
 	private
 	def case_params
 		params.require(:case).permit(:title, :description, :amount_required, attachments_attributes: [:id, :attachment, :_destroy])
+	end
+
+	def fund_allocation_params
+		params.require(:case).permit(:allocated_amount)
 	end
 
 	def set_case
