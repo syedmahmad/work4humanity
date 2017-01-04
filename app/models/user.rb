@@ -5,9 +5,13 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :confirmable,
     :recoverable, :rememberable, :trackable, :validatable, :omniauthable
   # validates_format_of :email, :without => TEMP_EMAIL_REGEX, on: :update
-  enum u_type: [:volunteer]
+  enum u_type: [:volunteer, :admin ]
 
   has_many :donations
+
+  def is_admin?
+    self.u_type == 'admin' 
+  end
 
   def self.find_for_oauth(auth, signed_in_resource = nil)
 

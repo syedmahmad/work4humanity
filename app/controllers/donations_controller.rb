@@ -2,6 +2,7 @@ class DonationsController < ApplicationController
 
   before_action :authenticate_user!
   before_action :set_donation, only: [:edit, :show, :update, :destroy, :accept, :reject]
+  before_action :authorize_employee, only: [:new, :destroy, :accept, :reject]
 
   def new
     @donation = current_user.donations.build
