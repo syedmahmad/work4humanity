@@ -1,16 +1,15 @@
 class CasesController < ApplicationController
 
 	before_action :authenticate_user!
-	before_action :set_case, only: [:edit, :show, :update, :destroy]
+	before_action :set_case, only: [:edit, :show, :update, :destroy, :authorize_case]
+	before_action :authorize_case
 
 	def index
-		# change the below functionality to fetch the cases created by this user only
 		@cases = Case.all
 	end
 
 	def new
-		# change the below functionality to build a case according to a user
-		@case = Case.new
+		@case = current_user.case.new
 	end
 
 	def show
@@ -18,8 +17,7 @@ class CasesController < ApplicationController
 	end
 
 	def create
-		#change the below code to create according to associated user
-		Case.create(case_params)
+		current_user.cases.create(case_params)
 		redirect_to cases_path
 	end
 
@@ -44,6 +42,10 @@ class CasesController < ApplicationController
 
 	def set_case
 		@case = Case.find(params[:id])
+	end
+
+	def authorize_case
+		authorize (@case || current_user.donations.build)
 	end
 
 end

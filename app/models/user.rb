@@ -7,7 +7,8 @@ class User < ActiveRecord::Base
   # validates_format_of :email, :without => TEMP_EMAIL_REGEX, on: :update
   enum u_type: [:volunteer, :admin ]
 
-  has_many :donations
+  has_many :donations, dependent: :destroy
+  has_many :cases, dependent: :destroy
 
   def is_admin?
     self.u_type == 'admin' 
