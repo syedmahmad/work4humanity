@@ -19,7 +19,7 @@
                 %p= @available_balance
               .col-md4
                 %h5 Allocate Amount:
-                = form_for @case, url: confirm_funds_allocation_case_path(@case), class: 'form-horizontal group-border hover-stripped' do |f|
+                = form_for @case, url: confirm_funds_allocation_case_path(@case), class: 'form-horizontal group-border hover-stripped', method: :post do |f|
                   .form-group
                     = f.label 'Amount', class: 'col-lg-2 col-md-4 col-sm-4 control-label'
                     .col-lg-4.col-md-4

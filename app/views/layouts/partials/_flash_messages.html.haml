@@ -1,0 +1,4 @@
+- flash.each do |key, value|
+  %div{:class => "alert #{bootstrap_class_for(key)} fade in"}
+    %button.close{"data-dismiss" => "alert"} ×
+    = value

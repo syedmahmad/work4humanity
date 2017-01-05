@@ -36,20 +36,30 @@ class CasesController < ApplicationController
 	end
 
 	def allocate_funds
-		@available_balance = Donation.all.pluck(:amount).sum
+		@available_balance = Donation.all.received.pluck(:amount).sum
 	end
 
 	def confirm_funds_allocation
-		
+		@case.enable_funds_validation = true
+		@case.form_amount = params[:case][:allocated_amount].to_i
+		if @case.valid?
+			@case.assign_amout_to_case
+			if @case.errors.present?
+				flash[:alert] = "#{@case.errors.full_messages.to_sentence}."
+				redirect_to :back
+			else
+				flash[:notice] = 'Amount allocated to the case.'
+				redirect_to :back	
+			end	
+		else
+			flash[:alert] = "#{@case.errors.full_messages.to_sentence}."
+			redirect_to :back
+		end
 	end
 
 	private
 	def case_params
 		params.require(:case).permit(:title, :description, :amount_required, attachments_attributes: [:id, :attachment, :_destroy])
-	end
-
-	def fund_allocation_params
-		params.require(:case).permit(:allocated_amount)
 	end
 
 	def set_case

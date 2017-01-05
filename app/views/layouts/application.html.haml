@@ -29,6 +29,7 @@
     .content-wrapper
       =# render '/layouts/partials/top_alert'
       .outlet
+        = render partial: 'layouts/partials/flash_messages', flash: flash
         = yield
     .clearfix
     = javascript_include_tag 'application'
