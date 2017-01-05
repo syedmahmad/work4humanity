@@ -14,6 +14,14 @@ class DonationPolicy
   	is_volunteer?
   end
 
+  def edit?
+    @donation.user == current_user
+  end
+
+  def update?
+    @donation.user == current_user
+  end
+
   def create?
   	is_volunteer?
   end
@@ -42,12 +50,12 @@ class DonationPolicy
 
   def is_admin?
   	current_user.is_admin?
-  end	
+  end
 
   def is_volunteer?
   	current_user.is_volunteer?
   end
 
-  
+
 
 end
