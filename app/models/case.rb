@@ -1,4 +1,4 @@
-class Case < ActiveRecord::Base
+  class Case < ActiveRecord::Base
 	validates_presence_of :title, :description, :amount_required
 	validate :check_funds, :if => :enable_funds_validation	
 
@@ -7,6 +7,7 @@ class Case < ActiveRecord::Base
 	
 	after_create :set_default_status
 
+  	belongs_to :hospital
 	accepts_nested_attributes_for :attachments, reject_if: :all_blank, allow_destroy: true
 	
 	enum status: [:pending, :funds_allocated]

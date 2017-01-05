@@ -54,8 +54,10 @@ ActiveRecord::Schema.define(version: 20170105133647) do
     t.integer  "user_id"
     t.integer  "allocated_amount", default: 0
     t.integer  "status"
+    t.integer  "hospital_id"
   end
 
+  add_index "cases", ["hospital_id"], name: "index_cases_on_hospital_id", using: :btree
   add_index "cases", ["user_id"], name: "index_cases_on_user_id", using: :btree
 
   create_table "donations", force: :cascade do |t|
