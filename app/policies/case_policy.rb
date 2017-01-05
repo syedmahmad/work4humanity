@@ -26,4 +26,12 @@ class CasePolicy
 		@current_user.u_type == 'admin' || @case.user == @current_user
 	end
 
+	def allocate_funds?
+		@current_user.u_type == 'admin'
+	end
+
+	def confirm_funds_allocation?
+		@current_user.u_type == 'admin'
+	end
+
 end

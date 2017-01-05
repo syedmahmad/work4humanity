@@ -1,8 +1,8 @@
 class CasesController < ApplicationController
 
 	before_action :authenticate_user!
-	before_action :set_case, only: [:edit, :show, :update, :destroy, :authorize_case]
-	before_action :authorize_case, only: [:new, :create, :edit, :update, :destroy]
+	before_action :set_case, only: [:edit, :show, :update, :destroy, :authorize_case, :allocate_funds, :confirm_funds_allocation]
+	before_action :authorize_case, only: [:new, :create, :edit, :update, :destroy, :allocate_funds, :confirm_funds_allocation]
 
 	def index
 		@cases = Case.all
@@ -33,6 +33,28 @@ class CasesController < ApplicationController
 	def destroy
 		@case.destroy
 		redirect_to cases_path
+	end
+
+	def allocate_funds
+		@available_balance = Donation.all.received.pluck(:amount).sum
+	end
+
+	def confirm_funds_allocation
+		@case.enable_funds_validation = true
+		@case.form_amount = params[:case][:allocated_amount].to_i
+		if @case.valid?
+			@case.assign_amout_to_case
+			if @case.errors.present?
+				flash[:alert] = "#{@case.errors.full_messages.to_sentence}."
+				redirect_to :back
+			else
+				flash[:notice] = 'Amount allocated to the case.'
+				redirect_to :back	
+			end	
+		else
+			flash[:alert] = "#{@case.errors.full_messages.to_sentence}."
+			redirect_to :back
+		end
 	end
 
 	private
