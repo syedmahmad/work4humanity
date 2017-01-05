@@ -18,7 +18,7 @@ class DonationsController < ApplicationController
   end
 
   def show
-
+    @activities = PublicActivity::Activity.order("created_at desc").where(owner_id: @donation.id)
   end
 
   def accept

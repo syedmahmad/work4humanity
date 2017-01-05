@@ -33,6 +33,7 @@ class Case < ActiveRecord::Base
 					donation.amount = donation.amount - amount_to_deduct
 				end
 				donation.save
+				donation.create_activity :amount_allocated, owner: donation, recipient: self 
 			else
 				break_loop =  true
 			end
