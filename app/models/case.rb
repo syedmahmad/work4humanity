@@ -24,15 +24,22 @@ class Case < ActiveRecord::Base
 		break_loop = false
 		Donation.all.order('id asc').each_with_index do |donation, index|
 			unless assigned_amount == form_amount
-				if donation.amount <= form_amount
+				if donation.amount <= (form_amount - assigned_amount)
+					# puts "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1\n"*12
+					# puts donation.amount
+					# puts form_amount
 					assigned_amount = assigned_amount + donation.amount
 					donation.amount = 0 
 				else	
 					amount_to_deduct = form_amount - assigned_amount
 					assigned_amount = assigned_amount + amount_to_deduct
 					donation.amount = donation.amount - amount_to_deduct
+					# puts "*&&&&&&&&&&&&&&****&*&*&*&*&*&*&*&*&*&&*&*&*&*&*&*&*&*&\n"*12
+					# puts amount_to_deduct
+					# puts assigned_amount
 				end
 				donation.save
+				puts donation.amount
 				donation.create_activity :amount_allocated, owner: donation, recipient: self 
 			else
 				break_loop =  true
