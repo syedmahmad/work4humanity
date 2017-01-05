@@ -1,19 +1,22 @@
 .container
 	.row
-		%h1 All Cases
 		.col-md-12
 			= link_to 'Create a new case', new_case_path, class: 'btn btn-primary'
-			= link_to 'Donations', get_donations_path,class: 'btn btn-primary' 
 	.col-md-8.col-md-offset-2
+		%h3 List of cases
 		- @cases.each do |case_obj|
 			.col-md-12
-				%h4
-					= case_obj.title
-				%p
-					= case_obj.description
-				- if policy(case_obj).edit?
-					= link_to 'Edit this case', edit_case_path(case_obj),class: 'btn btn-primary'
-				- if policy(case_obj).destroy?
-					= link_to 'Delete this case', case_obj, method: :delete, data: { confirm: "You sure?" } ,class: 'btn btn-danger'
-				= link_to 'View this case', case_path(case_obj) ,class: 'btn btn-info'
+				.panel.panel-default
+					.panel-body
+						%h4
+							= case_obj.title
+						%p
+							= case_obj.description
+						%p
+							%i.fa.fa-location-arrow
+						- if policy(case_obj).edit?
+							= link_to 'Edit this case', edit_case_path(case_obj),class: 'btn btn-primary'
+						- if policy(case_obj).destroy?
+							= link_to 'Delete this case', case_obj, method: :delete, data: { confirm: "You sure?" } ,class: 'btn btn-danger'
+						= link_to 'View this case', case_path(case_obj) ,class: 'btn btn-info'
 
