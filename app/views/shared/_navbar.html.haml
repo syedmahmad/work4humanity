@@ -7,10 +7,11 @@
       %nav.top-nav{:role => "navigation"}
         %ul.nav.navbar-nav.pull-left.channel_nav_btn
           %li
-            %a{:href => "#"}
+            %a{:href => "#{root_path}"}
               %i.im-plus.mr10.text-success>
-              All Cases
-          
+              Cases
+          %li
+            = link_to 'Donations', get_donations_path, class: 'navbar-brand'
         %ul.nav.navbar-nav.pull-right
           
           %li.non_mobile_nav

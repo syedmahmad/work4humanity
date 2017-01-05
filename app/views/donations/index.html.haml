@@ -1,14 +1,16 @@
-.container
-  .row
-    %h1 All Donations
-  .col-md-8.col-md-offset-2
-    - @donations.each do |donation_obj|
-      .col-md-12
-        %h4
-          = "Name: #{donation_obj.user.name}"
-        %p
-          = "Amount: #{donation_obj.amount}"
-        %p
-          = "Status: #{donation_obj.status.titleize}"
-        = link_to 'Delete this donation', donation_path(donation_obj), method: :delete, data: { confirm: "You sure?" } ,class: 'btn btn-danger'
-        = link_to 'View this donation', donation_path(donation_obj) ,class: 'btn btn-info'
+= render partial: 'donations/partials/donation_grid', locals: {donations: @donations}
+/   .col-md-8.col-md-offset-2
+/     %h3 List of donations
+/     - @donations.each do |donation_obj|
+/       .col-md-12
+/ .container
+/         .panel.panel-default
+/           .panel-body
+/             %h4
+/               = "Name: #{donation_obj.user.name}"
+/             %p
+/               = "Amount: #{donation_obj.amount}"
+/             %p
+/               = "Status: #{donation_obj.status.titleize}"
+/             = link_to 'Delete this donation', donation_path(donation_obj), method: :delete, data: { confirm: "You sure?" } ,class: 'btn btn-danger'
+/             = link_to 'View this donation', donation_path(donation_obj) ,class: 'btn btn-info'

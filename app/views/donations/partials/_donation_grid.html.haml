@@ -1,0 +1,18 @@
+.container
+  .col-md-8.col-md-offset-2
+    .row
+      %h3 List of donations
+      - if policy(donations).create?
+        = link_to 'Create a new donation', new_donation_path, class: 'btn btn-primary'
+    - donations.each do |donation_obj|
+      .col-md-12
+        .panel.panel-default
+          .panel-body
+            %h4
+              = "Name: #{donation_obj.user.name}"
+            %p
+              = "Amount: #{donation_obj.amount}"
+            %p
+              = "Status: #{donation_obj.status.titleize}"
+            = link_to 'Delete this donation', donation_path(donation_obj), method: :delete, data: { confirm: "You sure?" } ,class: 'btn btn-danger'
+            = link_to 'View this donation', donation_path(donation_obj) ,class: 'btn btn-info'

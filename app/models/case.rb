@@ -24,7 +24,7 @@ class Case < ActiveRecord::Base
 		break_loop = false
 		Donation.all.order('id asc').each_with_index do |donation, index|
 			unless assigned_amount == form_amount
-				if donation.amount <= form_amount
+				if donation.amount <= (form_amount - assigned_amount)
 					assigned_amount = assigned_amount + donation.amount
 					donation.amount = 0 
 				else	
