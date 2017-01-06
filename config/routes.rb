@@ -25,6 +25,10 @@ Rails.application.routes.draw do
   resources :users, only: [] do
     member do
       get 'donations'
+      post 'update_user_role'
+    end
+    collection do 
+      get 'manage_users'
     end
   end
 

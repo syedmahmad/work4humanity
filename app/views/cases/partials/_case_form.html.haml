@@ -22,7 +22,7 @@
 							.form-group
 								= f.label 'Hospital', class: 'col-lg-2 col-md-2 col-sm-12 control-label'
 								.col-lg-6.col-md-6
-								= f.select(:hospital_id, @hospitals.map {|type| [type.name, type.id]}, {}, { :class => 'col-lg-6 col-md-6 col-sm-12 control-label' })
+									= f.select(:hospital_id, @hospitals.map {|type| [type.name, type.id]}, {}, { :class => 'form-control' })
 							= f.fields_for :attachments do |att|
 								= render 'attachment_fields', f: att
 							.links.form-group.col-md-8.col-md-offset-2

@@ -12,6 +12,9 @@
               Cases
           %li
             = link_to 'Donations', get_donations_path, class: 'navbar-brand'
+          - if policy(current_user).manage_users?
+            %li
+              = link_to 'Manage Users', manage_users_users_path, class: 'navbar-brand'
         %ul.nav.navbar-nav.pull-right
           
           %li.non_mobile_nav

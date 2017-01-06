@@ -13,6 +13,8 @@
 						%p
 							= case_obj.description
 						%p
+							= case_obj.status.titleize
+						%p
 							%i.fa.fa-location-arrow
 						- if policy(case_obj).edit?
 							= link_to 'Edit this case', edit_case_path(case_obj),class: 'btn btn-primary'
