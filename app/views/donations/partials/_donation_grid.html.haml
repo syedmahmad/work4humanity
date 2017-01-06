@@ -1,10 +1,11 @@
 .container
+  .row
+    .col-md-12
+      = link_to 'Create a new donation', new_donation_path, class: 'btn btn-primary'
   .col-md-8.col-md-offset-2
     - unless donations.blank?
       .row
         %h3 List of donations
-        - if policy(donations).create?
-          = link_to 'Create a new donation', new_donation_path, class: 'btn btn-primary'
       - donations.each do |donation_obj|
         .col-md-12
           .panel.panel-default

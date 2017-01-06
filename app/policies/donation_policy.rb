@@ -11,7 +11,7 @@ class DonationPolicy
   end
 
   def new?
-  	is_volunteer?
+  	is_volunteer? || is_admin?
   end
 
   def edit?
@@ -31,7 +31,7 @@ class DonationPolicy
   end
 
   def destroy?
-  	is_admin?
+  	is_admin? || @donation.user == current_user
   end
 
   def accept?
