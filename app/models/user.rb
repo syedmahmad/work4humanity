@@ -18,6 +18,18 @@ class User < ActiveRecord::Base
     self.u_type == 'volunteer'
   end
 
+  def get_amount_of_donations_used
+    donation_ids = self.donations.pluck(:id)
+    donated_amount_hash_objs = PublicActivity::Activity.order("created_at desc").where(owner_id: donation_ids).pluck(:parameters)
+    total_donated_amount  = 0
+    donated_amount_hash_objs.each do |obj|
+      puts obj
+      total_donated_amount = total_donated_amount + obj[:amount].to_i
+    end
+
+    total_donated_amount  
+  end
+
   def self.find_for_oauth(auth, signed_in_resource = nil)
 
     # Get the identity and user if they exist

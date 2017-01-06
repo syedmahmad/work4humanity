@@ -1,0 +1,5 @@
+- if activity.present?
+  %h4 Donor's Info
+  - activity.each do |a|
+    %li
+      = "#{link_to a.owner.user.name, user_path(a.owner.user)} donated #{a.parameters[:amount]}/= to this case.".html_safe

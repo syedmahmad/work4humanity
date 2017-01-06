@@ -18,7 +18,7 @@
         %ul.nav.navbar-nav.pull-right
           
           %li.non_mobile_nav
-            = link_to '#' do
+            = link_to user_path(current_user) do
               = avatar_url(current_user, '100', 'user-avatar')
               = current_user.name
           %li.dropdown.mobile_nav.p10

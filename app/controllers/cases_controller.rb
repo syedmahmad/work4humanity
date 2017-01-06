@@ -14,7 +14,7 @@ class CasesController < ApplicationController
 	end
 
 	def show
-
+		@activity = PublicActivity::Activity.order("created_at desc").where(recipient_id: @case.id)
 	end
 
 	def create

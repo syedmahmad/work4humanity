@@ -22,7 +22,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :users, only: [] do
+  resources :users, only: [:show] do
     member do
       get 'donations'
       post 'update_user_role'

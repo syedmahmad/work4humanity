@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   before_action :authenticate_user!
-  before_action :set_user, only: [:authorize_user, :donations, :update_user_role]
+  before_action :set_user, only: [:show, :authorize_user, :donations, :update_user_role]
   before_action :authorize_user, only: [:donations, :manage_users, :update_user_role]
 
   def donations
@@ -20,6 +20,10 @@ class UsersController < ApplicationController
     end
     
     redirect_to :back    
+  end
+
+  def show
+    
   end
 
   private

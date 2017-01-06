@@ -22,4 +22,6 @@
         = link_to 'Back', cases_path, class: 'btn btn-primary'
         - if policy(@case).allocate_funds?
           = link_to 'Allocate Funds', allocate_funds_case_path(@case), class: 'btn btn-primary'
-
+  .row
+    .col-md-8.col-md-offset-2
+      = render partial: 'cases/partials/donations_log', locals: {activity: @activity}
