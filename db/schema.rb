@@ -52,9 +52,9 @@ ActiveRecord::Schema.define(version: 20170106073838) do
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
     t.integer  "user_id"
-    t.integer  "hospital_id"
     t.integer  "allocated_amount", default: 0
     t.integer  "status",           default: 0
+    t.integer  "hospital_id"
   end
 
   add_index "cases", ["hospital_id"], name: "index_cases_on_hospital_id", using: :btree
