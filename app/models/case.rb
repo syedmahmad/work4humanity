@@ -1,23 +1,26 @@
   class Case < ActiveRecord::Base
 	validates_presence_of :title, :description, :amount_required
-	validate :check_funds, :if => :enable_funds_validation	
+	validate :check_funds, :if => :enable_funds_validation
 
 	has_many :attachments, dependent: :destroy
 	belongs_to :user
-	
+
 	after_create :set_default_status
 
   	belongs_to :hospital
 	accepts_nested_attributes_for :attachments, reject_if: :all_blank, allow_destroy: true
-	
+
 	enum status: [:pending, :funds_allocated]
 
 	attr_accessor :enable_funds_validation, :form_amount
 
 	def check_funds
+		if form_amount + self.allocated_amount > self.amount_required
+			errors.add(:cases, "the amount enter should not exceed the required amount for case")
+		end
 		if get_available_balance < form_amount
 			errors.add(:cases, "the amount enter exceeds the available balance in the system")
-		end	
+		end
 	end
 
 	def assign_amout_to_case
@@ -28,15 +31,15 @@
 			unless assigned_amount == form_amount
 				if donation.amount <= (form_amount - assigned_amount)
 					assigned_amount = assigned_amount + donation.amount
-					amount_to_deduct = donation.amount 
+					amount_to_deduct = donation.amount
 					donation.amount = 0
-				else	
+				else
 					amount_to_deduct = form_amount - assigned_amount
 					assigned_amount = assigned_amount + amount_to_deduct
 					donation.amount = donation.amount - amount_to_deduct
 				end
 				donation.save
-				donation.create_activity :amount_allocated, parameters: {amount: "#{amount_to_deduct}"}, owner: donation, recipient: self 
+				donation.create_activity :amount_allocated, parameters: {amount: "#{amount_to_deduct}"}, owner: donation, recipient: self
 				amount_to_deduct = 0
 			else
 				break_loop =  true

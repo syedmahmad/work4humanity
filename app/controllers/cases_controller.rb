@@ -50,8 +50,8 @@ class CasesController < ApplicationController
 				redirect_to :back
 			else
 				flash[:notice] = 'Amount allocated to the case.'
-				redirect_to :back	
-			end	
+				redirect_to :back
+			end
 		else
 			flash[:alert] = "#{@case.errors.full_messages.to_sentence}."
 			redirect_to :back

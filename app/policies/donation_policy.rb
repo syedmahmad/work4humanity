@@ -23,7 +23,7 @@ class DonationPolicy
   end
 
   def create?
-  	is_volunteer?
+  	is_volunteer? || @donation.user == current_user
   end
 
   def show?
