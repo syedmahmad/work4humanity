@@ -1,2 +1,2 @@
 %li
-  = "Your above donation was used in the #{link_to 'following', case_path(a.recipient.id)} case.".html_safe
+  = "#{a.parameters[:amount]}/= from your above donation was used in the #{link_to 'following', case_path(a.recipient.id)} case.".html_safe

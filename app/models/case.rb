@@ -22,19 +22,22 @@
 
 	def assign_amout_to_case
 		assigned_amount = 0
+		amount_to_deduct = 0
 		break_loop = false
 		Donation.all.order('id asc').each_with_index do |donation, index|
 			unless assigned_amount == form_amount
 				if donation.amount <= (form_amount - assigned_amount)
 					assigned_amount = assigned_amount + donation.amount
-					donation.amount = 0 
+					amount_to_deduct = donation.amount 
+					donation.amount = 0
 				else	
 					amount_to_deduct = form_amount - assigned_amount
 					assigned_amount = assigned_amount + amount_to_deduct
 					donation.amount = donation.amount - amount_to_deduct
 				end
 				donation.save
-				donation.create_activity :amount_allocated, owner: donation, recipient: self 
+				donation.create_activity :amount_allocated, parameters: {amount: "#{amount_to_deduct}"}, owner: donation, recipient: self 
+				amount_to_deduct = 0
 			else
 				break_loop =  true
 			end

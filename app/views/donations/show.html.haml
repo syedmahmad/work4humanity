@@ -4,10 +4,10 @@
       .col-md-8.col-md-offset-2
         .panel.panel-default.panelMove.toggle.panelRefresh.panelClose
           .panel-heading.case_study_heading
-            %h2.panel-title= Remaining Donation
+            %h2.panel-title Donation
           .panel-body
             %h4 Amount:
-            %p= @donation.amount
+            %p= @donation.original_amount
             %h4 Status:
             %p= @donation.status.titleize
         = link_to 'Back', get_donations_path, class: 'btn btn-primary'
