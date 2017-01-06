@@ -1,4 +1,3 @@
-= render partial: 'donations/partials/donation_grid', locals: {donations: @donations}
 /   .col-md-8.col-md-offset-2
 /     %h3 List of donations
 /     - @donations.each do |donation_obj|
@@ -14,3 +13,25 @@
 /               = "Status: #{donation_obj.status.titleize}"
 /             = link_to 'Delete this donation', donation_path(donation_obj), method: :delete, data: { confirm: "You sure?" } ,class: 'btn btn-danger'
 /             = link_to 'View this donation', donation_path(donation_obj) ,class: 'btn btn-info'
+.container
+  %div
+    %ul.nav.nav-tabs{:role => "tablist"}
+      %li.active{:role => "presentation"}
+        %a{"aria-controls" => "Requested", "data-toggle" => "tab", :href => "#requested", :role => "tab"} Requested
+      %li{:role => "presentation"}
+        %a{"aria-controls" => "accepted", "data-toggle" => "tab", :href => "#accepted", :role => "tab"} Accepted
+      %li{:role => "presentation"}
+        %a{"aria-controls" => "rejected", "data-toggle" => "tab", :href => "#rejected", :role => "tab"} Rejected
+      %li{:role => "presentation"}
+        %a{"aria-controls" => "received", "data-toggle" => "tab", :href => "#received", :role => "tab"} Received
+    .tab-content
+      #requested.tab-pane.active{:role => "tabpanel"}
+        = render partial: 'donations/partials/donation_grid', locals: {donations: @requested_donations}
+      #accepted.tab-pane{:role => "tabpanel"}
+        = render partial: 'donations/partials/donation_grid', locals: {donations: @accepted_donations}
+      #rejected.tab-pane{:role => "tabpanel"}
+        = render partial: 'donations/partials/donation_grid', locals: {donations: @rejected_donations}
+      #received.tab-pane{:role => "tabpanel"}
+        = render partial: 'donations/partials/donation_grid', locals: {donations: @recieved_donations}
+
+

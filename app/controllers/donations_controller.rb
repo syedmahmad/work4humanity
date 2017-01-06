@@ -5,7 +5,10 @@ class DonationsController < ApplicationController
   before_action :authorize_donation, only: [:index, :new, :create, :edit, :update, :destroy, :accept, :reject, :receive, :show]
 
   def index
-    @donations = Donation.all
+    @requested_donations = Donation.all.requested
+    @accepted_donations = Donation.all.accepted
+    @rejected_donations = Donation.all.rejected
+    @recieved_donations = Donation.all.received
   end
 
   def new
