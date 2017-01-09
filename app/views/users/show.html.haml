@@ -12,13 +12,17 @@
               .col-md-4
                 %h4 Total Donations Created
                 %p= @user.donations.size
-              .col-md-4              
+              .col-md-4
                 %h4 Amount Donated
                 %p= "#{@user.donations.pluck(:amount).sum}/="
-              .col-md-4              
+              .col-md-4
                 %h4 Donation Used
                 %p= "#{@user.get_amount_of_donations_used}/="
             .col-md-12
               .col-md-4
                 %h4 Cases Created
                 %p= @user.cases.size
+            .col-md-12
+              .col-md-4
+                %h4 Contact Number
+                %p= @user.mobile_number

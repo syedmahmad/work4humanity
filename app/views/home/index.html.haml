@@ -1,235 +1,54 @@
-#fb-root
-:javascript
-  (function(d, s, id)
-  {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      js = d.createElement(s);
-      js.id = id;
-      js.src = "//connect.facebook.net/bg_BG/sdk.js#xfbml=1&appId=288272228001636&version=v2.0";
-      fjs.parentNode.insertBefore(js, fjs);
-  }(document, 'script', 'facebook-jssdk'));
-/ Start .landing-intro
-#top.landing-intro{:role => "main"}
-  / Start .container
-  .container
-    / Start .header
-    %header.header.row
-      .col-md-6.col-sm-12.text-center
-        / Start .logo
-        .logo
-          %a{:href => "landing.html"}
-            %img{:alt => "logo", :src => "assets/img/logo.png"}/
-            %p.slogan.hidden-sm.hidden-xs
-              Admin templates
-              = succeed "Made" do
-                %br/
-        / End .logo
-      .col-md-6.col-sm-12
-        %nav
-          %ul
-            %li
-              %a.btn.btn-white.btn-alt{:href => "https://wrapbootstrap.com/theme/sprflat-responsive-admin-template-WB098M36S?ref=jorolino", :target => "_blank"} Purchase
-            %li
-              %a.btn.btn-white.btn-alt{:href => "http://themes.suggelab.com/?product=sprflat", :target => "_blank"} Demo
-            %li
-              .fb-like{"data-action" => "like", "data-href" => "https://wrapbootstrap.com/theme/sprflat-responsive-admin-template-WB098M36S", "data-layout" => "button_count", "data-share" => "true", "data-show-faces" => "true"}
-        / Start .fb-like
-        / End .fb-like
-    / End .header
-    / Start intro-slogan
-    .intro-slogan.text-center.animated.fadeInDown
-      %h1
-        Get your project done.
-        %strong fast!
-      %p
-        A Great
-        %strong Admin App
-        Designed for Simplicity
-        = succeed "Very" do
-          %br.hidden-xs/
-        %strong Fast integration.
-      %img.img-responsive.center-block.center-block{:alt => "spr flat admin", :src => "assets/img/landing/sprflat.png"}/
-    / End intro-slogan
-  / End .container
-  / Start .description-bar
-  .description-bar
-    / Start container
-    .container.text-center
-      %p Perfect Solution for Programmers, Web Design Studios, Freelancers, Software Companies and Folks with Custom Crafted Systems
-    / End container
-  / End description-bar
-  / Scroll to next section
-  %a.scrollTo{:href => "#build-with-love"}
-    %p.sroll-down
-      %img{:alt => "scrolldown", :src => "assets/img/landing/scroll_down.png"}/
-/ End .landing-intro
-/ Start section-features
-#features.section-features
-  / Start made with
-  .madewith
-    .container
-      .text-center
-        %h3#build-with-love.section-header-1 Build with love and this awesome tools ...
-      .logos.row
-        .col-md-2.col-sm-2.col-xs-4
-          .text-center
-            %img.img-responsive.center-block{:alt => "Less css", :src => "assets/img/landing/logos/less.png"}/
-        .col-md-2.col-sm-2.col-xs-4
-          .text-center
-            %img.img-responsive.center-block{:alt => "Bootstrap", :src => "assets/img/landing/logos/bootstrap.png"}/
-        .col-md-2.col-sm-2.col-xs-4
-          .text-center
-            %img.img-responsive.center-block{:alt => "Grunt js", :src => "assets/img/landing/logos/grunt-logo.png"}/
-        .col-md-2.col-sm-2.col-xs-4
-          .text-center
-            %img.img-responsive.center-block{:alt => "Yeoman generator", :src => "assets/img/landing/logos/yeoman.png"}/
-        .col-md-2.col-sm-2.col-xs-4
-          .text-center
-            %img.img-responsive.center-block{:alt => "Bower", :src => "assets/img/landing/logos/bower-logo.png"}/
-        .col-md-2.col-sm-2.col-xs-4
-          .text-center
-            %img.img-responsive.center-block{:alt => "Node js", :src => "assets/img/landing/logos/nodejs.png"}/
-  / End made with
-  / Start clean-code section
-  %section#clean-code.clean-code.features-row
-    .container
-      .text-center
-        %h3.section-header-1
-          What do you need to get your project,
-          = succeed "up" do
-            %br.hidden-sm.hidden-xs/
-      .row
-        / Start .row
-        .col-md-8.col-sm-8
-          %img.img-responsive.center-block{:alt => "Clean code", :src => "assets/img/landing/features/cleancode.png"}/
-        .col-md-4.col-sm-4
-          %h3.section-header Clean code
-          %p All code blocks are property commented and seperated for easy management and integration
-          %p Tab indent 4 is used for good visual understanding
-          %p Directories , images and all other assets is placed in intuitive named directories
-      / End .row
-  / End clean-code section
-  / Start charts section
-  %section#charts.charts.gray-bg.features-row
-    .container
-      .row
-        / Start .row
-        .col-md-4.col-sm-4
-          %h3.section-header Awesome Charts
-          %p Templat is powered by Flot charts
-          %p With custom styling and warm colors
-          %p Many examples are included - line charts, line carts with dots, sparklines, bars, donut charts, pie charts and etc.
-        .col-md-8.col-sm-8
-          %img.img-responsive.center-block{:alt => "Charts", :src => "assets/img/landing/features/charts.png"}/
-      / End .row
-  / End charts section
-  / Start clean-code section
-  %section#email-app.email-app.features-row
-    .container
-      .row
-        / Start .row
-        .col-md-8.col-sm-8
-          %img.img-responsive.center-block{:alt => "Clean code", :src => "assets/img/landing/features/email.png"}/
-        .col-md-4.col-sm-4
-          %h3.section-header Email app
-          %p Check out your emails directly in app.
-          %p Template has intuitive designed email app - inbox page, send mail page and write email page.
-          %p Code your email app and brand it.
-      / End .row
-  / End clean-code section
-/ End section-features
-/ Start testimonials
-#testimonials.testimonials.gray-bg
-  .container
-    .text-center
-      %h3.section-header-1 What our customers said
-    .row
-      / Start .row
-      .col-md-6
-        / Start testimonials block
-        .testimonials-block
-          .testimonials-text One of the best admin template ever. The number of customization options is pretty damn high
-          .testimonials-client
-            %img{:alt => "Tina Dowsen", :src => "assets/img/avatars/131.jpg"}/
-            %p
-              %strong Tina Dowsen
-              = succeed "CEO" do
-                %br/
-              %a{:href => "#"} Dowsen Inc
-        / End testimonials block
-      .col-md-6
-        / Start testimonials block
-        .testimonials-block
-          .testimonials-text Simply awesome. I managed to integrate this template in my system for one week. Very good job. Recommend it.
-          .testimonials-client
-            %img{:alt => "Felix Jones", :src => "assets/img/avatars/130.jpg"}/
-            %p
-              %strong Felix Jones
-              = succeed "Founder" do
-                %br/
-              %a{:href => "#"} Startapp
-        / End testimonials block
-      / Scroll to next section
-      .col-md-12.pt25.pb25.mt25
-        %a.scrollTo{:href => "#give-a-try"}
-          %p.sroll-down
-            %img{:alt => "scrolldown", :src => "assets/img/landing/scroll_down.png"}/
-    / End .row
-/ End testimonials
-/ Start give-a-try
-#give-a-try.give-a-try
-  .container
-    .text-center
-      %h1 Have You Seen Enough?
-      %p
-        Give it a
-        = succeed "." do
-          %strong try
-        %strong done
-    .row.mt50.mb50
-      / Start .row
-      .col-md-12.text-center
-        %a.btn.btn-lg.btn-danger.uppercase{:href => "https://wrapbootstrap.com/theme/sprflat-responsive-admin-template-WB098M36S?ref=jorolino", :target => "_blank"} Purchase
-    / End .row
-    .text-center
-      %p Not convinced yet ? Explore demo.
-    .row.mt50.mb50
-      / Start .row
-      .col-md-12.text-center
-        %a.btn.btn-lg.btn-danger.uppercase{:href => "#"} Demo
-    / End .row
-/ End give-a-try
-/ Start Footer
-%footer#footer
-  .container
-    .row.mt50.mb50
-      / Start .row
-      .col-md-12.footer-links
-        %a.goTo{:href => "#features"} Features
-        %a.goTo{:href => "#testimonials"} Testomonials
-        %a{:href => "https://wrapbootstrap.com/theme/sprflat-responsive-admin-template-WB098M36S?ref=jorolino", :target => "_blank"} Purchase
-        %a{:href => "http://themes.suggelab.com/?product=sprflat", :target => "_blank"} Demo
-        %a.back-to-top{:href => "#top"} Back to Top
-        %p © 2014 sprFlat. All Rights Reserved
-    / End .row
-/ End footer
-/ Javascripts
-/ Load pace first
-%script{:src => "assets/plugins/core/pace/pace.min.js"}
-/ Important javascript libs(put in all pages)
-%script{:src => "http://code.jquery.com/jquery-2.1.1.min.js"}
-:javascript
-  window.jQuery || document.write('<script src="assets/js/libs/jquery-2.1.1.min.js">\x3C/script>')
-%script{:src => "http://code.jquery.com/ui/1.10.4/jquery-ui.js"}
-:javascript
-  window.jQuery || document.write('<script src="assets/js/libs/jquery-ui-1.10.4.min.js">\x3C/script>')
-/[if lt IE 9]
-  <script type="text/javascript" src="assets/js/libs/excanvas.min.js"></script>
-  <script type="text/javascript" src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-  <script type="text/javascript" src="assets/js/libs/respond.min.js"></script>
-/ Bootstrap plugins
-%script{:src => "assets/js/bootstrap/bootstrap.js"}
-/ Other plugins ( load only nessesary plugins for every page)
-%script{:src => "assets/plugins/ui/waypoint/waypoints.js"}
-%script{:src => "assets/js/pages/landing.js"}
+#header.new_user
+  .container-fluid
+    .navbar
+      .navbar-header
+        = link_to root_path, class: 'navbar-brand' do
+          %h4.color-white.ml15 Work4Humanity
+
+      %nav.top-nav{:role => "navigation"}
+        %h4
+          Amount: 25000 PKR
+          %a{:href => "#{root_path}"}
+            %i.im-plus.mr10.text-success>
+            Logs
+.row-fluid
+  .span10.offset1
+    .hero-unit.text-center
+      .ul
+        .li
+          = link_to 'Help us w.r.t Time', "#my-modal", "data-toggle" => "modal", class:  'btn btn-primary'
+        .li
+          = link_to 'Help us w.r.t Fund', "#my-modal", "data-toggle" => "modal", class:  'btn btn-primary'
+
+/ two click model for registration
+#my-modal.modal.fade{:title => "My modal"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-header
+        %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+        %h3#myModalLabel Register your self
+      .modal-body
+        .row-fluid
+          .span10.offset1
+            .hero-unit.text-center
+              .ul
+                .li
+                  = link_to 'Sign Up with facebook', user_facebook_omniauth_authorize_path, "data-toggle" => "modal", class:  'btn btn-primary'
+                .li
+                  = link_to 'Sign Up without facebook', onboarding_users_path, class:  'btn btn-primary'
+      .modal-footer
+        %button.btn{"aria-hidden" => "true", "data-dismiss" => "modal"} Close
+
+
+/ user registration model for contact detail
+#user-modal.modal.fade{:title => "User model"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-header
+        %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+        %h3#myModalLabel Register your self
+      .modal-body
+        fjhdfadfjadsl
+      .modal-footer
+        %button.btn{"aria-hidden" => "true", "data-dismiss" => "modal"} Close
+

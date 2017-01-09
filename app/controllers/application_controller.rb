@@ -6,11 +6,19 @@ class ApplicationController < ActionController::Base
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
+  before_action :validate_user_details
+
   private
 
-   def user_not_authorized
+  def user_not_authorized
    	flash[:alert] = "You are not authorized to access the requested page"
     redirect_to not_authorized_path
+  end
+
+  def validate_user_details
+    if current_user && !current_user.mobile_number.present? && action_name.downcase != "sign_out"
+      redirect_to "/users/onboarding"
+    end
   end
 
 end

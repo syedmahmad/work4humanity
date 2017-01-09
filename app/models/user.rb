@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   has_many :cases, dependent: :destroy
 
   def is_admin?
-    self.u_type == 'admin' 
+    self.u_type == 'admin'
   end
 
   def is_volunteer?
@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
       total_donated_amount = total_donated_amount + obj[:amount].to_i
     end
 
-    total_donated_amount  
+    total_donated_amount
   end
 
   def self.find_for_oauth(auth, signed_in_resource = nil)
