@@ -16,39 +16,22 @@
     .hero-unit.text-center
       .ul
         .li
-          = link_to 'Help us w.r.t Time', "#my-modal", "data-toggle" => "modal", class:  'btn btn-primary'
+          = link_to 'Help us w.r.t Time', "#my-modal-1", "data-toggle" => "modal", class:  'btn btn-primary'
         .li
-          = link_to 'Help us w.r.t Fund', "#my-modal", "data-toggle" => "modal", class:  'btn btn-primary'
+          = link_to 'Help us w.r.t Fund', "#my-modal-2", "data-toggle" => "modal", class:  'btn btn-primary'
 
 / two click model for registration
-#my-modal.modal.fade{:title => "My modal"}
+#my-modal-1.modal.fade{:title => "My modal"}
   .modal-dialog{:role => "document"}
     .modal-content
-      .modal-header
-        %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
-        %h3#myModalLabel Register your self
-      .modal-body
-        .row-fluid
-          .span10.offset1
-            .hero-unit.text-center
-              .ul
-                .li
-                  = link_to 'Sign Up with facebook', user_facebook_omniauth_authorize_path, "data-toggle" => "modal", class:  'btn btn-primary'
-                .li
-                  = link_to 'Sign Up without facebook', onboarding_users_path, class:  'btn btn-primary'
+      = render 'registration_form_data', user_type: 0
       .modal-footer
         %button.btn{"aria-hidden" => "true", "data-dismiss" => "modal"} Close
 
 
-/ user registration model for contact detail
-#user-modal.modal.fade{:title => "User model"}
+#my-modal-2.modal.fade{:title => "My modal"}
   .modal-dialog{:role => "document"}
     .modal-content
-      .modal-header
-        %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
-        %h3#myModalLabel Register your self
-      .modal-body
-        fjhdfadfjadsl
+      = render 'registration_form_data', user_type: 1
       .modal-footer
         %button.btn{"aria-hidden" => "true", "data-dismiss" => "modal"} Close
-

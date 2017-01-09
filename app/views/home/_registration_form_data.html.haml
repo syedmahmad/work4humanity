@@ -1,0 +1,12 @@
+.modal-header
+  %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+  %h3#myModalLabel Register your self
+.modal-body
+  .row-fluid
+    .span10.offset1
+      .hero-unit.text-center
+        .ul
+          .li
+            = link_to 'Sign Up with facebook', user_facebook_omniauth_authorize_path(user_type: user_type), class:  'btn btn-primary'
+          .li
+            = link_to 'Sign Up without facebook', onboarding_users_path(user_type: user_type), class:  'btn btn-primary'

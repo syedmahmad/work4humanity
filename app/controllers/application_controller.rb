@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
   end
 
   def validate_user_details
-    if current_user && !current_user.mobile_number.present? && action_name.downcase != "sign_out"
+    if current_user && !current_user.mobile_number.present? && action_name.downcase != "destroy"
       redirect_to "/users/onboarding"
     end
   end

@@ -2,7 +2,10 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def self.provides_callback_for(provider)
     class_eval %Q{
       def #{provider}
-        @user = User.find_for_oauth(env["omniauth.auth"], current_user)
+        user_type = env['omniauth.params']['user_type']
+        user_type = user_type.to_i if user_type.present?  
+          
+        @user = User.find_for_oauth(env["omniauth.auth"], current_user, user_type)
 
         if @user.persisted?
           sign_in_and_redirect @user, event: :authentication
