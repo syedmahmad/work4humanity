@@ -2,27 +2,28 @@
 	.row
 		.col-md-12.text-center
 			= link_to 'Create a new case', new_case_path, class: 'btn btn-primary'
-	.col-md-12.list-cases-holder
-		%h3 List of cases
-		- @cases.each do |case_obj|
-			.col-md-12.p0
-				.panel.panel-default
-					.panel-body
-						.row
-							.col-sm-8.col-md-10.cases-details
-								%h4
-									= case_obj.title
-								%p
-									= case_obj.description
-								%p
-									= case_obj.status.titleize
-								- if case_obj.hospital.present?
+	-if @cases.present?
+		.col-md-12.list-cases-holder
+			%h3 List of cases
+			- @cases.each do |case_obj|
+				.col-md-12.p0
+					.panel.panel-default
+						.panel-body
+							.row
+								.col-sm-8.col-md-10.cases-details
+									%h4
+										= case_obj.title
 									%p
-										%i.fa.fa-location-arrow
-										= case_obj.hospital.name
-							.col-sm-4.col-md-2.btn-area
-								- if policy(case_obj).edit?
-									= link_to 'Edit this case', edit_case_path(case_obj),class: 'btn btn-primary'
-								- if policy(case_obj).destroy?
-									= link_to 'Delete this case', case_obj, method: :delete, data: { confirm: "You sure?" } ,class: 'btn btn-danger'
-								= link_to 'View this case', case_path(case_obj) ,class: 'btn btn-info'
+										= case_obj.description
+									%p
+										= case_obj.status.titleize
+									- if case_obj.hospital.present?
+										%p
+											%i.fa.fa-location-arrow
+											= case_obj.hospital.name
+								.col-sm-4.col-md-2.btn-area
+									- if policy(case_obj).edit?
+										= link_to 'Edit this case', edit_case_path(case_obj),class: 'btn btn-primary'
+									- if policy(case_obj).destroy?
+										= link_to 'Delete this case', case_obj, method: :delete, data: { confirm: "You sure?" } ,class: 'btn btn-danger'
+									= link_to 'View this case', case_path(case_obj) ,class: 'btn btn-info'
