@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  attr_accessor :oauth_account
 
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable
@@ -7,9 +8,12 @@ class User < ActiveRecord::Base
   # validates_format_of :email, :without => TEMP_EMAIL_REGEX, on: :update
   enum u_type: [:volunteer, :admin]
 
+  validates :mobile_number, :presence => {:message => 'Please enter valid phone number!'},
+                     :numericality => true,
+                     :length => { :minimum => 10, :maximum => 15 }, if: Proc.new{|user| !user.oauth_account.present?}
+
   has_many :donations, dependent: :destroy
   has_many :cases, dependent: :destroy
-
   def is_admin?
     self.u_type == 'admin'
   end
@@ -57,7 +61,8 @@ class User < ActiveRecord::Base
           email: email,
           u_type: user_type,
           image_url: image_url,
-          password: Devise.friendly_token[0,20]
+          password: Devise.friendly_token[0,20],
+          oauth_account: true
         )
         user.skip_confirmation!
 

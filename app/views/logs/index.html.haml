@@ -1,24 +1,20 @@
-#header.new_user
-  .container-fluid
-    .navbar
-      .navbar-header
-        = link_to root_path, class: 'navbar-brand' do
-          %h4.color-white.ml15 Work4Humanity
-      %nav.top-nav{:role => "navigation"}
-        %h4
-          = "Ammount: #{total_remaining_ammount} PKR"
-          %a.pull-right{:href => "#{root_path}"}
-            %i.im-plus.mr10.text-success>
-            Logs
-#logs-body-content
-  - Donation.all.each_with_index do |donation, index|
-    %p
-      %span= "+ Donation #{donation.original_amount}, form"
-      =link_to donation.user.name, donation.user, target: '_blank'
-      %span= "Time: #{date_format(donation.created_at)}"
+.container
+  .outlet
+    .row
+      .col-sm-8.col-md-6.col-md-offset-3
+        .panel.panel-default.contact-details-box
+          .panel-heading
+            %h3.text-center Donations & Funds Allocations Logs
+          .panel-body
+            #logs-body-content
+              - Donation.all.each_with_index do |donation, index|
+                %p
+                  %span= "+ Donation #{donation.original_amount}, form"
+                  =link_to donation.user.name, donation.user, target: '_blank'
+                  %span= "Time: #{date_format(donation.created_at)}"
 
-  - PublicActivity::Activity.all.each_with_index do |activity, index|
-    %p
-      %span= "- Allocated funds #{activity.parameters[:amount]} to case" 
-      = link_to activity.recipient.title, activity.recipient, target: '_blank'
-      %span= "Time: #{date_format(activity.created_at)}"
+              - PublicActivity::Activity.all.each_with_index do |activity, index|
+                %p
+                  %span= "- Allocated funds #{activity.parameters[:amount]} to case" 
+                  = link_to activity.recipient.title, activity.recipient, target: '_blank'
+                  %span= "Time: #{date_format(activity.created_at)}"

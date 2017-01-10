@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :authorize_user, :donations, :update_user_role]
   before_action :authorize_user, only: [:donations, :manage_users, :update_user_role]
   before_action :validate_user_details, except: [:onboarding, :update_contact_details]
+  add_breadcrumb "onboarding", :onboarding_users_path
 
   def donations
     @donations = @user.donations
@@ -18,15 +19,11 @@ class UsersController < ApplicationController
   end
 
   def update_contact_details
-    params = request.params[:user]
-
-    @user = User.find_by_id(params[:id]) || User.new
-    @user.name = params[:name]
-    @user.email = params[:email]
-    @user.mobile_number = params[:mobile_number]
+    @user = User.find_by_id(params[:user][:id]) || User.new
+    @user.assign_attributes(user_contact_params)
 
     if @user.save
-      flash[:notice] = 'User updated'
+      flash[:notice] = 'Successfully Registered!'
     else
       flash[:notice] = @user.errors.full_messages.to_sentence
     end
@@ -49,6 +46,12 @@ class UsersController < ApplicationController
   end
 
   private
+
+  def user_contact_params
+    params[:user][:available_days] = params[:available_days].reject(&:empty?) if params[:available_days].present? && params[:available_days].any?
+    params.require(:user).permit(:name, :email, :mobile_number, available_days: [])
+  end
+
   def user_role_params
     params.require(:user).permit(:u_type)
   end

@@ -2,11 +2,10 @@
   .field
     .form-group
       = f.label 'Attachment', class: 'col-lg-2 col-md-2 col-sm-12 control-label'
-      .col-lg-9.col-md-9
+      .col-lg-10.attachment-bock
         = f.file_field :attachment, class: 'form-control'
         - if f.object.persisted?
           %span
             = "Uploaded File: #{f.object.attachment_file_name  }"
-      .col-lg-1.col-md-1
         = link_to_remove_association "x", f, class: 'btn btn-danger pull-right'
         

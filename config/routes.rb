@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'logs/index'
 
   # devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
@@ -36,6 +35,8 @@ Rails.application.routes.draw do
       get 'manage_users'
     end
   end
+
+  resources :logs, only: [:index]
 
   get 'not_authorized' => 'home#not_authorized'
   # Example of regular route:
