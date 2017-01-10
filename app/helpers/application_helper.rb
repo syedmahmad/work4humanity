@@ -20,6 +20,10 @@ module ApplicationHelper
     end
   end
 
+  def total_remaining_ammount
+    Donation.all.pluck(:amount).sum
+  end
+
   private
     def retrieve_profile_image(user, size)
       if user.image_url.present?

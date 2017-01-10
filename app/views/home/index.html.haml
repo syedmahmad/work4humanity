@@ -4,7 +4,6 @@
       .navbar-header
         = link_to root_path, class: 'navbar-brand' do
           %h4.color-white.ml15 Work4Humanity
-
       %nav.top-nav{:role => "navigation"}
         %h4
           Amount: 25000 PKR
@@ -16,47 +15,19 @@
     .hero-unit.text-center.mt50
       .ul
         .li
-          %a.btn.btn-primary.btn-alt.btn-round.btn-lg.p25.mb10{href: '#my-modal', "data-toggle" => "modal"}
-            %i.fa.fa-clock-o.s32.display-block
-            Help us w.r.t Time
+          = link_to 'Help us w.r.t Time', "#my-modal-1", "data-toggle" => "modal", class:  'btn btn-primary'
         .li
-          %a.btn.btn-primary.btn-alt.btn-round.btn-lg.p25.mb10{href: '#my-modal', "data-toggle" => "modal"}
-            %i.fa.fa-usd.s32.display-block
-            Help us w.r.t Funds
-
+          = link_to 'Help us w.r.t Fund', "#my-modal-2", "data-toggle" => "modal", class:  'btn btn-primary'
 / two click model for registration
-#my-modal.modal.fade{:title => "My modal"}
-  .modal-dialog.mt50{:role => "document"}
-    .modal-content
-      .modal-header
-        %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
-        %h4#myModalLabel Login or SignUp
-      .modal-body
-        .row-fluid
-          .span10.offset1
-            .hero-unit.text-center
-              .ul
-                .li
-                  %a.btn.btn-primary.btn-alt.btn-round.btn-lg.p25.mb10{href: user_facebook_omniauth_authorize_path}
-                    %i.fa.fa-facebook-square.s24
-                    Facebook
-                .li
-                  %a.btn.btn-info.btn-alt.btn-round.btn-lg.p10.mb10{href: onboarding_users_path}
-                    %i.fa.fa-pencil-square.s24
-                    Without Facebook
-      .modal-footer.hidden
-        %button.btn{"aria-hidden" => "true", "data-dismiss" => "modal"} Close
-
-
-/ user registration model for contact detail
-#user-modal.modal.fade{:title => "User model"}
+#my-modal-1.modal.fade{:title => "My modal"}
   .modal-dialog{:role => "document"}
     .modal-content
-      .modal-header
-        %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
-        %h3#myModalLabel Register your self
-      .modal-body
-        fjhdfadfjadsl
+      = render 'registration_form_data', user_type: 0
       .modal-footer
         %button.btn{"aria-hidden" => "true", "data-dismiss" => "modal"} Close
-
+#my-modal-2.modal.fade{:title => "My modal"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      = render 'registration_form_data', user_type: 1
+      .modal-footer
+        %button.btn{"aria-hidden" => "true", "data-dismiss" => "modal"} Close
