@@ -17,9 +17,9 @@
 #my-modal-1.modal.fade.login-modal{:title => "My modal"}
   .modal-dialog{:role => "document"}
     .modal-content
-      = render 'registration_form_data', user_type: 0
+      = render 'registration_form_data', user_type: "volunteer"
 
 #my-modal-2.modal.fade.login-modal{:title => "My modal"}
   .modal-dialog{:role => "document"}
     .modal-content
-      = render 'registration_form_data', user_type: 1
+      = render 'registration_form_data', user_type: "donner"

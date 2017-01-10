@@ -3,7 +3,7 @@ class HomeController < ApplicationController
   add_breadcrumb "Home", :root_path
   def index
     if current_user
-     redirect_to current_user.admin? ? "/donations" : "/cases"
+     redirect_to current_user.donner? ? "/donations" : "/cases"
     end
   end
 
