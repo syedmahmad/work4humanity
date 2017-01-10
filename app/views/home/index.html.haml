@@ -13,30 +13,38 @@
             Logs
 .row-fluid
   .span10.offset1
-    .hero-unit.text-center
+    .hero-unit.text-center.mt50
       .ul
         .li
-          = link_to 'Help us w.r.t Time', "#my-modal", "data-toggle" => "modal", class:  'btn btn-primary'
+          %a.btn.btn-primary.btn-alt.btn-round.btn-lg.p25.mb10{href: '#my-modal', "data-toggle" => "modal"}
+            %i.fa.fa-clock-o.s32.display-block
+            Help us w.r.t Time
         .li
-          = link_to 'Help us w.r.t Fund', "#my-modal", "data-toggle" => "modal", class:  'btn btn-primary'
+          %a.btn.btn-primary.btn-alt.btn-round.btn-lg.p25.mb10{href: '#my-modal', "data-toggle" => "modal"}
+            %i.fa.fa-usd.s32.display-block
+            Help us w.r.t Funds
 
 / two click model for registration
 #my-modal.modal.fade{:title => "My modal"}
-  .modal-dialog{:role => "document"}
+  .modal-dialog.mt50{:role => "document"}
     .modal-content
       .modal-header
         %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
-        %h3#myModalLabel Register your self
+        %h4#myModalLabel Login or SignUp
       .modal-body
         .row-fluid
           .span10.offset1
             .hero-unit.text-center
               .ul
                 .li
-                  = link_to 'Sign Up with facebook', user_facebook_omniauth_authorize_path, "data-toggle" => "modal", class:  'btn btn-primary'
+                  %a.btn.btn-primary.btn-alt.btn-round.btn-lg.p25.mb10{href: user_facebook_omniauth_authorize_path}
+                    %i.fa.fa-facebook-square.s24
+                    Facebook
                 .li
-                  = link_to 'Sign Up without facebook', onboarding_users_path, class:  'btn btn-primary'
-      .modal-footer
+                  %a.btn.btn-info.btn-alt.btn-round.btn-lg.p10.mb10{href: onboarding_users_path}
+                    %i.fa.fa-pencil-square.s24
+                    Without Facebook
+      .modal-footer.hidden
         %button.btn{"aria-hidden" => "true", "data-dismiss" => "modal"} Close
 
 

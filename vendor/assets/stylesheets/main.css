@@ -106,6 +106,9 @@ h6 small,
 .mt25 {
   margin-top: 25px !important;
 }
+.mt25per {
+  margin-top: 25% !important;
+}
 .mt50 {
   margin-top: 50px !important;
 }
@@ -184,6 +187,9 @@ h6 small,
 }
 .p25 {
   padding: 25px !important;
+}
+.p30{
+  padding: 30px !important;
 }
 .pt0 {
   padding-top: 0 !important;
@@ -557,6 +563,9 @@ a.text-lime:hover {
 }
 .text-align-centre{
   text-align: center;
+}
+.display-block{
+  display: block !important;
 }
 /* -----------------------------------------
    Body styles
