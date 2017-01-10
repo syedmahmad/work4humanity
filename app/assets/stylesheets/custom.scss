@@ -149,6 +149,25 @@
       }
     }
 }
+.list-cases-holder{
+  .panel.panel-default{
+    .panel-body{
+      padding: 10px;
+      .cases-details{
+        p{
+          margin-bottom: 5px;
+        }
+      }
+      .btn-area{
+        .btn{
+          width: 100%;
+          margin-bottom: 5px;
+          border-radius: 2px;
+        }
+      }
+    }
+  }
+}
 
 .amount-holder-desktop{
   display: block;
@@ -164,6 +183,8 @@
   .amount-holder-mobile{
     display: block;
   }
-
+  .list-cases-holder{
+    padding: 0;
+  }
 
 }
