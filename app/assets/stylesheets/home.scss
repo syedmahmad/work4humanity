@@ -9,6 +9,8 @@
     position: absolute;
     top: 50%;
 }
-.body {
-  background: #3c763d;
+.landing-page{
+  #header .navbar .navbar-toggle{
+    display: none;
+  }
 }

@@ -698,7 +698,7 @@ body.full-screen #header {
 #header .navbar {
   height: 50px;
   margin-bottom: 0;
-  padding-right: 20px;
+  padding-right: 0;
   background: #75b9e6;
   border-radius: 0;
   border: none;
@@ -3177,16 +3177,15 @@ pre {
     padding-right: 0;
     height: auto;
   }
-  #header .navbar .navbar-brand {
-    display: none;
-  }
   #header .navbar .top-nav {
     float: left;
     width: 100%;
-    background: #75b9e6;
-    height: 50px;
     padding: 0 25px;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  }
+  #header .navbar .navbar-brand{
+    width: 100%;
+    text-align: center;
   }
   #header .navbar .top-nav:before,
   #header .navbar .top-nav:after {
@@ -3314,7 +3313,6 @@ pre {
 @media all and (max-width: 640px) {
   /* ------------------ Header --------------------*/
   #header .navbar .top-nav {
-    height: 100px;
     text-align: center;
     float: none;
   }
