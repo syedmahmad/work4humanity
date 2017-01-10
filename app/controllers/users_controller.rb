@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :authorize_user, :donations, :update_user_role]
   before_action :authorize_user, only: [:donations, :manage_users, :update_user_role]
   before_action :validate_user_details, except: [:onboarding, :update_contact_details]
+  add_breadcrumb "onboarding", :onboarding_users_path
 
   def donations
     @donations = @user.donations

@@ -23,13 +23,14 @@
   %body{:class => "#{yield :body_class}"}
     - if user_signed_in?
       = render 'shared/navbar'
-
     #content{:class => "application_content #{controller_name}"}
     / Start .content-wrapper
     .content-wrapper
       =# render '/layouts/partials/top_alert'
       .outlet
+        = render_breadcrumbs
         = render partial: 'layouts/partials/flash_messages', flash: flash
         = yield
+
     .clearfix
     = javascript_include_tag 'application'
