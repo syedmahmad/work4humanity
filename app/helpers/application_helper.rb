@@ -5,6 +5,22 @@ module ApplicationHelper
     image_tag image, width: size, height: size, class: tag_class
   end
 
+  def date_format(date)
+    if date.present?
+      date.try(:strftime, "%e-%b-%Y") rescue 'N/A'
+    else
+      'N/A'
+    end
+  end
+
+  def datetime_format(datetime)
+    if datetime.present?
+        datetime.try(:strftime, "%e-%b-%Y %T") rescue 'N/A'
+    else
+        'N/A'
+    end
+  end
+
   def bootstrap_class_for flash_type
     case flash_type
       when :success
@@ -21,7 +37,7 @@ module ApplicationHelper
   end
 
   def total_remaining_ammount
-    Donation.all.pluck(:amount).sum
+    Donation.all.received.pluck(:amount).sum
   end
 
   private
