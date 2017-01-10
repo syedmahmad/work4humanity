@@ -3,6 +3,7 @@ class DonationsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_donation, only: [:edit, :show, :update, :destroy, :accept, :reject, :receive, :authorize_donation]
   before_action :authorize_donation, only: [:index, :new, :create, :edit, :update, :destroy, :accept, :reject, :receive, :show]
+  add_breadcrumb "index", :donations_path
 
   def index
     @requested_donations = Donation.all.requested

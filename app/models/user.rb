@@ -5,7 +5,11 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :confirmable,
     :recoverable, :rememberable, :trackable, :validatable, :omniauthable
   # validates_format_of :email, :without => TEMP_EMAIL_REGEX, on: :update
-  enum u_type: [:volunteer, :admin ]
+  enum u_type: [:volunteer, :admin]
+
+  validates :mobile_number, :presence => {:message => 'Please enter valid phone number!'},
+                     :numericality => true,
+                     :length => { :minimum => 10, :maximum => 15 }
 
   has_many :donations, dependent: :destroy
   has_many :cases, dependent: :destroy
@@ -30,17 +34,15 @@ class User < ActiveRecord::Base
     total_donated_amount
   end
 
-  def self.find_for_oauth(auth, signed_in_resource = nil)
+  def self.find_for_oauth(auth, signed_in_resource = nil, user_type = 0)
 
     # Get the identity and user if they exist
     identity = Identity.find_for_oauth(auth)
-
     # If a signed_in_resource is provided it always overrides the existing user
     # to prevent the identity being locked with accidentally created accounts.
     # Note that this may leave zombie accounts (with no associated identity) which
     # can be cleaned up at a later date.
     user = signed_in_resource ? signed_in_resource : identity.user
-
     # Create the user if needed
     if user.nil?
 
@@ -57,7 +59,7 @@ class User < ActiveRecord::Base
           name: auth.extra.raw_info.name,
           #username: auth.info.nickname || auth.uid,
           email: email,
-          u_type: 0,
+          u_type: user_type,
           image_url: image_url,
           password: Devise.friendly_token[0,20]
         )

@@ -20,5 +20,11 @@
                 = f.label 'Phone', class: 'col-lg-2 col-md-2 col-sm-12 control-label'
                 .col-lg-10.col-md-10
                   = f.text_field :mobile_number, class: 'form-control', required: true
-              .form-group.btn-submit
+              .form-group
+                = f.label 'Availability', class: 'col-lg-2 col-md-2 col-sm-12 control-label'
+                .col-md-10
+                  = select_tag "available_days[]", options_for_select(Date::DAYNAMES, "Sunday"), class: 'init_select2', multiple: true, required: true, default: "select"
+              .form-group.col-md-8.col-md-offset-2
                 = f.submit "submit", class: 'btn btn-primary per100'
+
+
