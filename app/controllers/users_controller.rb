@@ -48,7 +48,7 @@ class UsersController < ApplicationController
   private
 
   def user_contact_params
-    params[:user][:available_days] = params[:available_days].reject(&:empty?) if [:available_days].any?
+    params[:user][:available_days] = params[:available_days].reject(&:empty?) if params[:available_days].present? && params[:available_days].any?
     params.require(:user).permit(:name, :email, :mobile_number, available_days: [])
   end
 
