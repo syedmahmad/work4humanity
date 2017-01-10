@@ -149,6 +149,50 @@
       }
     }
 }
+.add-new-case{
+  margin-top: 20px;
+    padding: 0px 0px 20px 0px;
+    background-color: #f7f7f7;
+    -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    border-radius: 0;
+    padding: 0;
+    overflow: hidden;
+    .form-control{
+      border-radius: 0;
+      min-height: 45px;
+    }
+    .panel{
+      background-color: #f7f7f7;
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+    .btn-block{
+      text-align: center;
+      .btn{
+        display: block;
+        min-width: 200px;
+        max-width: 200px;
+        margin: 0 auto 5px;
+      }
+    }
+    .attachment-bock{
+      position: relative;
+      .form-control{
+        min-height: 33px;
+      }
+      .remove_fields{
+        position: absolute;
+        right: 15px;
+        top: 0;
+        min-height: 33px;
+        font-size: 19px;
+        border-radius: 0;
+        line-height: 18px;
+      }
+    }
+}
 .list-cases-holder{
   .panel.panel-default{
     .panel-body{

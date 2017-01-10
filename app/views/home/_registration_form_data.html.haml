@@ -1,16 +1,15 @@
-.modal-header
-  %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
-  %h3#myModalLabel Register your self
+%button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"}
+  %i.fa.fa-times
 .modal-body
   .row-fluid
     .span10.offset1
       .hero-unit.text-center
-        .ul
-          .li
+        %ul
+          %li
             %a.btn.btn-primary.btn-fb-login.p25.mb10{href: user_facebook_omniauth_authorize_path(user_type: user_type)}
               %i.fa.fa-facebook-square.s24
               Log in with Facebook
-          .li
+          %li
             %a.btn.btn-info.btn-email-login.p10.mb10{href: onboarding_users_path(user_type: user_type)}
               %i.fa.fa-envelope-o.s24
               Log in with Email

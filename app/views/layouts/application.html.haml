@@ -27,7 +27,8 @@
     .content-wrapper
       =# render '/layouts/partials/top_alert'
       .outlet
-        = render_breadcrumbs
+        -# .container
+        -#   = render_breadcrumbs
         = render partial: 'layouts/partials/flash_messages', flash: flash
         = yield
 

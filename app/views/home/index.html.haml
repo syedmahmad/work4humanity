@@ -3,18 +3,18 @@
 .row-fluid
   .span10.offset1
     .hero-unit.text-center.mt50
-      .ul
-        .li
+      %ul
+        %li
           %a.btn.btn-primary.p25.mb10{href: '#my-modal-1', "data-toggle" => "modal"}
             %i.fa.fa-clock-o.s32.display-block
             Help us w.r.t Time
-        .li
+        %li
           %a.btn.btn-primary.p25.mb10{href: '#my-modal-2', "data-toggle" => "modal"}
             %i.fa.fa-usd.s32.display-block
             Help us w.r.t Funds
 
 / two click model for registration
-#my-modal-1.modal.fade{:title => "My modal"}
+#my-modal-1.modal.fade.login-modal{:title => "My modal"}
   .modal-dialog{:role => "document"}
     .modal-content
       = render 'registration_form_data', user_type: 0

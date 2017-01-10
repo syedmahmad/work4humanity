@@ -25,7 +25,7 @@
                   = f.label 'Availability', class: 'col-lg-2 col-md-2 col-sm-12 control-label'
                   .col-md-10
                     = select_tag "available_days[]", options_for_select(Date::DAYNAMES, "Sunday"), class: 'init_select2', multiple: true, required: true, default: "select"
-              .form-group.col-md-8.col-md-offset-2
-                = f.submit "submit", class: 'btn btn-primary per100'
+              .form-group.btn-submit
+                = f.submit "submit", class: 'btn btn-primary'
 
 
