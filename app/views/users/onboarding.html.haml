@@ -1,7 +1,7 @@
 .container
   .outlet
     .row
-      .col-sm-6.col-md-4.col-md-offset-4
+      .col-sm-8.col-md-6.col-md-offset-3
         .panel.panel-default.contact-details-box
           .panel-heading
             %h3.text-center Contact Details
@@ -20,12 +20,10 @@
                 = f.label 'Phone', class: 'col-lg-2 col-md-2 col-sm-12 control-label'
                 .col-lg-10.col-md-10
                   = f.text_field :mobile_number, class: 'form-control', required: true
-              - if f.object.u_type == 0
+              - if f.object.volunteer?
                 .form-group
                   = f.label 'Availability', class: 'col-lg-2 col-md-2 col-sm-12 control-label'
                   .col-md-10
                     = select_tag "available_days[]", options_for_select(Date::DAYNAMES, "Sunday"), class: 'init_select2', multiple: true, required: true, default: "select"
               .form-group.btn-submit
                 = f.submit "submit", class: 'btn btn-primary'
-
-
