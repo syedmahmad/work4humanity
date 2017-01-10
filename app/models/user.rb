@@ -7,6 +7,10 @@ class User < ActiveRecord::Base
   # validates_format_of :email, :without => TEMP_EMAIL_REGEX, on: :update
   enum u_type: [:volunteer, :admin]
 
+  validates :mobile_number, :presence => {:message => 'Please enter valid phone number!'},
+                     :numericality => true,
+                     :length => { :minimum => 10, :maximum => 15 }
+
   has_many :donations, dependent: :destroy
   has_many :cases, dependent: :destroy
 
