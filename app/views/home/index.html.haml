@@ -1,37 +1,25 @@
-#header.new_user
-  .container-fluid
-    .navbar
-      .navbar-header
-        = link_to root_path, class: 'navbar-brand' do
-          %h4.color-white.ml15 Work4Humanity
-
-      %nav.top-nav{:role => "navigation"}
-        %h4
-          Amount: 25000 PKR
-          %a{:href => "#{root_path}"}
-            %i.im-plus.mr10.text-success>
-            Logs
+- content_for :body_class do
+  landing-page
 .row-fluid
   .span10.offset1
     .hero-unit.text-center.mt50
       .ul
         .li
-          = link_to 'Help us w.r.t Time', "#my-modal-1", "data-toggle" => "modal", class:  'btn btn-primary'
+           %a.btn.btn-primary.p25.mb10{href: '#my-modal-1', "data-toggle" => "modal"}
+              %i.fa.fa-clock-o.s32.display-block
+              Help us w.r.t Time
         .li
-          = link_to 'Help us w.r.t Fund', "#my-modal-2", "data-toggle" => "modal", class:  'btn btn-primary'
+           %a.btn.btn-primary.p25.mb10{href: '#my-modal-2', "data-toggle" => "modal"}
+              %i.fa.fa-usd.s32.display-block
+              Help us w.r.t Funds
 
 / two click model for registration
 #my-modal-1.modal.fade{:title => "My modal"}
   .modal-dialog{:role => "document"}
     .modal-content
       = render 'registration_form_data', user_type: 0
-      .modal-footer
-        %button.btn{"aria-hidden" => "true", "data-dismiss" => "modal"} Close
-
 
 #my-modal-2.modal.fade{:title => "My modal"}
   .modal-dialog{:role => "document"}
     .modal-content
       = render 'registration_form_data', user_type: 1
-      .modal-footer
-        %button.btn{"aria-hidden" => "true", "data-dismiss" => "modal"} Close

@@ -7,6 +7,10 @@
       .hero-unit.text-center
         .ul
           .li
-            = link_to 'Sign Up with facebook', user_facebook_omniauth_authorize_path(user_type: user_type), class:  'btn btn-primary'
+            %a.btn.btn-primary.btn-fb-login.p25.mb10{href: user_facebook_omniauth_authorize_path(user_type: user_type)}
+              %i.fa.fa-facebook-square.s24
+              Log in with Facebook
           .li
-            = link_to 'Sign Up without facebook', onboarding_users_path(user_type: user_type), class:  'btn btn-primary'
+            %a.btn.btn-info.btn-email-login.p10.mb10{href: onboarding_users_path(user_type: user_type)}
+              %i.fa.fa-envelope-o.s24
+              Log in with Email
