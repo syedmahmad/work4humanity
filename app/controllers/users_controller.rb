@@ -16,9 +16,15 @@ class UsersController < ApplicationController
 
   def onboarding
     @user = current_user || User.new
+    @user.u_type = params[:user_type].downcase if params[:user_type].present?
+  end
+
+  def create
+    ffadsfasdfa
   end
 
   def update_contact_details
+    path = "#{root_path}"
     @user = User.find_by_id(params[:user][:id]) || User.new
     @user.assign_attributes(user_contact_params)
 
@@ -26,9 +32,10 @@ class UsersController < ApplicationController
       flash[:notice] = 'Successfully Registered!'
     else
       flash[:notice] = @user.errors.full_messages.to_sentence
+      path = :back
     end
 
-    redirect_to root_path
+    redirect_to path
   end
 
   def update_user_role
@@ -49,7 +56,7 @@ class UsersController < ApplicationController
 
   def user_contact_params
     params[:user][:available_days] = params[:available_days].reject(&:empty?) if params[:available_days].present? && params[:available_days].any?
-    params.require(:user).permit(:name, :email, :mobile_number, available_days: [])
+    params.require(:user).permit(:name, :email, :mobile_number, :u_type , :password, available_days: [])
   end
 
   def user_role_params
