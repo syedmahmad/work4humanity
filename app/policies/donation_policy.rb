@@ -7,7 +7,7 @@ class DonationPolicy
   end
 
   def index?
-  	is_admin?
+  	is_admin? || is_volunteer? || is_donner?
   end
 
   def new?
@@ -50,6 +50,10 @@ class DonationPolicy
 
   def is_admin?
   	current_user.is_admin?
+  end
+
+  def is_donner?
+    current_user.donner?
   end
 
   def is_volunteer?

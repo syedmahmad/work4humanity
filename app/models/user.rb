@@ -3,10 +3,11 @@ class User < ActiveRecord::Base
 
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable
-  devise :database_authenticatable, :registerable, :confirmable,
+  devise :database_authenticatable, :registerable,
     :recoverable, :rememberable, :trackable, :validatable, :omniauthable
   # validates_format_of :email, :without => TEMP_EMAIL_REGEX, on: :update
-  enum u_type: [:volunteer, :admin]
+
+  enum u_type: [:volunteer, :admin, :donner]
 
   validates :mobile_number, :presence => {:message => 'Please enter valid phone number!'},
                      :numericality => true,
@@ -34,7 +35,7 @@ class User < ActiveRecord::Base
     total_donated_amount
   end
 
-  def self.find_for_oauth(auth, signed_in_resource = nil, user_type = 0)
+  def self.find_for_oauth(auth, signed_in_resource = nil, user_type = 'volunteer')
 
     # Get the identity and user if they exist
     identity = Identity.find_for_oauth(auth)
@@ -59,7 +60,7 @@ class User < ActiveRecord::Base
           name: auth.extra.raw_info.name,
           #username: auth.info.nickname || auth.uid,
           email: email,
-          u_type: user_type,
+          u_type: 0,
           image_url: image_url,
           password: Devise.friendly_token[0,20],
           oauth_account: true
@@ -67,6 +68,11 @@ class User < ActiveRecord::Base
         user.skip_confirmation!
 
         user.save!
+      end
+    else
+      if user.u_type != user_type
+        user.u_type = user_type
+        user.save
       end
     end
 

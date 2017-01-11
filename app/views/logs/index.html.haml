@@ -7,7 +7,7 @@
             %h3.text-center Donations & Funds Allocations Logs
           .panel-body
             #logs-body-content
-              - Donation.all.each_with_index do |donation, index|
+              - Donation.all.received.each_with_index do |donation, index|
                 %p
                   %span= "+ Donation #{donation.original_amount}, form"
                   =link_to donation.user.name, donation.user, target: '_blank'

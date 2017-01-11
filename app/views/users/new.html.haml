@@ -8,14 +8,14 @@
           .panel-body
             = form_for @user, url: users_path, method: 'post', html: { multipart: true, class: 'form-horizontal group-border hover-stripped' } do |f|
               .form-group
-                = f.label 'Phone *', class: 'col-lg-2 col-md-2 col-sm-12 control-label'
+                = f.label 'Phone', class: 'col-lg-2 col-md-2 col-sm-12 control-label'
                 .col-lg-10.col-md-10
                   = f.text_field :mobile_number, class: 'form-control', required: true
               .form-group
                 = f.label 'Password', class: 'col-lg-2 col-md-2 col-sm-12 control-label'
                 .col-lg-10.col-md-10
                   = f.password_field :password, class: 'form-control', required: true
-              .form-group.btn-submit.mb10
+              .form-group.btn-submit
                 = f.submit "Login", class: 'btn btn-primary'
               .form-group.btn-submit
-                = link_to "Register Now", onboarding_users_path(user_type: @user_type), class: 'btn btn-primary'
+                = f.submit "Register Now", url: onboarding_users_path(user_type: user_type), class: 'btn btn-success'
