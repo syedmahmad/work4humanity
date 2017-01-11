@@ -2,14 +2,16 @@ class Donation < ActiveRecord::Base
   include PublicActivity::Common
   
   belongs_to :user
-  enum status: { requested: 0 , accepted: 1, rejected: 2, received: 3 }
+  enum status: { requested: 0 , accepted: 1, rejected: 2, received: 3 , released: 4}
 
   after_create :set_original_amount
 
   scope :requested, -> { where(:status => 0)}
   scope :accepted, -> { where(:status => 1)}
   scope :rejected, -> { where(:status => 2)}
-  scope :received, ->  { where(:status => 3) }
+  scope :received, ->  { where(:status => 3)}
+  scope :released, ->  { where(:status => 4)}
+  scope :get_received, -> { where("status = ? or status = ?",3,4 )}
 
   private
 

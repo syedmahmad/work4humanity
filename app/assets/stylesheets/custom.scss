@@ -219,7 +219,25 @@
  .amount-holder-mobile{
     display: none;
   }
-
+  .allocated-funds-holder{
+    padding-left: 15px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+  #logs-body-content{
+    .donat-list{
+      background-color: #fff;
+      padding: 5px;
+      border-radius: 2px;
+      margin-bottom: 10px;
+      &:nth-child(even){
+        background-color:#e8e8e8;
+      }
+      a{
+        color: #2DBCB5;
+      }
+    }
+  }
 @media all and (max-width: 767px) {
   .amount-holder-desktop{
     display: none !important;

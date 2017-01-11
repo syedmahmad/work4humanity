@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :confirmable,
     :recoverable, :rememberable, :trackable, :validatable, :omniauthable
   # validates_format_of :email, :without => TEMP_EMAIL_REGEX, on: :update
-  enum u_type: [:volunteer, :donner, :admin]
+  enum u_type: [:volunteer, :admin, :donner]
 
   validates :mobile_number, :presence => {:message => 'Please enter valid phone number!'},
                      :numericality => true,
@@ -69,7 +69,7 @@ class User < ActiveRecord::Base
         user.save!
       end
     else
-      if user.u_type != user_type
+      if user.u_type != user_type && !user.admin?
         user.u_type = user_type
         user.save
       end

@@ -25,33 +25,49 @@
 
 	def assign_amout_to_case
 		assigned_amount = 0
-		amount_to_deduct = 0
-		break_loop = false
-		Donation.all.order('id asc').each_with_index do |donation, index|
-			unless assigned_amount == form_amount
-				if donation.amount <= (form_amount - assigned_amount)
-					assigned_amount = assigned_amount + donation.amount
-					amount_to_deduct = donation.amount
-					donation.amount = 0
+		detuctable_amount = 0
+		requested_amount = form_amount
+		required_amount = requested_amount
+		total_amount = get_available_balance
+		amount_to_deduct = get_avg_amount(required_amount, total_amount)
+
+		Donation.all.received.order('id asc').each_with_index do |donation, index|
+			if donation.amount <= 100
+				if required_amount < donation.amount
+					detuctable_amount = required_amount
+					assigned_amount = assigned_amount + detuctable_amount	
 				else
-					amount_to_deduct = form_amount - assigned_amount
-					assigned_amount = assigned_amount + amount_to_deduct
-					donation.amount = donation.amount - amount_to_deduct
+					detuctable_amount = donation.amount
+					assigned_amount = assigned_amount + detuctable_amount
+					donation.amount = 0
+					donation.status = 'released'
 				end
-				donation.save
-				donation.create_activity :amount_allocated, parameters: {amount: "#{amount_to_deduct}"}, owner: donation, recipient: self
-				amount_to_deduct = 0
 			else
-				break_loop =  true
+				detuctable_amount = (donation.amount * (amount_to_deduct)).round
+				assigned_amount = assigned_amount + detuctable_amount
+				donation.amount = donation.amount - detuctable_amount
+				donation.status = "released" if donation.amount == 0
 			end
-			break if break_loop
+			
+			required_amount = required_amount - detuctable_amount
+			total_amount = total_amount - detuctable_amount
+			amount_to_deduct = get_avg_amount(required_amount, total_amount)
+
+			donation.save
+			donation.create_activity :amount_allocated, parameters: {amount: "#{detuctable_amount}", balance: "#{get_available_balance}"}, owner: donation, recipient: self
+			break if assigned_amount >= requested_amount
 		end
+
 		new_allocated_amount = assigned_amount + self.allocated_amount
 		self.enable_funds_validation = false
 		self.update_attributes(allocated_amount: new_allocated_amount, status: 1)
 	end
 
-	def get_available_balance
+	def get_avg_amount(val1, val2)
+		(val1.to_f/ val2.to_f)
+	end
+
+  def get_available_balance
   	Donation.all.received.pluck(:amount).sum
   end
 
