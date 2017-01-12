@@ -28,7 +28,9 @@
       =# render '/layouts/partials/top_alert'
       .outlet
         -# .container
-        -#   = render_breadcrumbs
+        %ol
+          .breadcrumb
+            = render_breadcrumbs tag: :li
         = render partial: 'layouts/partials/flash_messages', flash: flash
         = yield
 

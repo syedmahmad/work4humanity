@@ -4,8 +4,7 @@ class CasesController < ApplicationController
 	before_action :set_case, only: [:edit, :show, :update, :destroy, :authorize_case, :allocate_funds, :confirm_funds_allocation]
 	before_action :authorize_case, only: [:new, :create, :edit, :update, :destroy, :allocate_funds, :confirm_funds_allocation]
 	before_action :set_hospitals, only: [:edit, :new]
-	add_breadcrumb "index", :cases_path
-	add_breadcrumb "new", :new_case_path
+	add_breadcrumb "Cases", :cases_path
 
 	def index
 		@cases = Case.all
@@ -13,9 +12,11 @@ class CasesController < ApplicationController
 
 	def new
 		@case = current_user.cases.build
+		add_breadcrumb "New", :new_case_path
 	end
 
 	def show
+		add_breadcrumb "View", :case_path
 		@activity = PublicActivity::Activity.order("created_at desc").where("recipient_id = ? and key = ?", @case.id, "donation.amount_allocated")
 	end
 
@@ -25,7 +26,7 @@ class CasesController < ApplicationController
 	end
 
 	def edit
-
+		add_breadcrumb "Edit", :edit_case_path
 	end
 
 	def update

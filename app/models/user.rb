@@ -3,9 +3,13 @@ class User < ActiveRecord::Base
 
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable
-  devise :database_authenticatable, :registerable, :confirmable,
+  devise :database_authenticatable, :registerable,
     :recoverable, :rememberable, :trackable, :validatable, :omniauthable
   # validates_format_of :email, :without => TEMP_EMAIL_REGEX, on: :update
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
   enum u_type: [:volunteer, :admin, :donner]
 
   validates :mobile_number, :presence => {:message => 'Please enter valid phone number!'},
