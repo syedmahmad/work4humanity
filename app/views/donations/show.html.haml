@@ -13,10 +13,9 @@
         = link_to 'Back', admin_vs_user_button_redirection, class: 'btn btn-primary'
         .pull-right
           - if policy(:donation).accept?
-            = link_to 'Accept', accept_donation_path(@donation), method: :post, class: 'btn btn-success'
             = link_to 'Reject', reject_donation_path(@donation), method: :post, class: 'btn btn-danger'
             = link_to 'Receive', receive_donation_path(@donation), method: :post, class: 'btn btn-info'
-  
+
   -if @activities.present?
     .row
       .col-md-8.col-md-offset-2
