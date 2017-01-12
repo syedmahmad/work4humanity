@@ -27,8 +27,7 @@
     .content-wrapper
       =# render '/layouts/partials/top_alert'
       .outlet
-        -# .container
-        %ol
+        .container
           .breadcrumb
             = render_breadcrumbs tag: :li
         = render partial: 'layouts/partials/flash_messages', flash: flash

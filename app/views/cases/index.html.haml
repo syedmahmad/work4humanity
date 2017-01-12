@@ -22,8 +22,9 @@
 											%i.fa.fa-location-arrow
 											= case_obj.hospital.name
 								.col-sm-4.col-md-2.btn-area
+									= link_to 'View this case', case_path(case_obj) ,class: 'btn btn-info'
 									- if policy(case_obj).edit?
 										= link_to 'Edit this case', edit_case_path(case_obj),class: 'btn btn-primary'
 									- if policy(case_obj).destroy?
 										= link_to 'Delete this case', case_obj, method: :delete, data: { confirm: "You sure?" } ,class: 'btn btn-danger'
-									= link_to 'View this case', case_path(case_obj) ,class: 'btn btn-info'
+									

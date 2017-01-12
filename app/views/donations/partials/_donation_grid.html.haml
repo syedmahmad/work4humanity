@@ -1,22 +1,26 @@
 .container
   .row
-    .col-md-12
+    .col-md-12.text-center
       = link_to 'I want to donation', new_donation_path, class: 'btn btn-primary'
-  .col-md-8.col-md-offset-2
-    - unless donations.blank?
-      .row
-        %h3 List of donations
+  -if donations.present?
+    .col-md-12.list-cases-holder
+      %h3 List of donations
       - donations.each do |donation_obj|
-        .col-md-12
+        .col-md-12.p0
           .panel.panel-default
             .panel-body
-              %h4
-                = "Name: #{donation_obj.user.name}"
-              %p
-                = "Amount: #{donation_obj.amount}"
-              %p
-                = "Status: #{donation_obj.status.titleize}"
-              = link_to 'Delete this donation', donation_path(donation_obj), method: :delete, data: { confirm: "You sure?" } ,class: 'btn btn-danger'
-              = link_to 'View this donation', donation_path(donation_obj) ,class: 'btn btn-info'
-    - else
-      %h3 No donations found
+              .row
+                .col-sm-8.col-md-10.cases-details
+                  %h4
+                    .donar_img
+                      = avatar_url(donation_obj.user, '100', 'user-avatar')
+                    = "#{donation_obj.user.name}"
+                  %p
+                    = "Amount: #{donation_obj.amount}"
+                  %p
+                    = "Status: #{donation_obj.status.titleize}"
+                  
+                .col-sm-4.col-md-2.btn-area
+                  = link_to 'View this donation', donation_path(donation_obj) ,class: 'btn btn-info'
+                  = link_to 'Delete this donation', donation_path(donation_obj), method: :delete, data: { confirm: "You sure?" } ,class: 'btn btn-danger'
+                  

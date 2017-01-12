@@ -1,3 +1,11 @@
 // Place all the styles related to the donations controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.donar_img{
+  display: inline;
+  img{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+  }
+}

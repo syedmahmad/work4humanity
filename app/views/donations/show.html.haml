@@ -10,13 +10,14 @@
             %p= @donation.original_amount
             %h4 Status:
             %p= @donation.status.titleize
-        = link_to 'Back', get_donations_path, class: 'btn btn-primary'
         .pull-right
           - if policy(:donation).accept?
             = link_to 'Accept', accept_donation_path(@donation), method: :post, class: 'btn btn-success'
             = link_to 'Reject', reject_donation_path(@donation), method: :post, class: 'btn btn-danger'
             = link_to 'Receive', receive_donation_path(@donation), method: :post, class: 'btn btn-info'
-  .row
-    .col-md-8.col-md-offset-2
-      %h4 Usage of your donation
-      = render_activities @activities
+  
+  -if @activities.present?
+    .row
+      .col-md-8.col-md-offset-2
+        %h4 Usage of your donation
+        = render_activities @activities
