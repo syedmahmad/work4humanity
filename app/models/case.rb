@@ -36,42 +36,38 @@
 		donations = Donation.all.received.order('id asc')
 		
 		record_hash = {}
-
 		while assigned_amount < requested_amount
 			donations.each_with_index do |donation, index|
 				if donation.amount > 0
-					if donation.amount <= 100
-						if required_amount < donation.amount
-							detuctable_amount = required_amount
-							assigned_amount = assigned_amount + detuctable_amount	
-						else
-							detuctable_amount = donation.amount
-							assigned_amount = assigned_amount + detuctable_amount
-							donation.amount = 0
-						end
+					min_limit_flag = donation.amount <= 100
+
+					if min_limit_flag
+						detuctable_amount = required_amount < donation.amount ? required_amount : donation.amount 
+						assigned_amount = assigned_amount + detuctable_amount	
 					else
-						detuctable_amount = (donation.amount * (amount_to_deduct)).round
+						avg_amount_to_fund = (donation.amount * (amount_to_deduct)).round
+
+						detuctable_amount = min_limit_flag ? (donation.amount > required_amount ? required_amount : donation.amount) : (avg_amount_to_fund > required_amount ? required_amount : avg_amount_to_fund)
+
+						detuctable_amount = detuctable_amount < 1 ? 1 : detuctable_amount
 						assigned_amount = assigned_amount + detuctable_amount
-						donation.amount = donation.amount - detuctable_amount
 					end
 					
-					if detuctable_amount > 0
-						required_amount = required_amount - detuctable_amount
-						total_amount = total_amount - detuctable_amount
-						amount_to_deduct = get_avg_amount(required_amount, total_amount)
+					donation.amount = donation.amount - detuctable_amount
+					required_amount = required_amount - detuctable_amount
+					total_amount = total_amount - detuctable_amount
+					amount_to_deduct = get_avg_amount(required_amount, total_amount)
 
-						donation.save
-						record_hash[donation.id] = record_hash[donation.id].present? ? record_hash[donation.id] + detuctable_amount : detuctable_amount
-					end
+					donation.save
+					record_hash[donation.id] = record_hash[donation.id].present? ? record_hash[donation.id] + detuctable_amount : detuctable_amount
 					
 					break_loop = assigned_amount >= requested_amount
 					break if break_loop
 				end
 			end
 			
-			unless break_loop
-				donations = donations.reload.received.order('id asc')
-			end
+			break if break_loop
+			donations = donations.reload.received.order('id asc')
 		end
 		
 		donations.each do |donation|
