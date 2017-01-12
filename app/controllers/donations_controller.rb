@@ -8,7 +8,7 @@ class DonationsController < ApplicationController
     @requested_donations = Donation.all.requested
     @accepted_donations = Donation.all.accepted
     @rejected_donations = Donation.all.rejected
-    @recieved_donations = Donation.all.received
+    @recieved_donations = Donation.all.get_received
   end
 
   def new
@@ -23,9 +23,9 @@ class DonationsController < ApplicationController
   end
 
   def show
-    @activities = PublicActivity::Activity.order("created_at desc").where(owner_id: @donation.id)
     add_breadcrumb "Donations", get_donation_breadcrum_path
     add_breadcrumb "View", :donation_path
+    @activities = PublicActivity::Activity.order("created_at desc").where("owner_id = ? and key = ?", @donation.id, "donation.amount_allocated")
   end
 
   def edit
@@ -43,7 +43,10 @@ class DonationsController < ApplicationController
   end
 
   def receive
-    @donation.update_column(:status, 3)
+    if !@donation.received? && @donation.update_column(:status, 3)
+      @donation.create_activity :amount_received, parameters: {amount: "#{@donation.amount}", balance: "#{total_remaining_ammount}"}, owner: @donation, recipient: @donation
+      flash[:notice] = "Donation received."
+    end
     redirect_to :back
   end
 

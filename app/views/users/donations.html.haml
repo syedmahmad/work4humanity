@@ -1,4 +1,4 @@
-= render partial: 'donations/partials/donation_grid', locals: {donations: @donations, type: ""}
+= render partial: 'donations/partials/donation_grid', locals: {donations: @donations}
 / .container
 /   .row
 /     %h1 All Donations
@@ -13,4 +13,3 @@
 /           = "Status: #{donation_obj.status.titleize}"
 /         = link_to 'Delete this donation', donation_path(donation_obj), method: :delete, data: { confirm: "You sure?" } ,class: 'btn btn-danger'
 /         = link_to 'View this donation', donation_path(donation_obj) ,class: 'btn btn-info'
-

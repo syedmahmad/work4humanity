@@ -10,6 +10,10 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def total_remaining_ammount
+    Donation.all.received.pluck(:amount).sum
+  end
+
   def user_not_authorized
    	flash[:alert] = "You are not authorized to access the requested page"
     redirect_to not_authorized_path
