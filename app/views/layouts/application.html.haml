@@ -29,9 +29,8 @@
       .outlet
         -# .container
         - if breadcrumbs.present?
-          %ol
-            .breadcrumb
-              = render_breadcrumbs tag: :li
+          .breadcrumb.container
+            = render_breadcrumbs tag: :li
         = render partial: 'layouts/partials/flash_messages', flash: flash
         = yield
 

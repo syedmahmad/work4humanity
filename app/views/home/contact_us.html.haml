@@ -1,0 +1,34 @@
+.container
+  .contact-us.col-sm-12.col-md-8.col-md-offset-2
+    %h3.text-center Contact Us
+    .col-md-8
+      .form-area
+        %form{:role => "form"}
+          %br{:style => "clear:both"}/
+          .form-group
+            %input#name.form-control{:name => "name", :placeholder => "Name", :required => "", :type => "text"}/
+          .form-group
+            %input#email.form-control{:name => "email", :placeholder => "Email", :required => "", :type => "text"}/
+          .form-group
+            %input#mobile.form-control{:name => "mobile", :placeholder => "Mobile Number", :required => "", :type => "text"}/
+          .form-group
+            %input#subject.form-control{:name => "subject", :placeholder => "Subject", :required => "", :type => "text"}/
+          .form-group
+            %textarea#message.form-control{:maxlength => "140", :placeholder => "Message", :rows => "7", :type => "textarea"}
+          %button#submit.btn.btn-primary.pull-right{:name => "submit", :type => "button"} Submit Form
+    .col-sm-4
+      %h3 Work4Humanity
+      %hr/
+      %address
+        %strong Address:
+        D.H.A Phose 1 82-G, Lahore,
+        %br/
+        %strong Phone:
+        +92-322-2822224
+      %address
+        %strong U.S.A Address:
+        (Haftungsbeschraenkt/Limited-Liability), Morsering 2, Munich 80937 Germany ,
+        %br/
+        %strong Phone:
+        +92 423 5741 249
+

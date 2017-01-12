@@ -60,7 +60,7 @@ class DonationsController < ApplicationController
   private
 
     def get_donation_breadcrum_path
-      @donation.user.admin? ? donation_path : donations_user_path(@donation.user)
+      @donation.user.admin? ? donations_path : donations_user_path(@donation.user)
     end
 
     def donation_params

@@ -12,7 +12,7 @@
     }
   }
   .amount-holder-mobile{
-    
+
   }
   [class^="amount-holder-"], [class*=" amount-holder-"] {
     h4{
@@ -219,6 +219,13 @@
  .amount-holder-mobile{
     display: none;
   }
+  .breadcrumb {
+    padding: 5px;
+    margin-bottom: 20px;
+    list-style: none;
+    background-color: transparent;
+    border-bottom: 1px solid #eee;
+}
 
 @media all and (max-width: 767px) {
   .amount-holder-desktop{

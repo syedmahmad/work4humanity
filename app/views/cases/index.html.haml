@@ -3,7 +3,7 @@
 		.col-md-12.text-center
 			= link_to 'Create case', new_case_path, class: 'btn btn-primary'
 	-if @cases.present?
-		.col-md-12.list-cases-holder
+		.col-md-12.list-cases-holder.p0
 			%h3 Cases
 			- @cases.each do |case_obj|
 				.col-md-12.p0
