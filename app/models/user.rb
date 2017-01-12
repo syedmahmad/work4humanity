@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
 
   def get_amount_of_donations_used
     donation_ids = self.donations.pluck(:id)
-    donated_amount_hash_objs = PublicActivity::Activity.order("created_at desc").where(owner_id: donation_ids).pluck(:parameters)
+    donated_amount_hash_objs = PublicActivity::Activity.order("created_at desc").where(key: "donation.amount_allocated").where(owner_id: donation_ids).pluck(:parameters)
     total_donated_amount  = 0
     donated_amount_hash_objs.each do |obj|
       puts obj

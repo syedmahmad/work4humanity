@@ -24,38 +24,59 @@
 	end
 
 	def assign_amout_to_case
+		break_loop = false
 		assigned_amount = 0
 		detuctable_amount = 0
+		
 		requested_amount = form_amount
 		required_amount = requested_amount
 		total_amount = get_available_balance
 		amount_to_deduct = get_avg_amount(required_amount, total_amount)
+		
+		donations = Donation.all.received.order('id asc')
+		
+		record_hash = {}
 
-		Donation.all.received.order('id asc').each_with_index do |donation, index|
-			if donation.amount <= 100
-				if required_amount < donation.amount
-					detuctable_amount = required_amount
-					assigned_amount = assigned_amount + detuctable_amount	
-				else
-					detuctable_amount = donation.amount
-					assigned_amount = assigned_amount + detuctable_amount
-					donation.amount = 0
-					donation.status = 'released'
+		while assigned_amount < requested_amount
+			donations.each_with_index do |donation, index|
+				if donation.amount > 0
+					if donation.amount <= 100
+						if required_amount < donation.amount
+							detuctable_amount = required_amount
+							assigned_amount = assigned_amount + detuctable_amount	
+						else
+							detuctable_amount = donation.amount
+							assigned_amount = assigned_amount + detuctable_amount
+							donation.amount = 0
+						end
+					else
+						detuctable_amount = (donation.amount * (amount_to_deduct)).round
+						assigned_amount = assigned_amount + detuctable_amount
+						donation.amount = donation.amount - detuctable_amount
+					end
+					
+					if detuctable_amount > 0
+						required_amount = required_amount - detuctable_amount
+						total_amount = total_amount - detuctable_amount
+						amount_to_deduct = get_avg_amount(required_amount, total_amount)
+
+						donation.save
+						record_hash[donation.id] = record_hash[donation.id].present? ? record_hash[donation.id] + detuctable_amount : detuctable_amount
+					end
+					
+					break_loop = assigned_amount >= requested_amount
+					break if break_loop
 				end
-			else
-				detuctable_amount = (donation.amount * (amount_to_deduct)).round
-				assigned_amount = assigned_amount + detuctable_amount
-				donation.amount = donation.amount - detuctable_amount
-				donation.status = "released" if donation.amount == 0
 			end
 			
-			required_amount = required_amount - detuctable_amount
-			total_amount = total_amount - detuctable_amount
-			amount_to_deduct = get_avg_amount(required_amount, total_amount)
-
-			donation.save
-			donation.create_activity :amount_allocated, parameters: {amount: "#{detuctable_amount}", balance: "#{get_available_balance}"}, owner: donation, recipient: self
-			break if assigned_amount >= requested_amount
+			unless break_loop
+				donations = donations.reload.received.order('id asc')
+			end
+		end
+		
+		donations.each do |donation|
+			donation.status = "released" if donation.amount == 0
+			donation.create_activity :amount_allocated, parameters: {amount: record_hash[donation.id]}, owner: donation, recipient: self
 		end
 
 		new_allocated_amount = assigned_amount + self.allocated_amount
