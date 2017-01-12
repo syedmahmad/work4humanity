@@ -1,5 +1,5 @@
 .container
-  .col-md-8.col-md-offset-2
+  .col-md-6.col-md-offset-3.manage-user-list
     - @users.each do |user|
       .col-md-12
         .panel.panel-default
@@ -7,9 +7,9 @@
             %h4
               = user.name
             = form_for user, url: update_user_role_user_path(user), class: 'form-horizontal group-border hover-stripped', method: :post do |f|
-              .form-group
-                = f.label 'Type', class: 'col-lg-2 col-md-4 col-sm-4 control-label'
-                .col-lg-4.col-md-4
+              .row
+                = f.label 'Type', class: 'col-lg-2 col-md-2 col-sm-4 control-label'
+                .col-lg-5.col-md-5.form-group
                   = f.select(:u_type, User.u_types.map {|key, value| [key.humanize, key]}, {}, { :class => 'form-control' })
-                .col-md-4
+                .col-md-5.btn-block-update
                   = f.submit 'Update', class: 'btn btn-primary'

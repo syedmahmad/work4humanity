@@ -41,6 +41,8 @@ class CasesController < ApplicationController
 
 	def allocate_funds
 		@available_balance = Donation.all.received.pluck(:amount).sum
+		add_breadcrumb "View", :case_path
+		add_breadcrumb "Allocate fund", :allocate_funds_case_path
 	end
 
 	def confirm_funds_allocation

@@ -18,4 +18,12 @@ module DonationsHelper
     button_text
   end
 
+  def admin_vs_user_button_redirection
+    if current_user.u_type == 'admin'
+      donations_path
+    else
+      donations_user_path(current_user)
+    end
+  end
+
 end

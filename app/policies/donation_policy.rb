@@ -7,11 +7,11 @@ class DonationPolicy
   end
 
   def index?
-  	is_admin? || is_volunteer? || is_donner?
+  	is_admin?
   end
 
   def new?
-  	is_volunteer? || is_admin?
+  	is_volunteer? || full_access?
   end
 
   def edit?
@@ -23,7 +23,7 @@ class DonationPolicy
   end
 
   def create?
-  	is_volunteer? || @donation.user == current_user
+  	is_volunteer? || full_access?
   end
 
   def show?
@@ -49,7 +49,7 @@ class DonationPolicy
   private
 
   def is_admin?
-  	current_user.is_admin?
+  	current_user.admin?
   end
 
   def is_donner?
@@ -57,9 +57,11 @@ class DonationPolicy
   end
 
   def is_volunteer?
-  	current_user.is_volunteer?
+  	current_user.volunteer?
   end
 
-
+  def full_access?
+    is_admin? || is_donner?
+  end
 
 end

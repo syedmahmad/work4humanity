@@ -19,7 +19,7 @@ class DonationsController < ApplicationController
 
   def create
     donation = current_user.donations.create(donation_params)
-    redirect_to donation_path(donation)
+    redirect_to donations_user_path(donation.user)
   end
 
   def show
@@ -63,7 +63,7 @@ class DonationsController < ApplicationController
   private
 
     def get_donation_breadcrum_path
-      @donation.user.admin? ? donation_path : donations_user_path(@donation.user)
+      @donation.user.admin? ? donations_path : donations_user_path(@donation.user)
     end
 
     def donation_params
