@@ -28,9 +28,10 @@
       =# render '/layouts/partials/top_alert'
       .outlet
         -# .container
-        %ol
-          .breadcrumb
-            = render_breadcrumbs tag: :li
+        - if breadcrumbs.present?
+          %ol
+            .breadcrumb
+              = render_breadcrumbs tag: :li
         = render partial: 'layouts/partials/flash_messages', flash: flash
         = yield
 

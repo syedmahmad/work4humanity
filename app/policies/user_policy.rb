@@ -11,11 +11,10 @@ class UserPolicy
   end
 
   def manage_users?
-  	@current_user.is_admin?
+  	@current_user.admin?
   end
 
   def update_user_role?
-  	@current_user.is_admin?
+  	@current_user.admin?
   end
-
 end

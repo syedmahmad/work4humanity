@@ -11,17 +11,11 @@ class User < ActiveRecord::Base
 
   validates :mobile_number, :presence => {:message => 'Please enter valid phone number!'},
                      :numericality => true,
+                     :uniqueness => true,
                      :length => { :minimum => 10, :maximum => 15 }, if: Proc.new{|user| !user.oauth_account.present?}
 
   has_many :donations, dependent: :destroy
   has_many :cases, dependent: :destroy
-  def is_admin?
-    self.u_type == 'admin'
-  end
-
-  def is_volunteer?
-    self.u_type == 'volunteer'
-  end
 
   def get_amount_of_donations_used
     donation_ids = self.donations.pluck(:id)

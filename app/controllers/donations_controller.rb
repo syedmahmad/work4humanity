@@ -19,7 +19,7 @@ class DonationsController < ApplicationController
 
   def create
     donation = current_user.donations.create(donation_params)
-    redirect_to donation_path(donation)
+    redirect_to donations_user_path(donation.user)
   end
 
   def show
