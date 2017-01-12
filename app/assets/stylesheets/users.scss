@@ -1,3 +1,18 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.manage-user-list{
+  .panel.panel-default {
+    &:nth-child(odd){
+      background-color: #ddd;
+    }
+    .btn-block-update{
+      .btn{
+        width: 100%;
+      }
+    }
+    .edit_user{
+      margin: 0;
+    }
+  }
+}
