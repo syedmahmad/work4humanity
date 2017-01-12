@@ -9,4 +9,25 @@
     padding: 0 0 30px;
     margin-bottom: 30px;
     overflow: hidden;
+    h3{
+      color: #2DBCB5;
+    }
+    address{
+    padding: 15px;
+    background: #fff;
+    max-width: 350px;
+    margin: 0 auto;
+        ul{
+        padding: 0;
+        margin: 0;
+        li{
+          list-style: none;
+          width: 100%;
+          margin-bottom: 10px;
+          strong{
+            color: #2DBCB5;
+          }
+        }
+      }
+    }
 }
