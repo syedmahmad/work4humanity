@@ -14,11 +14,6 @@ class ApplicationController < ActionController::Base
     super
   rescue AbstractController::ActionNotFound
     render :file => 'public/404.html', :status => :not_found, :layout => false
-    # render :404, status: 'not_found'
-    # respond_to do |format|
-    #   format.html { render :404, status: :not_found }
-    #   format.all { render nothing: true, status: :not_found }
-    # end
   end
 
   def total_remaining_ammount

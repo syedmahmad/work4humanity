@@ -70,7 +70,10 @@
   end
 
   def set_user
-  	@user = User.find_by_id(params[:id])
+  	if @user = User.find_by_id(params[:id])
+    else
+      render :file => 'public/404.html', :status => :not_found, :layout => false
+    end
   end
 
   def authorize_user
