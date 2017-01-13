@@ -5,21 +5,21 @@
     .hero-unit.text-center.mt50
       %ul
         %li
-          %a.btn.btn-primary.p25.mb10{href: '#my-modal-1', "data-toggle" => "modal"}
+          %a.btn.btn-primary.p25.mb10{href: new_user_session_path(user_type: "volunteer")}
             %i.fa.fa-clock-o.s32.display-block
             Donate your Time
         %li
-          %a.btn.btn-primary.p25.mb10{href: '#my-modal-2', "data-toggle" => "modal"}
+          %a.btn.btn-primary.p25.mb10{href: new_user_session_path(user_type: "donner")}
             %i.fa.fa-usd.s32.display-block
             Donate your Funds
 
 / two click model for registration
-#my-modal-1.modal.fade.login-modal{:title => "My modal"}
-  .modal-dialog{:role => "document"}
-    .modal-content
-      = render 'registration_form_data', user_type: "volunteer"
+/ #my-modal-1.modal.fade.login-modal{:title => "My modal"}
+/   .modal-dialog{:role => "document"}
+/     .modal-content
+/       = render 'registration_form_data', user_type: "volunteer"
 
-#my-modal-2.modal.fade.login-modal{:title => "My modal"}
-  .modal-dialog{:role => "document"}
-    .modal-content
-      = render 'registration_form_data', user_type: "donner"
+/ #my-modal-2.modal.fade.login-modal{:title => "My modal"}
+/   .modal-dialog{:role => "document"}
+/     .modal-content
+/       = render 'registration_form_data', user_type: "donner"
