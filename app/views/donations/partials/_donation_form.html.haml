@@ -1,8 +1,8 @@
 .container
   .outlet
     .row
-      .col-md-8.col-md-offset-2
-        .panel.panel-default
+      .col-md-6.col-md-offset-3
+        .panel.panel-default.donation-box
           .panel-heading
             %h3 Request to make donation
           .panel-body
@@ -11,5 +11,5 @@
                 = f.label 'Amount', class: 'col-lg-2 col-md-2 col-sm-12 control-label'
                 .col-lg-6.col-md-6
                   = f.number_field :amount, min: '0', step: 'any', class: 'form-control', required: true
-              .form-group.col-md-8.col-md-offset-2
+              .form-group.col-md-12.btn-block
                 = f.submit "#{donation_button_text(@donation)}", class: 'btn btn-primary'

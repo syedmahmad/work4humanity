@@ -27,7 +27,7 @@
                 = form_for @case, url: confirm_funds_allocation_case_path(@case), class: 'form-horizontal group-border hover-stripped', method: :post do |f|
                   .form-group
                     = f.label 'Amount', class: 'col-lg-2 col-md-4 col-sm-4 control-label'
-                    .col-lg-4.col-md-4
+                    .col-lg-4.col-md-4.form-group
                       = f.number_field :allocated_amount, min: '0', step: 'any', class: 'form-control', required: true, value: '0'
                     .col-md-4
                       = f.submit 'Allocate', class: 'btn btn-primary'

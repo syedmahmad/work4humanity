@@ -20,4 +20,5 @@
                 = link_to 'Delete', donation_path(donation_obj), method: :delete, data: { confirm: "You sure?" } ,class: 'btn btn-danger'
                 = link_to 'View', donation_path(donation_obj) ,class: 'btn btn-info'
     - else
-      %h3= "No #{type||=''} donation found"
+      .text-center
+        %h3= "No #{type||=''} donation found"
