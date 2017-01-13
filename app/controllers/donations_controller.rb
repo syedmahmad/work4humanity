@@ -71,7 +71,10 @@ class DonationsController < ApplicationController
     end
 
     def set_donation
-      @donation = Donation.find(params[:id])
+      if @donation = Donation.find_by_id(params[:id])
+      else
+        render :file => 'public/404.html', :status => :not_found, :layout => false
+      end
     end
 
     def authorize_donation

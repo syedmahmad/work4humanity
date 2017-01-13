@@ -69,7 +69,10 @@ class CasesController < ApplicationController
 	end
 
 	def set_case
-		@case = Case.find(params[:id])
+		if @case = Case.find_by_id(params[:id])
+		else
+      render :file => 'public/404.html', :status => :not_found, :layout => false
+    end
 	end
 
 	def set_hospitals
