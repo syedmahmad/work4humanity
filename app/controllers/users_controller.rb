@@ -29,7 +29,9 @@
     @user = User.find_by_id(params[:user][:id]) || User.new
     @user.assign_attributes(user_contact_params)
 
+    @user.skip_confirmation!
     if @user.save
+      sign_in(@user)
       flash[:notice] = 'Successfully Registered!'
     else
       flash[:notice] = @user.errors.full_messages.to_sentence
@@ -68,7 +70,10 @@
   end
 
   def set_user
-  	@user = User.find_by_id(params[:id])
+  	if @user = User.find_by_id(params[:id])
+    else
+      render :file => 'public/404.html', :status => :not_found, :layout => false
+    end
   end
 
   def authorize_user

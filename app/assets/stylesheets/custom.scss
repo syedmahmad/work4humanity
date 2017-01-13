@@ -1,4 +1,3 @@
-
 #header .navbar .navbar-collapse,
 #header .navbar{
   background: #2DBCB5;
@@ -12,7 +11,7 @@
     }
   }
   .amount-holder-mobile{
-    
+
   }
   [class^="amount-holder-"], [class*=" amount-holder-"] {
     h4{
@@ -219,7 +218,33 @@
  .amount-holder-mobile{
     display: none;
   }
+  .breadcrumb {
+    padding: 5px;
+    margin-bottom: 20px;
+    list-style: none;
+    background-color: transparent;
+    border-bottom: 1px solid #eee;
+}
 
+  .allocated-funds-holder{
+    padding-left: 15px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+  #logs-body-content{
+    .donat-list{
+      background-color: #fff;
+      padding: 5px;
+      border-radius: 2px;
+      margin-bottom: 10px;
+      &:nth-child(even){
+        background-color:#e8e8e8;
+      }
+      a{
+        color: #2DBCB5;
+      }
+    }
+  }
 @media all and (max-width: 767px) {
   .amount-holder-desktop{
     display: none !important;

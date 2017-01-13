@@ -1,22 +1,23 @@
 .container
   .row
-    .col-md-12
+    .col-md-12.text-center
       = link_to 'I want to donation', new_donation_path, class: 'btn btn-primary'
-  .col-md-8.col-md-offset-2
+  .col-md-12.list-cases-holder
     - unless donations.blank?
-      .row
-        %h3 List of donations
+      %h3 Donations
       - donations.each do |donation_obj|
-        .col-md-12
-          .panel.panel-default
-            .panel-body
-              %h4
-                = "Name: #{donation_obj.user.name}"
-              %p
-                = "Amount: #{donation_obj.amount}"
-              %p
-                = "Status: #{donation_obj.status.titleize}"
-              = link_to 'Delete this donation', donation_path(donation_obj), method: :delete, data: { confirm: "You sure?" } ,class: 'btn btn-danger'
-              = link_to 'View this donation', donation_path(donation_obj) ,class: 'btn btn-info'
+        .panel.panel-default
+          .panel-body
+            .row
+              .col-sm-8.col-md-10.cases-details
+                %h4
+                  = "Name: #{donation_obj.user.name}"
+                %p
+                  = "Amount: #{donation_obj.amount}"
+                %p
+                  = "Status: #{donation_obj.status.titleize}"
+              .col-sm-4.col-md-2.btn-area
+                = link_to 'Delete', donation_path(donation_obj), method: :delete, data: { confirm: "You sure?" } ,class: 'btn btn-danger'
+                = link_to 'View', donation_path(donation_obj) ,class: 'btn btn-info'
     - else
-      %h3 No donations found
+      %h3= "No #{type||=''} donation found"

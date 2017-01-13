@@ -1,13 +1,16 @@
 class HomeController < ApplicationController
 
-  add_breadcrumb "Home", :root_path
   def index
     if current_user
-     redirect_to current_user.donner? ? "/donations" : "/cases"
+     redirect_to current_user.donner? ? donations_user_path(current_user) : "/cases"
     end
   end
 
   def not_authorized
+
+  end
+
+  def contact_us
 
   end
 

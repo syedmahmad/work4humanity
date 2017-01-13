@@ -16,8 +16,8 @@ class CasesController < ApplicationController
 	end
 
 	def show
-		@activity = PublicActivity::Activity.order("created_at desc").where(recipient_id: @case.id)
 		add_breadcrumb "View", :case_path
+		@activity = PublicActivity::Activity.order("created_at desc").where("recipient_id = ? and key = ?", @case.id, "donation.amount_allocated")
 	end
 
 	def create
@@ -41,6 +41,8 @@ class CasesController < ApplicationController
 
 	def allocate_funds
 		@available_balance = Donation.all.received.pluck(:amount).sum
+		add_breadcrumb "View", :case_path
+		add_breadcrumb "Allocate fund", :allocate_funds_case_path
 	end
 
 	def confirm_funds_allocation
@@ -67,7 +69,10 @@ class CasesController < ApplicationController
 	end
 
 	def set_case
-		@case = Case.find(params[:id])
+		if @case = Case.find_by_id(params[:id])
+		else
+      render :file => 'public/404.html', :status => :not_found, :layout => false
+    end
 	end
 
 	def set_hospitals

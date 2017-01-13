@@ -21,10 +21,11 @@
                 = f.label 'Phone *', class: 'col-lg-2 col-md-2 col-sm-12 control-label'
                 .col-lg-10.col-md-10
                   = f.text_field :mobile_number, class: 'form-control', required: true
-              .form-group
-                = f.label 'Password', class: 'col-lg-2 col-md-2 col-sm-12 control-label'
-                .col-lg-10.col-md-10
-                  = f.password_field :password, class: 'form-control', required: true
+              - if !f.object.id.present?
+                .form-group
+                  = f.label 'Password', class: 'col-lg-2 col-md-2 col-sm-12 control-label'
+                  .col-lg-10.col-md-10
+                    = f.password_field :password, class: 'form-control', required: true
               - if f.object.volunteer?
                 .form-group
                   = f.label 'Availability', class: 'col-lg-2 col-md-2 col-sm-12 control-label'

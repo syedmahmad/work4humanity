@@ -3,8 +3,8 @@
 		.col-md-12.text-center
 			= link_to 'Create case', new_case_path, class: 'btn btn-primary'
 	-if @cases.present?
-		.col-md-12.list-cases-holder
-			%h3 List of cases
+		.col-md-12.list-cases-holder.p0
+			%h3 Cases
 			- @cases.each do |case_obj|
 				.col-md-12.p0
 					.panel.panel-default
@@ -16,14 +16,16 @@
 									%p
 										= case_obj.description
 									%p
-										= case_obj.status.titleize
+										= "Status: " + case_obj.status.titleize
+									%p
+										= "Amount Required: " + case_obj.amount_required.to_s
 									- if case_obj.hospital.present?
 										%p
 											%i.fa.fa-location-arrow
 											= case_obj.hospital.name
 								.col-sm-4.col-md-2.btn-area
 									- if policy(case_obj).edit?
-										= link_to 'Edit this case', edit_case_path(case_obj),class: 'btn btn-primary'
+										= link_to 'Edit', edit_case_path(case_obj),class: 'btn btn-primary'
 									- if policy(case_obj).destroy?
-										= link_to 'Delete this case', case_obj, method: :delete, data: { confirm: "You sure?" } ,class: 'btn btn-danger'
-									= link_to 'View this case', case_path(case_obj) ,class: 'btn btn-info'
+										= link_to 'Delete', case_obj, method: :delete, data: { confirm: "You sure?" } ,class: 'btn btn-danger'
+									= link_to 'View', case_path(case_obj) ,class: 'btn btn-info'

@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
 
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable
-  devise :database_authenticatable, :registerable,
+  devise :database_authenticatable, :registerable, :confirmable,
     :recoverable, :rememberable, :trackable, :validatable, :omniauthable
   # validates_format_of :email, :without => TEMP_EMAIL_REGEX, on: :update
 
@@ -11,21 +11,15 @@ class User < ActiveRecord::Base
 
   validates :mobile_number, :presence => {:message => 'Please enter valid phone number!'},
                      :numericality => true,
+                     :uniqueness => true,
                      :length => { :minimum => 10, :maximum => 15 }, if: Proc.new{|user| !user.oauth_account.present?}
 
   has_many :donations, dependent: :destroy
   has_many :cases, dependent: :destroy
-  def is_admin?
-    self.u_type == 'admin'
-  end
-
-  def is_volunteer?
-    self.u_type == 'volunteer'
-  end
 
   def get_amount_of_donations_used
     donation_ids = self.donations.pluck(:id)
-    donated_amount_hash_objs = PublicActivity::Activity.order("created_at desc").where(owner_id: donation_ids).pluck(:parameters)
+    donated_amount_hash_objs = PublicActivity::Activity.order("created_at desc").where(key: "donation.amount_allocated").where(owner_id: donation_ids).pluck(:parameters)
     total_donated_amount  = 0
     donated_amount_hash_objs.each do |obj|
       puts obj
@@ -70,7 +64,7 @@ class User < ActiveRecord::Base
         user.save!
       end
     else
-      if user.u_type != user_type
+      if user.u_type != user_type && !user.admin?
         user.u_type = user_type
         user.save
       end

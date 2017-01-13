@@ -11,12 +11,12 @@
         %a{"aria-controls" => "received", "data-toggle" => "tab", :href => "#received", :role => "tab"} Received
     .tab-content
       #requested.tab-pane.active{:role => "tabpanel"}
-        = render partial: 'donations/partials/donation_grid', locals: {donations: @requested_donations}
+        = render partial: 'donations/partials/donation_grid', locals: {donations: @requested_donations, type: "requested"}
       #accepted.tab-pane{:role => "tabpanel"}
-        = render partial: 'donations/partials/donation_grid', locals: {donations: @accepted_donations}
+        = render partial: 'donations/partials/donation_grid', locals: {donations: @accepted_donations, type: "accepted"}
       #rejected.tab-pane{:role => "tabpanel"}
-        = render partial: 'donations/partials/donation_grid', locals: {donations: @rejected_donations}
+        = render partial: 'donations/partials/donation_grid', locals: {donations: @rejected_donations, type: "rejected"}
       #received.tab-pane{:role => "tabpanel"}
-        = render partial: 'donations/partials/donation_grid', locals: {donations: @recieved_donations}
+        = render partial: 'donations/partials/donation_grid', locals: {donations: @recieved_donations, type: "received"}
 
 

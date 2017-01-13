@@ -40,6 +40,8 @@ Rails.application.routes.draw do
   resources :logs, only: [:index]
 
   get 'not_authorized' => 'home#not_authorized'
+  get 'contact_us' => 'home#contact_us'
+  match '*a', :to => 'errors#routing', :via => [:get]
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

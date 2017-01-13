@@ -24,10 +24,14 @@
                 %i.im-plus.mr10.text-success>
                 Cases
             %li
-              = link_to 'Donations', get_donations_path
               - if policy(current_user).manage_users?
+                = link_to 'Donations', donations_path
                 %li
-                  = link_to 'Manage Users', manage_users_users_path, class: 'navbar-brand'
+                  = link_to 'Manage Users', manage_users_users_path
+              - else
+                = link_to 'Donations', donations_user_path(current_user)
+            %li
+              = link_to 'Contact us', contact_us_path
         .amount-holder-desktop
           %h4
             = "Amount: #{total_remaining_ammount} PKR"

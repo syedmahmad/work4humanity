@@ -8,7 +8,7 @@ class DonationsController < ApplicationController
     @requested_donations = Donation.all.requested
     @accepted_donations = Donation.all.accepted
     @rejected_donations = Donation.all.rejected
-    @recieved_donations = Donation.all.received
+    @recieved_donations = Donation.all.get_received
   end
 
   def new
@@ -19,13 +19,13 @@ class DonationsController < ApplicationController
 
   def create
     donation = current_user.donations.create(donation_params)
-    redirect_to donation_path(donation)
+    redirect_to donations_user_path(donation.user)
   end
 
   def show
-    @activities = PublicActivity::Activity.order("created_at desc").where(owner_id: @donation.id)
     add_breadcrumb "Donations", get_donation_breadcrum_path
     add_breadcrumb "View", :donation_path
+    @activities = PublicActivity::Activity.order("created_at desc").where("owner_id = ? and key = ?", @donation.id, "donation.amount_allocated")
   end
 
   def edit
@@ -43,7 +43,10 @@ class DonationsController < ApplicationController
   end
 
   def receive
-    @donation.update_column(:status, 3)
+    if !@donation.received? && @donation.update_column(:status, 3)
+      @donation.create_activity :amount_received, parameters: {amount: "#{@donation.amount}", balance: "#{total_remaining_ammount}"}, owner: @donation, recipient: @donation
+      flash[:notice] = "Donation received."
+    end
     redirect_to :back
   end
 
@@ -60,7 +63,7 @@ class DonationsController < ApplicationController
   private
 
     def get_donation_breadcrum_path
-      @donation.user.admin? ? donation_path : donations_user_path(@donation.user)
+      @donation.user.admin? ? donations_path : donations_user_path(@donation.user)
     end
 
     def donation_params
@@ -68,7 +71,10 @@ class DonationsController < ApplicationController
     end
 
     def set_donation
-      @donation = Donation.find(params[:id])
+      if @donation = Donation.find_by_id(params[:id])
+      else
+        render :file => 'public/404.html', :status => :not_found, :layout => false
+      end
     end
 
     def authorize_donation

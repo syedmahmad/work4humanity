@@ -10,6 +10,16 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def process(action, *args)
+    super
+  rescue AbstractController::ActionNotFound
+    render :file => 'public/404.html', :status => :not_found, :layout => false
+  end
+
+  def total_remaining_ammount
+    Donation.all.received.pluck(:amount).sum
+  end
+
   def user_not_authorized
    	flash[:alert] = "You are not authorized to access the requested page"
     redirect_to not_authorized_path

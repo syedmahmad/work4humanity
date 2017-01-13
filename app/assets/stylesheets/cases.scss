@@ -6,9 +6,38 @@
 }
 .attachment_list{
   list-style: none;
-  margin: 10px;
+  margin: 0;
+  padding: 0;
 }
 .attachment_list li{
   padding: 10px;
+  max-width: 300px;
+  float: left;
+  img{
+    width: 100%;
+  }
+}
+.case-veiw{
+  margin-bottom: 25px;
+  .details-box{
+    padding: 0;
+    margin: 0;
+    li{
+      list-style: none;
+      width: 100%;
+      padding: 5px;
+      border-radius: 2px;
+      background-color: #fff;
+      margin-bottom: 10px;
+      h4{
+        margin-bottom: 2px;
+        font-weight: 600;
+        color: #2DBCB5;
+      }
+      &:nth-child(odd){
+        background-color: #eee;
+      }
+    }
+  }
 }
 // You can use Sass (SCSS) here: http://sass-lang.com/

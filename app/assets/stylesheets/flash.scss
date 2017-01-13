@@ -1,0 +1,10 @@
+.alert-msg{
+  max-width: 50%;
+  margin: 0 auto 15px;
+  text-align: center;
+}
+@media all and (max-width: 767px) {
+ .alert-msg{
+    max-width: 95%;
+ }
+}
