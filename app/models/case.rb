@@ -2,6 +2,8 @@
 	validates_presence_of :title, :description, :amount_required
 	validate :check_funds, :if => :enable_funds_validation
 
+	validates_length_of :amount_required, :in => 0..8, :allow_blank => true
+
 	has_many :attachments, dependent: :destroy
 	belongs_to :user
 

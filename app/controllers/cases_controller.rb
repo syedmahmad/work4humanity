@@ -21,8 +21,14 @@ class CasesController < ApplicationController
 	end
 
 	def create
-		current_user.cases.create(case_params)
-		redirect_to cases_path
+		case_created = current_user.cases.create(case_params)
+		if case_created.id.present?
+      flash[:notice] = "Thank you"
+			redirect_to cases_path
+    else
+      flash[:notice] = "Required Amount must less than 10 million if you don't mind"
+      redirect_to :back
+    end
 	end
 
 	def edit
