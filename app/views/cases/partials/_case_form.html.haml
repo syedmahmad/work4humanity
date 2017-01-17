@@ -1,7 +1,7 @@
 .container
 	.outlet
 		.row
-			.col-sm-6.col-md-8.col-md-offset-2
+			.col-sm-6.col-md-5.col-md-offset-4.col-sm-offset-2
 				.add-new-case
 					.panel.panel-default
 						.panel-heading
@@ -9,23 +9,20 @@
 						.panel-body
 							= form_for @case, html: { multipart: true, class: 'form-horizontal group-border hover-stripped' } do |f|
 								.form-group
-									= f.label 'Title', class: 'col-lg-2 col-md-2 col-sm-12 control-label'
-									.col-lg-10.col-md-10
-										= f.text_field :title, class: 'form-control', required: true
+									.col-lg-12
+										= f.text_field :title, class: 'form-control', required: true, placeholder: "Title"
 								.form-group
-									= f.label 'Description', class: 'col-lg-2 col-md-2 col-sm-12 control-label'
-									.col-lg-10.col-md-10
-										= f.text_area :description, class: 'form-control', :rows => 5, required: true
+									.col-lg-12
+										= f.text_area :description, class: 'form-control', :rows => 5, required: true, placeholder: "Description"
 								.form-group
-									= f.label 'Required Amount', class: 'col-lg-2 col-md-2 col-sm-12 control-label'
-									.col-lg-10.col-md-10
-										= f.number_field :amount_required, min: '0', step: 'any', class: 'form-control', required: true
+									.col-lg-12
+										= f.number_field :amount_required, min: '0', step: 'any', class: 'form-control', required: true, placeholder: "Required Amount"
 								.form-group
-									= f.label 'Hospital', class: 'col-lg-2 col-md-2 col-sm-12 control-label'
-									.col-lg-10.col-md-10
+									= f.label 'Hospital', class: 'col-sm-12'
+									.col-lg-12
 										= f.select(:hospital_id, @hospitals.map {|type| [type.name, type.id]}, {}, { :class => 'form-control' })
 								= f.fields_for :attachments do |att|
 									= render 'attachment_fields', f: att
 								.links.col-md-12.btn-block
-									= link_to_add_association 'Add Attachment', f, :attachments, class: 'btn btn-primary'
-									= f.submit "#{donation_button_text(@case)}", class: 'btn btn-primary'
+									= link_to_add_association 'Add Attachment', f, :attachments, class: 'btn btn-primary hvr-sweep-to-top'
+									= f.submit "#{donation_button_text(@case)}", class: 'btn btn-primary hvr-sweep-to-top'

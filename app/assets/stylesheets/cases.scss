@@ -40,4 +40,18 @@
     }
   }
 }
+.create-case-btn-holder{
+  .btn{
+    min-width: 200px;
+    min-height: 44px;
+    line-height: 34px;
+  }
+}
+.add-new-case{
+  .form-group{
+    textarea{
+      resize:none;
+    }
+  }
+}
 // You can use Sass (SCSS) here: http://sass-lang.com/

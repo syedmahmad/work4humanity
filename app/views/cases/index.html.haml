@@ -1,7 +1,7 @@
 .container
 	.row
-		.col-md-12.text-center
-			= link_to 'Create case', new_case_path, class: 'btn btn-primary'
+		.col-md-12.text-center.create-case-btn-holder
+			= link_to 'Create case', new_case_path, class: 'btn btn-primary hvr-sweep-to-top'
 	-if @cases.present?
 		.col-md-12.list-cases-holder.p0
 			%h3 Cases

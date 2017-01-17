@@ -4,3 +4,11 @@ body.login-page{
 body.login-page #login .login-wrapper{
   border-radius: 27px;
 }
+.select2-container--bootstrap .select2-selection--multiple .select2-selection__choice__remove{
+	color: #2DBCB5;
+}
+.select2-container--bootstrap .select2-selection--multiple .select2-selection__choice{
+	color: #2DBCB5;
+	background: #fff;
+	border: 1px solid #2DBCB5;
+}

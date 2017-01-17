@@ -1,4 +1,11 @@
 #header
+  .top-bar
+    .amount-holder-desktop
+      %h4
+        = "Amount: #{total_remaining_ammount} PKR"
+        %a{:href => logs_path}
+          %i.im-plus.mr10.text-success>
+          Logs
   %nav.navbar.navbar-default
     .container-fluid
       / Brand and toggle get grouped for better mobile display
@@ -9,13 +16,7 @@
           %span.icon-bar
           %span.icon-bar
         = link_to root_path, class: 'navbar-brand' do
-          %h4.color-white.ml15 Work4Humanity
-        .amount-holder-mobile
-          %h4
-            = "Amount: #{total_remaining_ammount} PKR"
-            %a{:href => logs_path}
-              %i.im-plus.mr10.text-success>
-              Logs
+          %img{:alt => "logo", :src => "/assets/weblogo.png"}
       #bs-example-navbar-collapse-1.collapse.navbar-collapse
         - if user_signed_in?
           %ul.nav.navbar-nav
@@ -32,12 +33,6 @@
                 = link_to 'Donations', donations_user_path(current_user)
             %li
               = link_to 'Contact us', contact_us_path
-        .amount-holder-desktop
-          %h4
-            = "Amount: #{total_remaining_ammount} PKR"
-            %a{:href => logs_path}
-              %i.im-plus.mr10.text-success>
-              Logs
         %ul.nav.navbar-nav.navbar-right
           - if user_signed_in?
             %li.non_mobile_nav
