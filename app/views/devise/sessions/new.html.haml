@@ -1,21 +1,21 @@
 .container
   .outlet
     .row
-      .col-sm-8.col-md-6.col-md-offset-3
+      .col-sm-8.col-md-5.col-md-offset-4.col-sm-offset-2
         .panel.panel-default.contact-details-box
           .panel-heading
             %h3.text-center Sign In
           .panel-body
             = form_for @user, url: users_path, method: 'post', html: { multipart: true, class: 'form-horizontal group-border hover-stripped' } do |f|
               .form-group
-                = f.label 'Phone *', class: 'col-lg-2 col-md-2 col-sm-12 control-label'
-                .col-lg-10.col-md-10
-                  = f.text_field :mobile_number, class: 'form-control', required: true
+                / = f.label 'Phone *', class: 'col-lg-2 col-md-2 col-sm-12 control-label'
+                .col-lg-12
+                  = f.text_field :mobile_number, class: 'form-control', required: true, placeholder: "Phone Number"
               .form-group
-                = f.label 'Password', class: 'col-lg-2 col-md-2 col-sm-12 control-label'
-                .col-lg-10.col-md-10
-                  = f.password_field :password, class: 'form-control', required: true
+                / = f.label 'Password', class: 'col-lg-2 col-md-2 col-sm-12 control-label'
+                .col-lg-12
+                  = f.password_field :password, class: 'form-control', required: true, placeholder: "Password"
               .form-group.btn-submit.mb10
-                = f.submit "Login", class: 'btn btn-primary'
+                = f.submit "Login", class: 'btn btn-primary hvr-sweep-to-left'
               .form-group.btn-submit
-                = link_to "Register Now", onboarding_users_path(user_type: @user_type), class: 'btn btn-primary'
+                = link_to "Register Now", onboarding_users_path(user_type: @user_type), class: 'btn btn-primary hvr-sweep-to-left'

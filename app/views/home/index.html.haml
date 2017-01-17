@@ -5,21 +5,25 @@
     .hero-unit.text-center.mt50
       %ul
         %li
-          %a.btn.btn-primary.p25.mb10{href: '#my-modal-1', "data-toggle" => "modal"}
-            %i.fa.fa-clock-o.s32.display-block
-            Donate your Time
+          %a.btn.btn-primary.p25.mb10.hvr-sweep-to-top{href: '#my-modal-1', "data-toggle" => "modal"}
+            %i.fa.fa-clock-o.hero-unit-icon
+            Donate your 
+            %span
+              Time
         %li
-          %a.btn.btn-primary.p25.mb10{href: '#my-modal-2', "data-toggle" => "modal"}
-            %i.fa.fa-usd.s32.display-block
-            Donate your Funds
+          %a.btn.btn-primary.p25.mb10.hvr-sweep-to-top{href: '#my-modal-2', "data-toggle" => "modal"}
+            %i.fa.fa-usd.hero-unit-icon
+            Donate your 
+            %span
+              Funds
 
 / two click model for registration
-#my-modal-1.modal.fade.login-modal{:title => "My modal"}
-  .modal-dialog{:role => "document"}
+#my-modal-1.modal.fade.login-modal.bs-example-modal-sm{:title => "My modal"}
+  .modal-dialog.modal-sm{:role => "document"}
     .modal-content
       = render 'registration_form_data', user_type: "volunteer"
 
-#my-modal-2.modal.fade.login-modal{:title => "My modal"}
-  .modal-dialog{:role => "document"}
+#my-modal-2.modal.fade.login-modal.bs-example-modal-sm{:title => "My modal"}
+  .modal-dialog.modal-sm{:role => "document"}
     .modal-content
       = render 'registration_form_data', user_type: "donner"
