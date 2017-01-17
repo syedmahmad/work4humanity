@@ -19,7 +19,14 @@ class DonationsController < ApplicationController
 
   def create
     donation = current_user.donations.create(donation_params)
-    redirect_to donations_user_path(donation.user)
+    if donation.id.present?
+      flash[:notice] = "Thank you"
+      redirect_to donations_user_path(donation.user)
+    else
+      flash[:notice] = "Less than 10 million if you don't mind"
+      redirect_to :back
+    end
+
   end
 
   def show
