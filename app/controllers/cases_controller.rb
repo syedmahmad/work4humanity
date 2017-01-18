@@ -1,13 +1,20 @@
 class CasesController < ApplicationController
 
-	before_action :authenticate_user!
-	before_action :set_case, only: [:edit, :show, :update, :destroy, :authorize_case, :allocate_funds, :confirm_funds_allocation]
+	before_action :authenticate_user!, :except => [:index]
+	before_action :set_case, only: [:approve, :deny, :edit, :show, :update, :destroy, :authorize_case, :allocate_funds, :confirm_funds_allocation]
 	before_action :authorize_case, only: [:new, :create, :edit, :update, :destroy, :allocate_funds, :confirm_funds_allocation]
 	before_action :set_hospitals, only: [:edit, :new]
 	add_breadcrumb "Cases", :cases_path
 
+	# adding identifier for newly created case
+	# after_action :add_case_identifier, only: [:create]
+
 	def index
-		@cases = Case.all
+		if current_user.present? && current_user.admin?
+			@cases = Case.all
+		else
+			@cases = Case.approved_cases
+		end
 	end
 
 	def new
@@ -23,7 +30,7 @@ class CasesController < ApplicationController
 	def create
 		case_created = current_user.cases.create(case_params)
 		if case_created.id.present?
-      flash[:notice] = "Thank you"
+      flash[:notice] = "Thank you. Your case has submitted for approval."
 			redirect_to cases_path
     else
       flash[:notice] = "Required Amount must less than 10 million if you don't mind"
@@ -49,6 +56,18 @@ class CasesController < ApplicationController
 		@available_balance = Donation.all.received.pluck(:amount).sum
 		add_breadcrumb "View", :case_path
 		add_breadcrumb "Allocate fund", :allocate_funds_case_path
+	end
+
+	def approve
+		@case.update_column(:status, 3)
+		flash[:success] = 'Case has been approved.'
+		redirect_to :back
+	end
+
+	def deny
+		@case.update_column(:status, 2)
+		flash[:success] = 'Case has been denied.'
+		redirect_to :back
 	end
 
 	def confirm_funds_allocation

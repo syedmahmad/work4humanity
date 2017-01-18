@@ -37,7 +37,7 @@ module ApplicationHelper
   end
 
   def total_remaining_ammount
-    Donation.all.received.pluck(:amount).sum
+    number_to_currency(Donation.all.received.pluck(:amount).sum, :unit => "")
   end
 
   private

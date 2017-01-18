@@ -1,6 +1,6 @@
   class UsersController < ApplicationController
 
-  before_action :authenticate_user!, only: [:manage_users, :donations, :update_user_role, :show]
+  before_action :authenticate_user!, only: [:manage_users, :donations, :update_user_role]
   before_action :set_user, only: [:show, :authorize_user, :donations, :update_user_role]
   before_action :authorize_user, only: [:donations, :manage_users, :update_user_role]
   before_action :validate_user_details, except: [:onboarding, :update_contact_details]
@@ -53,7 +53,7 @@
 
   def show
     if Rails.application.routes.recognize_path(request.referer)[:controller].downcase == "logs"
-      add_breadcrumb "Logs", :logs_path
+      add_breadcrumb "History", :logs_path
     end
     add_breadcrumb "Profile", :user_path
   end

@@ -30,4 +30,4 @@
               .col-md-4
                 %h4 Contact #
                 %p
-                  = "#{current_user == @user || current_user.u_type == 'admin' ? @user.mobile_number : 'Not public'}"
+                  = "#{current_user.present? && (current_user == @user || current_user.u_type == 'admin') ? @user.mobile_number : 'Not public'}"

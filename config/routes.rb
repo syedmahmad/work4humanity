@@ -13,6 +13,8 @@ Rails.application.routes.draw do
     member do
       get 'allocate_funds'
       post 'confirm_funds_allocation'
+      post 'approve'
+      post 'deny'
     end
   end
   resources :donations do
