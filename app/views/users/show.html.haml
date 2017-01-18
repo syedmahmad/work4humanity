@@ -11,6 +11,14 @@
             .col-md-12
               .image-holder
                 = avatar_url(@user, '50', 'user-avatar')
+                = link_to 'change', 'javascript:void(0)', class: 'change-image-url'
+              #change-user-image-div.hidden
+                = form_for @user, url: change_image_user_path(@user), method: 'post', remote: true, :authenticity_token => true, html: { multipart: true } do |f|
+                  .form-group
+                    / = f.label 'Name', class: 'col-lg-2 col-md-2 col-sm-12 control-label'
+                    .col-lg-12
+                      = f.file_field :avatar, class: 'user-image-url'
+
             .col-md-12.p0.user-details
               %ul
                 %li
@@ -29,3 +37,11 @@
                   %h4 Contact #
                   %p
                     = "#{current_user == @user ? @user.mobile_number : 'Not public'}"
+:javascript
+  $('.change-image-url').on('click', function(){
+    $('#change-user-image-div').find('#user_avatar').click();
+  })
+
+  $('.user-image-url').on('change', function(){
+    $(this).closest('form').submit();
+  })

@@ -13,6 +13,8 @@ Rails.application.routes.draw do
     member do
       get 'allocate_funds'
       post 'confirm_funds_allocation'
+      post 'approve'
+      post 'deny'
     end
   end
   resources :donations do
@@ -33,6 +35,7 @@ Rails.application.routes.draw do
       get 'donations'
       post 'update_user_role'
       get 'schedule_availability'
+      post 'change_image'
     end
     collection do
       get 'volunteers'

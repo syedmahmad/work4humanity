@@ -37,12 +37,14 @@ module ApplicationHelper
   end
 
   def total_remaining_ammount
-    Donation.all.received.pluck(:amount).sum
+    number_to_currency(Donation.all.received.pluck(:amount).sum, :unit => "")
   end
 
   private
     def retrieve_profile_image(user, size)
-      if user.image_url.present?
+      if user.avatar.present?
+        user.avatar.url
+      elsif user.image_url.present?
         user.image_url
       else
         gravatar_id = Digest::MD5.hexdigest(user.email.downcase)

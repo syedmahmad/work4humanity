@@ -1,4 +1,5 @@
   class Case < ActiveRecord::Base
+  include PublicActivity::Common
 	validates_presence_of :title, :description, :amount_required
 	validate :check_funds, :if => :enable_funds_validation
 
@@ -7,14 +8,19 @@
 	has_many :attachments, dependent: :destroy
 	belongs_to :user
 
+	# adding identifier for newly created case and status
+	after_commit :add_case_identifier, :on => [:create]
+
 	after_create :set_default_status
 
   	belongs_to :hospital
 	accepts_nested_attributes_for :attachments, reject_if: :all_blank, allow_destroy: true
 
-	enum status: [:pending, :funds_allocated]
+	enum status: [:pending, :funds_allocated, :deny, :approved]
 
 	attr_accessor :enable_funds_validation, :form_amount
+	scope :approved_cases, -> { where("status = ? or status = ?",1,3 )}
+	scope :denied_cases, -> { where("status = ?",2 )}
 
 	def check_funds
 		if form_amount + self.allocated_amount > self.amount_required
@@ -79,6 +85,7 @@
 			end
 			donation.create_activity :amount_allocated, parameters: {amount: record_hash[donation.id]}, owner: donation, recipient: self
 		end
+		self.create_activity :amount_donated, parameters: {amount: assigned_amount, balance: get_available_balance}, owner: self
 
 		new_allocated_amount = assigned_amount + self.allocated_amount
 		self.enable_funds_validation = false
@@ -96,7 +103,17 @@
   private
 
   def set_default_status
-  	self.update_column(:status, 0)
+  	if self.user.u_type == 'admin'
+  		self.update_column(:status, 3)
+  	else
+  		self.update_column(:status, 0)
+  	end
   end
+
+	def add_case_identifier
+		if Case.last.id.present?
+			Case.last.update_attributes(:identifier => "case-" + Case.last.id.to_s)
+		end
+	end
 
 end
