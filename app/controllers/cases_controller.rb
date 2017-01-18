@@ -14,6 +14,7 @@ class CasesController < ApplicationController
 			@cases = Case.all
 		else
 			@cases = Case.approved_cases
+			@denied_cases = current_user.cases.denied_cases if current_user
 		end
 	end
 

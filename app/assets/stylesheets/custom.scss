@@ -2,12 +2,19 @@ body{
   background: #fff;
   font-family: 'Source Sans Pro', sans-serif;
   color: #444444;
+  font-size: 16px;
 }
 a{
   color: #2DBCB5;
   &:hover{
     color: #5bbeb9;
   }
+}
+.m0{
+  margin: 0 !important;
+}
+.p0{
+  padding: 0 !important;
 }
 .select2-container--bootstrap.select2-container--focus .select2-selection, .select2-container--bootstrap.select2-container--open .select2-selection,
 .form-control:focus{
@@ -19,7 +26,7 @@ input:-webkit-autofill {
 }
 #content{
   margin: 0;
-  padding: 20px;
+  padding: 40px 20px;
 }
 #header {
   height: auto !important;
@@ -63,6 +70,7 @@ input:-webkit-autofill {
       a{
         border-bottom: 0;
         line-height: 65px;
+        font-size: 16px;
         &:hover{
           color:#2DBCB5;
           background: #fff;
@@ -103,7 +111,32 @@ input:-webkit-autofill {
     border-color: #2DBCB5;
     border-radius: 2px;
 }
-.hero-unit{
+.landing-page{
+      flex-flow: column nowrap;
+    justify-content: space-between;
+    align-items: center;
+    align-content: flex-start;
+        display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    #content{
+      padding: 0;
+    }
+}
+.flex-child {
+    padding: 0px 46px;
+    background-color: #EEEEEE;
+    border: 4px solid #999999;
+    font-size: 40px;
+    text-align: center;
+    line-height: 132px;
+}
+.hero-unit-block{
+
   ul{
     padding: 0;
     list-style: none;
@@ -111,11 +144,11 @@ input:-webkit-autofill {
       a{
         padding: 10px !important;
         min-width: 300px;
-        min-height: 200px;
+        min-height: 150px;
         border-radius: 0;
-        margin-bottom: 60px !important;
+        margin-bottom: 90px !important;
         position: relative;
-        padding-top: 60px !important;
+        padding-top: 40px !important;
         font-size: 30px;
         font-weight: 300;
         text-transform: capitalize;
@@ -138,7 +171,7 @@ input:-webkit-autofill {
             height: 80px;
             border-radius: 100%;
             position: absolute;
-            margin: -100px auto 0;
+            margin: -75px auto 0;
             text-align: center;
             display: inline-block;
             left: 0;
@@ -286,69 +319,7 @@ input:-webkit-autofill {
       }
     }
 }
-.add-new-case{
-  margin: 20px 0;
-    padding: 0px 0px 20px 0px;
-    background-color: #f7f7f7;
-    -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-    border-radius: 0;
-    padding: 0;
-    overflow: hidden;
-    .form-control{
-      border-radius: 0;
-      min-height: 45px;
-    }
-    .panel{
-      background-color: #f7f7f7;
-      margin-bottom: 0;
-      border-radius: 0;
-    }
-    .btn-block{
-      text-align: center;
-      .btn{
-        display: block;
-        min-width: 200px;
-        max-width: 200px;
-        margin: 0 auto 5px;
-      }
-    }
-    .attachment-bock{
-      position: relative;
-      .form-control{
-        min-height: 33px;
-      }
-      .remove_fields{
-        position: absolute;
-        right: 15px;
-        top: 0;
-        min-height: 33px;
-        font-size: 19px;
-        border-radius: 0;
-        line-height: 18px;
-      }
-    }
-}
-.list-cases-holder{
-  .panel.panel-default{
-    .panel-body{
-      padding: 10px;
-      .cases-details{
-        p{
-          margin-bottom: 5px;
-        }
-      }
-      .btn-area{
-        .btn{
-          width: 100%;
-          margin-bottom: 5px;
-          border-radius: 2px;
-        }
-      }
-    }
-  }
-}
+
   .breadcrumb {
     padding: 5px;
     margin-bottom: 20px;
@@ -405,5 +376,57 @@ input:-webkit-autofill {
   }
   #header .navbar .navbar-toggle{
         margin-top: 12px;
+  }
+  .hero-unit-block ul li a{
+    padding-top: 21px !important;
+    min-width: 250px;
+    min-height: 150px;
+  }
+  .hero-unit-block ul li a .hero-unit-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 100%;
+    position: absolute;
+    margin: -51px auto 0;
+    text-align: center;
+    display: inline-block;
+    left: 0;
+    z-index: 2;
+    background-color: #2DBCB5;
+    right: 0;
+    font-size: 36px;
+    padding: 14px;
+    line-height: 29px;
+    text-shadow: 0 3px 0px rgba(0, 0, 0, 0.15);
+  }
+  .header-holder{
+    text-align: center;
+    h4{
+      margin: 5px 0;
+      width: 100%;
+      text-align: center;
+    }
+    .btn-area{
+      float: none !important;
+    }
+  }
+  .donations.cases-details ul li{
+    display: block !important;
+    width: 100% !important;
+    margin-bottom: 10px !important;
+    text-align: left !important;
+  }
+  .header-holder .btn-area{
+    text-align: right;
+  }
+  .nav.navbar-nav{
+    width: 100%;
+  }
+  .navbar-header{
+    min-height: 65px;
+  }
+  #content {
+    margin: 0;
+    padding: 15px 20px;
   }
 }

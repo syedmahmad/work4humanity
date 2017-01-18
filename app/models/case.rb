@@ -20,6 +20,8 @@
 
 	attr_accessor :enable_funds_validation, :form_amount
 	scope :approved_cases, -> { where("status = ? or status = ?",1,3 )}
+	scope :denied_cases, -> { where("status = ?",2 )}
+
 	def check_funds
 		if form_amount + self.allocated_amount > self.amount_required
 			errors.add(:cases, "the amount enter should not exceed the required amount for case")

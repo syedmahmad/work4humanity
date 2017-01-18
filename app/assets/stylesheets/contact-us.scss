@@ -1,31 +1,52 @@
 .contact-us{
-    margin-top: 20px;
-    padding: 0px 0px 20px 0px;
-    background-color: #f7f7f7;
-    -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-    border-radius: 0;
-    padding: 0 0 30px;
-    margin-bottom: 30px;
-    overflow: hidden;
+  text-align: center;
+  img{
+    width: 100%;
+  }
+  h2{
+    font-weight: 700;
+    font-size: 42px;
+    font-family: 'Raleway', sans-serif;
+    color: #222222;
+    span{
+      font-weight: 100;
+    }
+  }
     h3{
       color: #2DBCB5;
     }
     address{
     padding: 15px;
     background: #fff;
-    max-width: 350px;
+    max-width: 400px;
     margin: 0 auto;
         ul{
         padding: 0;
         margin: 0;
         li{
-          list-style: none;
+          margin: 15px 0 0 0;
+          padding: 15px 10px 15px 10px;
+          float: left;
           width: 100%;
-          margin-bottom: 10px;
+          list-style: none;
+          border: solid 1px #dedede;
+          a{
+            color: #444;
+          }
+          &:hover{
+            border: solid 1px #2DBCB5;
+          }
           strong{
-            color: #2DBCB5;
+            color: #353535;
+            font-weight: 700;
+            width: 22%;
+            float: left;
+            text-align: left;
+          }
+          span{
+            font-size: 18px;
+            float: right;
+            width: 78%;
           }
         }
       }
