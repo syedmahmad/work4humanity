@@ -1,8 +1,9 @@
 .row
   .btn-holder-available
     %ul
-      %li
-        = link_to "Donate your Time", schedule_availability_user_path(current_user) unless current_user.admin?
+      - unless current_user.admin?
+        %li
+          = link_to "Donate your Time", schedule_availability_user_path(current_user)
       %li
         = link_to "Create case", cases_path
       %li

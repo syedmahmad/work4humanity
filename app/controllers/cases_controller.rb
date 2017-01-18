@@ -10,12 +10,8 @@ class CasesController < ApplicationController
 	# after_action :add_case_identifier, only: [:create]
 
 	def index
-		if current_user.present? && current_user.admin?
-			@cases = Case.all
-		else
-			@cases = Case.approved_cases
-			@denied_cases = current_user.cases.denied_cases if current_user
-		end
+		@cases = current_user.present? && current_user.admin? ? Case.all : Case.approved_cases
+		@denied_cases = current_user ? current_user.cases.denied_cases : []
 	end
 
 	def new
