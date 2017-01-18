@@ -24,4 +24,40 @@
 			display: block;
 		}
 	}
+	.panel-body{
+		    padding: 45px;
+	}
 }
+	.donations.cases-details{
+		ul{
+			display: table;
+			li{
+				display: inline-block;
+				color: #2DBCB5;
+				padding: 10px;
+				list-style-type: circle;
+				background-color: #f9f9f9;
+				-webkit-box-shadow: 0 2px rgba(0,0,0,0.01);
+				box-shadow: 0 2px rgba(0,0,0,0.01);
+				display: table-cell;
+				float: none;
+				width: 1%;
+			}
+		}
+	}
+	.no-data-box{
+		padding: 10px;
+		border: 1px solid #eee;
+		margin-top: 30px;
+	}
+	.view-header{
+		overflow: hidden;
+		padding: 10px !important;
+		h2{
+			font-weight: 700;
+			display: inline-block;
+		}
+		.btn{
+			float: right;
+		}
+	}

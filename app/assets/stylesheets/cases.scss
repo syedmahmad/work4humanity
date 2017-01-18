@@ -4,21 +4,41 @@
 .case_study_heading{
   padding: 20px;
 }
-.attachment_list{
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-.attachment_list li{
-  padding: 10px;
-  max-width: 300px;
-  float: left;
-  img{
-    width: 100%;
+.attachment-block{
+  h4{
+    color: #2DBCB5;
+    font-weight: 600;
   }
+  .attachment_list{
+    list-style: none;
+    margin: 0;
+    text-align: center;
+    padding: 0;
+  li{
+    padding: 10px;
+    max-width: 300px;
+    float: none;
+    display: inline-block;
+    margin: 5px;
+    background-color: #f9f9f9;
+      &:nth-child(odd){
+          background-color: #f3f3f3;
+        }
+    img{
+      width: 100%;
+    }
+  }
+}
 }
 .case-veiw{
   margin-bottom: 25px;
+  .case_study_heading{
+    padding: 10px !important;
+    h2{
+      display: inline-block;
+      margin: 10px;
+    }
+  }
   .details-box{
     padding: 0;
     margin: 0;
@@ -27,7 +47,7 @@
       width: 100%;
       padding: 5px;
       border-radius: 2px;
-      background-color: #fff;
+      background-color: #f9f9f9;
       margin-bottom: 10px;
       h4{
         margin-bottom: 2px;
@@ -35,11 +55,12 @@
         color: #2DBCB5;
       }
       &:nth-child(odd){
-        background-color: #eee;
+        background-color: #f3f3f3;
       }
     }
   }
 }
+
 .create-case-btn-holder{
   .btn{
     min-width: 200px;
@@ -51,6 +72,122 @@
   .form-group{
     textarea{
       resize:none;
+    }
+  }
+}
+.list-cases-holder{
+  .panel-default{
+    border-radius: 0;
+    &:hover{
+      box-shadow: 0 0 12px rgba(0,0,0,0.1);
+    }
+  }
+  .header-holder{
+    overflow: hidden;
+    padding: 8px 5px;
+    background: #f9f9f9;
+    h4{
+      font-weight: bold;
+      width: 80%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: inline-block;
+    }
+    .btn-area{
+      .btn{
+        border-radius: 0;
+      }
+    }
+  }
+  .cases-details{
+    .text-details{
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      height: 2.8em;
+      overflow: hidden;
+    }
+    ul{
+      padding: 5px;
+      margin: 0;
+      width: 100%;
+      text-align: center; 
+      list-style: none;
+      li{
+        display: inline-block;
+        color: #2DBCB5;
+        padding: 0 15px 0 0;
+        p{
+          color: #2DBCB5;
+          font-weight: 500;
+          span{
+            font-weight: 700;
+            padding-right: 5px;
+            color: #444;
+
+          }
+        }
+      }
+    }
+  }
+}
+.add-new-case{
+  margin: 20px 0;
+    padding: 0px 0px 20px 0px;
+    border-radius: 0;
+    padding: 0;
+    overflow: hidden;
+    .form-control{
+      border-radius: 0;
+      min-height: 45px;
+    }
+    .panel{
+      background-color: #f7f7f7;
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+    .btn-block{
+      text-align: center;
+      .btn{
+        display: block;
+        min-width: 200px;
+        max-width: 200px;
+        margin: 0 auto 5px;
+      }
+    }
+    .attachment-bock{
+      position: relative;
+      .form-control{
+        min-height: 33px;
+      }
+      .remove_fields{
+        position: absolute;
+        right: 15px;
+        top: 0;
+        min-height: 33px;
+        font-size: 19px;
+        border-radius: 0;
+        line-height: 18px;
+      }
+    }
+}
+.list-cases-holder{
+  .panel.panel-default{
+    .panel-body{
+      padding: 10px;
+      .cases-details{
+        p{
+          margin-bottom: 5px;
+        }
+      }
+      .btn-area{
+        .btn{
+          width: 100%;
+          margin-bottom: 5px;
+          border-radius: 2px;
+        }
+      }
     }
   }
 }
