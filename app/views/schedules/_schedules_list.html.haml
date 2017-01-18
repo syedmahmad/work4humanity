@@ -1,24 +1,31 @@
-.panel-body
-  - if schedules.count > 0 
-    - schedules.each do |sh|
-      %p
-        - if user_type == 'admin'
-          %span= avatar_url(sh.user, '50', 'user-avatar')
-          %span
-            = link_to sh.user.name, sh.user
-          %span= date_format(sh.selected_date)
-          %span=sh.selected_date.strftime("%A")
-        - else
-          %span= date_format(sh.selected_date)
-          %span=sh.selected_date.strftime("%A")
-        %span
-          = link_to "delete", user_schedule_destroy_path(sh.user, sh), method: 'delete', data: { confirm: "Are you sure you want to delete this entry?" } if sh.selected_date > Date.today
-  - else
-    %p No record found.
+.row
+  .btn-holder-available
+    %ul
+      %li
+        = link_to "Donate your Time", schedule_availability_user_path(current_user) unless current_user.admin?
+      %li
+        = link_to "Create case", cases_path
+      %li
+        = link_to "Donate your Fund", current_user.admin? ? donations_path : donations_user_path(current_user)
 
-  %p
-    = link_to "Donate your Time", schedule_availability_user_path(current_user) unless current_user.admin?
-  %p
-    = link_to "Create case", cases_path
-  %p
-    = link_to "Donate your Fund", current_user.admin? ? donations_path : donations_user_path(current_user)
+  .col-sm-8.col-md-6.col-md-offset-3.col-sm-offset-2.available-block
+    .panel.panel-default.holder
+      .panel-heading
+        %h3.text-center Available Days
+      .panel-body
+        - if schedules.count > 0 
+          - schedules.each do |sh|
+            %p
+              - if user_type == 'admin'
+                %span= avatar_url(sh.user, '50', 'user-avatar')
+                %span
+                  = link_to sh.user.name, sh.user
+                %span= date_format(sh.selected_date)
+                %span=sh.selected_date.strftime("%A")
+              - else
+                %span= date_format(sh.selected_date)
+                %span=sh.selected_date.strftime("%A")
+              %span
+                = link_to "delete", user_schedule_destroy_path(sh.user, sh), method: 'delete', data: { confirm: "Are you sure you want to delete this entry?" } if sh.selected_date > Date.today
+        - else
+          %p No record found.

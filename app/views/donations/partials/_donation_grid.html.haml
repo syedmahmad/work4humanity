@@ -31,7 +31,7 @@
                     %p
                       %span
                         Status: 
-                      = "#{donation_obj.status.titleize}"
+                      = "#{donation_obj.status_text.titleize}"
     - else
       .text-center.no-data-box
         %h3= "No #{type||=''} donation found"
