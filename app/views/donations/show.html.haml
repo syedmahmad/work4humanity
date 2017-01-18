@@ -6,6 +6,9 @@
           .panel-heading.case_study_heading.view-header
             %h2.panel-title Remaining Donation
             = link_to 'Back', admin_vs_user_button_redirection, class: 'btn btn-primary'
+            - if policy(:donation).accept?
+              = link_to 'Reject', reject_donation_path(@donation), method: :post, class: 'btn btn-danger'
+              = link_to 'Receive', receive_donation_path(@donation), method: :post, class: 'btn btn-info'
           .panel-body.donations.cases-details
             %ul
               %li
@@ -18,11 +21,7 @@
                   %span
                     Status:
                   = @donation.status.titleize
-
-        .pull-right
-          - if policy(:donation).accept?
-            = link_to 'Reject', reject_donation_path(@donation), method: :post, class: 'btn btn-danger'
-            = link_to 'Receive', receive_donation_path(@donation), method: :post, class: 'btn btn-info'
+         
 
   -if @activities.present?
     .row

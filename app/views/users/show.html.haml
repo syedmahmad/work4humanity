@@ -8,10 +8,9 @@
           .panel-body
             .row
               .col-sm-8.col-md-10.cases-details
-            %h3.text-center
-              History
             .col-md-12
-              = image_tag @user.image_url
+              .image-holder
+                = avatar_url(@user, '50', 'user-avatar')
             .col-md-12.p0.user-details
               %ul
                 %li

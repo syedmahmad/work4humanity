@@ -24,6 +24,15 @@ a{
 input:-webkit-autofill {
     -webkit-box-shadow: 0 0 0px 1000px white inset;
 }
+.alert-msg{
+  max-width: 70%;
+  margin: 0 auto 15px;
+  text-align: center;
+  min-width: 250px;
+  position: absolute;
+  top: 16%;
+  right: 28px;
+}
 #content{
   margin: 0;
   padding: 40px 20px;
@@ -136,7 +145,6 @@ input:-webkit-autofill {
     line-height: 132px;
 }
 .hero-unit-block{
-
   ul{
     padding: 0;
     list-style: none;
@@ -144,7 +152,7 @@ input:-webkit-autofill {
       a{
         padding: 10px !important;
         min-width: 300px;
-        min-height: 150px;
+        min-height: 160px;
         border-radius: 0;
         margin-bottom: 90px !important;
         position: relative;
@@ -163,6 +171,7 @@ input:-webkit-autofill {
             display: block;
             font-weight: bold;
             font-size: 55px;
+            line-height: 50px;
             text-transform: uppercase;
             text-shadow: 0 3px 0px rgba(0, 0, 0, 0.15);
           }
