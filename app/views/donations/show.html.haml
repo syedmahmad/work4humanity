@@ -1,20 +1,27 @@
 .container
   .outlet
     .row
-      .col-md-8.col-md-offset-2
+      .col-md-12.list-cases-holder
         .panel.panel-default.panelMove.toggle.panelRefresh.panelClose
-          .panel-heading.case_study_heading
+          .panel-heading.case_study_heading.view-header
             %h2.panel-title Remaining Donation
-          .panel-body
-            %h4 Amount:
-            %p= @donation.original_amount
-            %h4 Status:
-            %p= @donation.status.titleize
-        = link_to 'Back', admin_vs_user_button_redirection, class: 'btn btn-primary'
-        .pull-right
-          - if policy(:donation).accept?
-            = link_to 'Reject', reject_donation_path(@donation), method: :post, class: 'btn btn-danger'
-            = link_to 'Receive', receive_donation_path(@donation), method: :post, class: 'btn btn-info'
+            = link_to 'Back', admin_vs_user_button_redirection, class: 'btn btn-primary'
+            - if policy(:donation).accept?
+              = link_to 'Reject', reject_donation_path(@donation), method: :post, class: 'btn btn-danger'
+              = link_to 'Receive', receive_donation_path(@donation), method: :post, class: 'btn btn-info'
+          .panel-body.donations.cases-details
+            %ul
+              %li
+                %p
+                  %span
+                    Amount:
+                  = @donation.original_amount
+              %li
+                %p
+                  %span
+                    Status:
+                  = @donation.status.titleize
+         
 
   -if @activities.present?
     .row

@@ -11,7 +11,7 @@ class CasePolicy
 	end
 
 	def edit?
-		@current_user.u_type == 'admin' || @case.user == @current_user
+		@current_user.present? && (@current_user.u_type == 'admin' || @case.user == @current_user)
 	end
 
 	def create?
@@ -23,7 +23,7 @@ class CasePolicy
 	end
 
 	def destroy?
-		@current_user.u_type == 'admin' || @case.user == @current_user
+		@current_user.present? && (@current_user.u_type == 'admin' || @case.user == @current_user)
 	end
 
 	def allocate_funds?

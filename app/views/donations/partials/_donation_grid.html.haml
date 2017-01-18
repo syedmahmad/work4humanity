@@ -1,24 +1,38 @@
 .container
   .row
-    .col-md-12.text-center
+    .text-center.create-case-btn-holder
       = link_to 'I want to donate', new_donation_path, class: 'btn btn-primary'
-  .col-md-12.list-cases-holder
+  .list-cases-holder
     - unless donations.blank?
       %h3 Donations
       - donations.each do |donation_obj|
         .panel.panel-default
+          .header-holder
+            .btn-area.pull-right
+              = link_to 'View', donation_path(donation_obj) ,class: 'btn btn-info'
+
+              = link_to 'Delete', donation_path(donation_obj), method: :delete, data: { confirm: "You sure?" } ,class: 'btn btn-danger'
           .panel-body
             .row
-              .col-sm-8.col-md-10.cases-details
-                %h4
-                  = "Name: #{donation_obj.user.name}"
-                %p
-                  = "Amount: #{donation_obj.amount}"
-                %p
-                  = "Status: #{donation_obj.status.titleize}"
-              .col-sm-4.col-md-2.btn-area
-                = link_to 'Delete', donation_path(donation_obj), method: :delete, data: { confirm: "You sure?" } ,class: 'btn btn-danger'
-                = link_to 'View', donation_path(donation_obj) ,class: 'btn btn-info'
+              .col-sm-12.donations.cases-details
+                %ul
+                  %li
+                    %p
+                      %span
+                        Name:
+                      = " #{donation_obj.user.name}"
+                  %li
+                    %p
+                      %span
+                        Amount: 
+                      = "#{donation_obj.amount}"
+
+                  %li
+                    %p
+                      %span
+                        Status: 
+                      = "#{donation_obj.status.titleize}"
+
     - else
-      .text-center
+      .text-center.no-data-box
         %h3= "No #{type||=''} donation found"

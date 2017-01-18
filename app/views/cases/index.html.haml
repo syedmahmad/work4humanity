@@ -1,31 +1,95 @@
 .container
 	.row
 		.col-md-12.text-center.create-case-btn-holder
-			= link_to 'Create case', new_case_path, class: 'btn btn-primary hvr-sweep-to-top'
+			- if current_user.present?
+				= link_to 'Create case', new_case_path, class: 'btn btn-primary hvr-sweep-to-top'
 	-if @cases.present?
 		.col-md-12.list-cases-holder.p0
 			%h3 Cases
 			- @cases.each do |case_obj|
 				.col-md-12.p0
 					.panel.panel-default
-						.panel-body
-							.row
-								.col-sm-8.col-md-10.cases-details
-									%h4
-										= case_obj.title
-									%p
-										= case_obj.description
-									%p
-										= "Status: " + case_obj.status.titleize
-									%p
-										= "Amount Required: " + case_obj.amount_required.to_s
-									- if case_obj.hospital.present?
-										%p
-											%i.fa.fa-location-arrow
-											= case_obj.hospital.name
-								.col-sm-4.col-md-2.btn-area
+						.header-holder
+							.col-xs-12.col-sm-8.p0
+								%h4
+									= case_obj.title
+							.col-xs-12.col-sm-4.p0
+								.btn-area.pull-right
 									- if policy(case_obj).edit?
 										= link_to 'Edit', edit_case_path(case_obj),class: 'btn btn-primary'
+										= link_to 'View', case_path(case_obj) ,class: 'btn btn-info'
 									- if policy(case_obj).destroy?
 										= link_to 'Delete', case_obj, method: :delete, data: { confirm: "You sure?" } ,class: 'btn btn-danger'
-									= link_to 'View', case_path(case_obj) ,class: 'btn btn-info'
+									- if current_user.present? && current_user.admin? && case_obj.pending?
+										= link_to 'Approve', approve_case_path(case_obj), method: :post, class: 'btn btn-primary'
+										= link_to 'Deny', deny_case_path(case_obj), method: :post, class: 'btn btn-danger'
+
+						.panel-body
+							.row
+								.col-sm-12.donations.cases-details
+
+									%p.text-details
+										= case_obj.description
+									%ul
+										%li
+											%p
+												%span
+													Status:
+												= case_obj.status.titleize
+										%li
+											%p
+												%span
+													Amount:
+												= case_obj.amount_required.to_s
+
+										- if case_obj.hospital.present?
+											%li
+												%p
+													%span
+														location:
+													= case_obj.hospital.name
+			- @denied_cases.each do |case_obj|
+				.col-md-12.p0
+					.panel.panel-default.block-holder
+						.header-holder
+							.col-xs-12.col-sm-8.p0
+								%h4
+									= case_obj.title
+							.col-xs-12.col-sm-4.p0
+								.btn-area.pull-right
+									- if policy(case_obj).edit?
+										= link_to 'Edit', edit_case_path(case_obj),class: 'btn btn-primary'
+										= link_to 'View', case_path(case_obj) ,class: 'btn btn-info'
+									- if policy(case_obj).destroy?
+										= link_to 'Delete', case_obj, method: :delete, data: { confirm: "You sure?" } ,class: 'btn btn-danger'
+									- if current_user.present? && current_user.admin? && case_obj.pending?
+										= link_to 'Approve', approve_case_path(case_obj), method: :post, class: 'btn btn-primary'
+										= link_to 'Deny', deny_case_path(case_obj), method: :post, class: 'btn btn-danger'
+
+						.panel-body
+							.block-box
+								%h3
+									Case has been block by System
+							.row
+								.col-sm-12.donations.cases-details
+
+									%p.text-details
+										= case_obj.description
+									%ul
+										%li
+											%p
+												%span
+													Status:
+												= case_obj.status.titleize
+										%li
+											%p
+												%span
+													Amount:
+												= case_obj.amount_required.to_s
+
+										- if case_obj.hospital.present?
+											%li
+												%p
+													%span
+														location:
+													= case_obj.hospital.name
