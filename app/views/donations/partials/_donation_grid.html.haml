@@ -1,7 +1,7 @@
 .container
   .row
     .col-md-12.text-center
-      = link_to 'I want to donate', new_donation_path, class: 'btn btn-primary'
+      = link_to 'Donate Funds', new_donation_path, class: 'btn btn-primary'
   .col-md-12.list-cases-holder
     - unless donations.blank?
       %h3 Donations
@@ -15,7 +15,7 @@
                 %p
                   = "Amount: #{donation_obj.amount}"
                 %p
-                  = "Status: #{donation_obj.status.titleize}"
+                  = "Status: #{donation_obj.status_text.titleize}"
               .col-sm-4.col-md-2.btn-area
                 = link_to 'Delete', donation_path(donation_obj), method: :delete, data: { confirm: "You sure?" } ,class: 'btn btn-danger'
                 = link_to 'View', donation_path(donation_obj) ,class: 'btn btn-info'

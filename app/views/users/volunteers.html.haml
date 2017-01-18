@@ -1,0 +1,9 @@
+.container
+  .outlet
+    .row
+      .col-sm-8.col-md-5.col-md-offset-4.col-sm-offset-2
+        .panel.panel-default.contact-details-box
+          .panel-heading
+            %h3.text-center Available Days
+          .panel-body
+            = render 'schedules/schedules_list', schedules: @schedules, user_type: 'admin'

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  selected_date: MyString
+  date,: MyString
+  selected_day: MyString
+  date: MyString
+
+two:
+  selected_date: MyString
+  date,: MyString
+  selected_day: MyString
+  date: MyString

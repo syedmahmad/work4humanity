@@ -24,13 +24,20 @@ Rails.application.routes.draw do
   end
 
   resources :users do
+    resources :schedules do
+      delete 'destroy'
+    end
     member do
       get 'show'
       post 'create'
       get 'donations'
       post 'update_user_role'
+      get 'schedule_availability'
     end
     collection do
+      get 'volunteers'
+      post 'add_availability_field'
+      post 'update_availability_details'
       post 'update_contact_details'
       get 'onboarding'
       get 'manage_users'

@@ -31,6 +31,12 @@
                   = link_to 'Manage Users', manage_users_users_path
               - else
                 = link_to 'Donations', donations_user_path(current_user)
+            - if current_user.admin?
+              %li
+                = link_to 'Volunteers', volunteers_users_path
+            - else
+              %li
+                = link_to 'My Schedule', user_schedules_path(current_user)
             %li
               = link_to 'Contact us', contact_us_path
         %ul.nav.navbar-nav.navbar-right

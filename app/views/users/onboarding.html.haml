@@ -26,10 +26,5 @@
                   / = f.label 'Password', class: 'col-lg-2 col-md-2 col-sm-12 control-label'
                   .col-lg-12
                     = f.password_field :password, class: 'form-control', required: true, placeholder: "Password"
-              - if f.object.volunteer?
-                .form-group
-                  = f.label 'Availability', class: 'col-sm-12 '
-                  .col-md-12
-                    = select_tag "available_days[]", options_for_select(Date::DAYNAMES, ["Saturday" , "Sunday"]), class: 'init_select2', multiple: true, required: true, default: "select"
               .form-group.btn-submit
                 = f.submit "submit", class: 'btn btn-primary'
