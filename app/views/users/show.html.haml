@@ -1,33 +1,31 @@
 .container
   .outlet
     .row
-      .col-md-8.col-md-offset-2
+      .col-md-8.col-md-offset-2.list-cases-holder
         .panel.panel-default.panelMove.toggle.panelRefresh.panelClose
           .panel-heading.case_study_heading
             %h2.panel-title= @user.name
           .panel-body
             .row
               .col-sm-8.col-md-10.cases-details
-            %h3.text-center
-              History
             .col-md-12
-              = image_tag @user.image_url
-            .col-md-12
-              .col-md-4
-                %h4 Donations
-                %p= @user.donations.size
-              .col-md-4
-                %h4 Amount
-                %p= "#{@user.donations.pluck(:original_amount).sum}/-"
-              .col-md-4
-                %h4 Used
-                %p= "#{@user.get_amount_of_donations_used}/-"
-            .col-md-12
-              .col-md-4
-                %h4 Cases
-                %p= @user.cases.size
-            .col-md-12
-              .col-md-4
-                %h4 Contact #
-                %p
-                  = "#{current_user == @user || current_user.u_type == 'admin' ? @user.mobile_number : 'Not public'}"
+              .image-holder
+                = avatar_url(@user, '50', 'user-avatar')
+            .col-md-12.p0.user-details
+              %ul
+                %li
+                  %h4 Donations
+                  %p= @user.donations.size
+                %li
+                  %h4 Amount
+                  %p= "#{@user.donations.pluck(:original_amount).sum}/-"
+                %li
+                  %h4 Used
+                  %p= "#{@user.get_amount_of_donations_used}/-"
+                %li
+                  %h4 Cases
+                  %p= @user.cases.size
+                %li
+                  %h4 Contact #
+                  %p
+                    = "#{current_user == @user ? @user.mobile_number : 'Not public'}"

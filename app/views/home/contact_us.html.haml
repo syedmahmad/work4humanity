@@ -1,34 +1,27 @@
 .container
-  .contact-us.col-sm-12.col-md-6.col-md-offset-3
-    / .col-md-8
-    /   .form-area
-    /     %form{:role => "form"}
-    /       %br{:style => "clear:both"}/
-    /       .form-group
-    /         %input#name.form-control{:name => "name", :placeholder => "Name", :required => "", :type => "text"}/
-    /       .form-group
-    /         %input#email.form-control{:name => "email", :placeholder => "Email", :required => "", :type => "text"}/
-    /       .form-group
-    /         %input#mobile.form-control{:name => "mobile", :placeholder => "Mobile Number", :required => "", :type => "text"}/
-    /       .form-group
-    /         %input#subject.form-control{:name => "subject", :placeholder => "Subject", :required => "", :type => "text"}/
-    /       .form-group
-    /         %textarea#message.form-control{:maxlength => "140", :placeholder => "Message", :rows => "7", :type => "textarea"}
-    /       %button#submit.btn.btn-primary.pull-right{:name => "submit", :type => "button"} Submit Form
+  .contact-us
     .col-sm-12
-      %h3.text-center Work4Humanity
-      %hr/
+      %h2
+        %span
+          GET IN
+        Touch
+      %img{:alt => "divider", :src => "/assets/divider.png"}
       %address
         %ul
           %li
-            %strong Address:
-            D.H.A Phose 1 82-G, Lahore,
-            %li
-              %strong Email:
-              Work4Humanity@gmail.com
-          %li
-            %strong Mobile:
-            +92-322-4542141
+            %strong 
+              Mobile:
+            %span
+              %a{:href => "tel:+92-322-2822224"} +92-322-2822224
+              
           %li
             %strong Phone:
-            +92-423-5741249
+            %a{:href => "tel:+92-423-5741249"} +92-423-5741249
+            
+          %li
+            %strong Address:
+            D.H.A Phase 1 82-G, Lahore,
+            %li
+              %strong Email:
+              %a{:href => "mailto:Work4Humanity@gmail.com"} Work4Humanity@gmail.com
+              

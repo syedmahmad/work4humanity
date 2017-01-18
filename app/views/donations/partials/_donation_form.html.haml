@@ -1,15 +1,14 @@
 .container
   .outlet
     .row
-      .col-md-6.col-md-offset-3
-        .panel.panel-default.donation-box
-          .panel-heading
+      .col-sm-8.col-md-5.col-md-offset-4.col-sm-offset-2
+        .panel.panel-default.donation-box.contact-details-box
+          .panel-heading.text-center
             %h3 Request to make donation
           .panel-body
             = form_for @donation, html: { class: 'form-horizontal group-border hover-stripped' } do |f|
               .form-group
-                = f.label 'Amount', class: 'col-lg-2 col-md-2 col-sm-12 control-label'
-                .col-lg-6.col-md-6
-                  = f.number_field :amount, min: '0', step: 'any', class: 'form-control', required: true
-              .form-group.col-md-12.btn-block
+                .col-lg-12
+                  = f.number_field :amount, min: '0', step: 'any', class: 'form-control', required: true, placeholder: "Amount"
+              .form-group.btn-block.btn-submit
                 = f.submit "#{donation_button_text(@donation)}", class: 'btn btn-primary'
