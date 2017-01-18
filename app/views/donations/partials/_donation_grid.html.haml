@@ -1,7 +1,7 @@
 .container
   .row
     .text-center.create-case-btn-holder
-      = link_to 'I want to donate', new_donation_path, class: 'btn btn-primary'
+      = link_to 'Donate Funds', new_donation_path, class: 'btn btn-primary'
   .list-cases-holder
     - unless donations.blank?
       %h3 Donations
@@ -31,8 +31,7 @@
                     %p
                       %span
                         Status: 
-                      = "#{donation_obj.status.titleize}"
-
+                      = "#{donation_obj.status_text.titleize}"
     - else
       .text-center.no-data-box
         %h3= "No #{type||=''} donation found"

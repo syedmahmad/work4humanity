@@ -18,6 +18,9 @@ class User < ActiveRecord::Base
 
   has_many :donations, dependent: :destroy
   has_many :cases, dependent: :destroy
+  has_many :schedules, dependent: :destroy
+
+  scope :volunteers, -> {where(u_type: 0)}
 
   def get_amount_of_donations_used
     donation_ids = self.donations.pluck(:id)

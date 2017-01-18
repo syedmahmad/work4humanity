@@ -15,10 +15,16 @@ class Donation < ActiveRecord::Base
   scope :released, ->  { where(:status => 4)}
   scope :get_received, -> { where("status = ? or status = ?",3,4 )}
 
+  def status_text
+    donation = self
+    donation.requested? ? "waiting for approval" : donation.status
+  end
+  
   private
 
   def set_original_amount
-  	self.update_column(:original_amount, self.amount)
+    self.update_column(:original_amount, self.amount)
   end
+
 
 end

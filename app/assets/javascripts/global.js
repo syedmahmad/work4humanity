@@ -5,4 +5,11 @@ $("document").ready(function(){
      val: "sunday"
     });
   }
+
+  $('.add_more_button').on('click', function(){
+    var url = $(this).find('a').data('url')
+    $.post(url, function(data) {
+      $('#availability_fields_div').append(data);
+    });
+  })
 })

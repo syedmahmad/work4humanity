@@ -1,0 +1,17 @@
+.container
+  .outlet
+    .row
+      .col-sm-8.col-md-5.col-md-offset-4.col-sm-offset-2.available-block
+        .panel.panel-default.holder
+          .panel-heading
+            %h3.text-center Select Availability
+          .panel-body
+            = form_for @user, url: update_availability_details_users_path, method: 'post', html: { multipart: true, class: 'form-horizontal group-border hover-stripped' } do |f|
+              = f.hidden_field :id, value: @user.id
+              .form-group#availability_fields_div
+                = render 'set_availability_field'
+              .btn-block
+                .add_more_button
+                  = link_to "add more", 'javascript:void(0)', "data-url": add_availability_field_users_path
+                .form-group.btn-submit
+                  = f.submit "submit", class: 'btn btn-primary'

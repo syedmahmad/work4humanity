@@ -44,6 +44,8 @@ GEM
       rack (>= 0.9.0)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
+    bootstrap-datepicker-rails (1.6.4.1)
+      railties (>= 3.0)
     breadcrumbs_on_rails (3.0.1)
     builder (3.2.2)
     byebug (9.0.6)
@@ -225,6 +227,7 @@ PLATFORMS
 
 DEPENDENCIES
   better_errors
+  bootstrap-datepicker-rails
   breadcrumbs_on_rails
   byebug
   cocoon

@@ -20,8 +20,7 @@
                 %p
                   %span
                     Status:
-                  = @donation.status.titleize
-         
+                  = @donation.status_text.titleize
 
   -if @activities.present?
     .row

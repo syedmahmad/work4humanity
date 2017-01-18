@@ -1,0 +1,71 @@
+// Place all the styles related to the schedules controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.available-block{
+	.holder{
+		border-radius: 0;
+		h3{
+			margin: 0;
+		}
+		p{
+			padding: 5px;
+			border: 1px solid #f3f3f3;
+			&:nth-child(odd){
+				background:#f9f9f9;
+			}
+			span{
+				a{
+					float: right;
+					text-transform: capitalize;
+				}
+			}
+		}
+		input {
+		    border-radius: 0;
+		    min-height: 45px;
+		}
+		.btn-block{
+			text-align: center;
+			.add_more_button{
+				display: inline-block;
+				a{
+					color: #fff;
+					background-color: #2DBCB5;
+					border-color: #2DBCB5;
+					min-width: 200px;
+					display: inline-block;
+					padding: 10px;
+					margin-bottom: 0;
+				}
+			}
+			.btn-submit{
+				.btn{
+					min-width: 200px;
+					margin-top: 10px;
+				}
+			}
+		}
+	}
+}
+.btn-holder-available{
+	ul{
+		width: 100%;
+		text-align: center;
+		padding: 0;
+		margin: 15px 0;
+		li{
+			list-style: none;
+			display: inline-block;
+			min-width: 150px;
+			padding: 5px;
+			margin-bottom: 10px;
+			background-color: #2DBCB5;
+			a{
+				color: #fff;
+				&:hover{
+					text-decoration:none;
+				}
+			}
+		}
+	}
+}
