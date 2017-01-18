@@ -39,7 +39,6 @@ input:-webkit-autofill {
     padding: 10px;
     h4{
       margin: 0;
-      text-transform: uppercase;
       font-weight: bold;
     }
   }
@@ -337,6 +336,9 @@ input:-webkit-autofill {
   }
   #logs-body-content{
     .donat-list{
+      .req-donat{
+        background-color:red;
+      }
       background-color: #fff;
       padding: 5px;
       border-radius: 2px;
@@ -349,7 +351,6 @@ input:-webkit-autofill {
       }
     }
   }
-  /* Grow */
 .hvr-grow {
     display: inline-block;
     vertical-align: middle;

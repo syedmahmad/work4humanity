@@ -7,16 +7,25 @@
             %h3.text-center Donations & Funds Allocations Logs
           .panel-body
             #logs-body-content
+              -@Requested_amount.each do |req_amount|
+                .donat-list
+                  .req-donat
+                    %strong +
+                    %span= "Donation #{req_amount.amount}, form"
+                    =link_to req_amount.user.name, req_amount.user, target: '_blank'
+                    %span.timer-block= "Time: #{date_format(req_amount.created_at)}"
               - @logs.each_with_index do |log, index|
                 - donation = log.owner
                 .donat-list
-                  %span= "+ Donation #{donation.original_amount}, form"
+                  %strong +
+                  %span= "Donation #{donation.original_amount}, form"
                   =link_to donation.user.name, donation.user, target: '_blank'
                   %span.timer-block= "Time: #{date_format(donation.created_at)}"
                   %span.balance-block= " Balance: #{log.parameters[:balance]}"
 
                   - PublicActivity::Activity.order("created_at desc").where("owner_id = ? and key = ?", donation.id, "donation.amount_allocated").each_with_index do |activity, index|
-                    .allocated-funds-holder 
-                      %span= "- Allocated funds #{activity.parameters[:amount]} to case" 
+                    .allocated-funds-holder
+                      %strong -
+                      %span= "Allocated funds #{activity.parameters[:amount]} to case"
                       = link_to activity.recipient.title, activity.recipient, target: '_blank'
                       %span= "Time: #{date_format(activity.created_at)}"

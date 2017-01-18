@@ -6,6 +6,8 @@ class Donation < ActiveRecord::Base
 
   after_create :set_original_amount
 
+  validates_length_of :amount, :in => 0..8, :allow_blank => true
+
   scope :requested, -> { where(:status => 0)}
   scope :accepted, -> { where(:status => 1)}
   scope :rejected, -> { where(:status => 2)}
