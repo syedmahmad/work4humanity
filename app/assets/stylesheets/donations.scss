@@ -1,3 +1,4 @@
+
 // Place all the styles related to the donations controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
@@ -60,4 +61,25 @@
 		.btn{
 			float: right;
 		}
+	}
+	.donor-info{
+		 background: #525866;
+		 padding: 10px;
+    margin-bottom: 25px;
+		 h4{
+			color: #fff;
+			font-size: 34px;
+		 }
+		 ul{
+				padding: 0;
+				margin: 0;
+				list-style: none;
+			 li{
+				background: #f9f9f9;
+				padding: 5px;
+				border-radius: 2px;
+				margin-bottom: 5px;
+			 }
+		 }
+
 	}

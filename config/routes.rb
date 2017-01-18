@@ -31,6 +31,7 @@ Rails.application.routes.draw do
       post 'create'
       get 'donations'
       post 'update_user_role'
+      post 'change_image'
     end
     collection do
       post 'update_contact_details'
