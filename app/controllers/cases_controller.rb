@@ -1,6 +1,6 @@
 class CasesController < ApplicationController
 
-	before_action :authenticate_user!, :except => [:index]
+	before_action :authenticate_user!, :except => [:index, :show]
 	before_action :set_case, only: [:approve, :deny, :edit, :show, :update, :destroy, :authorize_case, :allocate_funds, :confirm_funds_allocation]
 	before_action :authorize_case, only: [:new, :create, :edit, :update, :destroy, :allocate_funds, :confirm_funds_allocation]
 	before_action :set_hospitals, only: [:edit, :new]

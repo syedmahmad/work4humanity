@@ -1,7 +1,10 @@
 - if @user.errors.present?
+  $('.content-wrapper').prepend( "<p class='js-flash-notification-div alert alert-danger'>something went wrong. please try again.</p>" )
 -else
   $('.user-avatar').attr('src','#{escape_javascript(@user.avatar.url)}');
+  $('.content-wrapper').prepend( "<p class='js-flash-notification-div alert alert-success'> successfully updated</p>" );
 
+$(".js-flash-notification-div").slideDown(500, function(){setTimeout(function(){$(".js-flash-notification-div").slideUp(500);},4000);});
 
 
 
