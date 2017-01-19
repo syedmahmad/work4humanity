@@ -40,6 +40,7 @@ class CasesController < ApplicationController
 	end
 
 	def update
+		params[:case][:status] = 0 if @case.deny?
 		@case.update(case_params)
 		redirect_to case_path
 	end
@@ -87,7 +88,7 @@ class CasesController < ApplicationController
 
 	private
 	def case_params
-		params.require(:case).permit(:title, :description, :amount_required, :hospital_id, attachments_attributes: [:id, :attachment, :_destroy])
+		params.require(:case).permit(:title, :description, :status, :amount_required, :hospital_id, attachments_attributes: [:id, :attachment, :_destroy])
 	end
 
 	def set_case
