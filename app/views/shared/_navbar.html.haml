@@ -18,12 +18,12 @@
         = link_to root_path, class: 'navbar-brand' do
           %img{:alt => "logo", :src => "/assets/weblogo.png"}
       #bs-example-navbar-collapse-1.collapse.navbar-collapse
-        - if user_signed_in?
-          %ul.nav.navbar-nav
-            %li
-              %a{:href => "#{cases_path}"}
-                %i.im-plus.mr10.text-success>
-                Cases
+        %ul.nav.navbar-nav
+          %li
+            %a{:href => "#{cases_path}"}
+              %i.im-plus.mr10.text-success>
+              Cases
+          - if user_signed_in?
             %li
               - if policy(current_user).manage_users?
                 = link_to 'Donations', donations_path
