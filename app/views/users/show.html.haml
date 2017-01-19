@@ -11,7 +11,7 @@
             .col-md-12
               .image-holder
                 = avatar_url(@user, '50', 'user-avatar')
-                -if current_user.present?
+                -if current_user.present? && current_user == @user
                   = link_to 'change', 'javascript:void(0)', class: 'change-image-url'
                 #change-user-image-div.hidden
                   = form_for @user, url: change_image_user_path(@user), method: 'post', :authenticity_token => true, remote: true, :html => { :multipart => true } do |f|

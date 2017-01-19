@@ -192,9 +192,11 @@
   }
 }
 .panel.panel-default.block-holder{
+    border-color:#d9534f;
+}
+.panel.panel-default.block-holder .panel-body{
   position: relative;
   overflow: hidden;
-  border-color:#d9534f;
   &:hover{
     .block-box{
       display:block;

@@ -12,4 +12,11 @@ $("document").ready(function(){
       $('#availability_fields_div').append(data);
     });
   })
+
+  $('.content-wrapper').on('click', function(){
+    if(!$('#burger-menu-button').hasClass('collapsed')){
+      $('#burger-menu-button').addClass('collapsed');
+      $('#bs-example-navbar-collapse-1').removeClass('in');
+    }
+  });
 })
