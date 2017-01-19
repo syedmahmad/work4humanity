@@ -75,8 +75,8 @@ Rails.application.configure do
   #   password: Rails.application.secrets.gmail_password
   # }
   # ActionMailer Config
-  Rails.application.routes.default_url_options[:host]= 'http://workforhumanity.herokuapp.com'
-  config.action_mailer.default_url_options = { :host => 'http://workforhumanity.herokuapp.com' }
+  Rails.application.routes.default_url_options[:host]= 'http://work4humanity.com'
+  config.action_mailer.default_url_options = { :host => 'http://work4humanity.com' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.raise_delivery_errors = true
   # Send email in development mode?
