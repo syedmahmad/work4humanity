@@ -1,5 +1,5 @@
   class UsersController < ApplicationController
-
+  respond_to :xlsx, :html, :js
   before_action :authenticate_user!, only: [:manage_users, :donations, :update_user_role, :show, :schedule_availability, :change_image]
   before_action :set_user, only: [:show, :authorize_user, :donations, :update_user_role, :update_availability_details, :change_image]
   before_action :authorize_user, only: [:donations, :manage_users, :update_user_role]
@@ -18,7 +18,7 @@
   def change_image
     @user.update(user_avatar_params)
     respond_to do |format|
-      format.js # actually means: if the client ask for js -> return file.js
+      format.js
     end
   end
 
