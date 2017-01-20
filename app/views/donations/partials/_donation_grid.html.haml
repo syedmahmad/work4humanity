@@ -4,14 +4,14 @@
       = link_to 'Donate Funds', new_donation_path, class: 'btn btn-primary'
   .list-cases-holder
     - unless donations.blank?
-      %h3 Donations
+      %h3= "#{current_user.present? && current_user.admin? ? 'Donations' : 'My donations'}"
       - donations.each do |donation_obj|
         .panel.panel-default
           .header-holder
             .btn-area.pull-right
-              = link_to 'View', donation_path(donation_obj) ,class: 'btn btn-info'
-
-              = link_to 'Delete', donation_path(donation_obj), method: :delete, data: { confirm: "You sure?" } ,class: 'btn btn-danger'
+              = link_to 'Detail', donation_path(donation_obj) ,class: 'btn btn-info'
+              - unless donation_obj.received?
+                = link_to 'Delete', donation_path(donation_obj), method: :delete, data: { confirm: "You sure?" } ,class: 'btn btn-danger'
           .panel-body
             .row
               .col-sm-12.donations.cases-details
@@ -24,13 +24,13 @@
                   %li
                     %p
                       %span
-                        Amount: 
+                        Amount:
                       = "#{donation_obj.amount}"
 
                   %li
                     %p
                       %span
-                        Status: 
+                        Status:
                       = "#{donation_obj.status_text.titleize}"
     - else
       .text-center.no-data-box

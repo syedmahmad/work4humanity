@@ -31,7 +31,7 @@ class DonationsController < ApplicationController
 
   def show
     add_breadcrumb "Donations", get_donation_breadcrum_path
-    add_breadcrumb "View", :donation_path
+    add_breadcrumb "Detail", :donation_path
     @activities = PublicActivity::Activity.order("created_at desc").where("owner_id = ? and key = ?", @donation.id, "donation.amount_allocated")
   end
 

@@ -15,10 +15,10 @@
 									= case_obj.title
 							.col-xs-12.col-sm-4.p0
 								.btn-area.pull-right
-									- if policy(case_obj).edit?
+									- if policy(case_obj).edit? && case_obj.status != 'funds_allocated'
 										= link_to 'Edit', edit_case_path(case_obj),class: 'btn btn-primary'
-										= link_to 'View', case_path(case_obj) ,class: 'btn btn-info'
-									- if policy(case_obj).destroy?
+									= link_to 'Detail', case_path(case_obj) ,class: 'btn btn-info'
+									- if policy(case_obj).destroy? && case_obj.status != 'funds_allocated'
 										= link_to 'Delete', case_obj, method: :delete, data: { confirm: "You sure?" } ,class: 'btn btn-danger'
 									- if current_user.present? && current_user.admin? && case_obj.pending?
 										= link_to 'Approve', approve_case_path(case_obj), method: :post, class: 'btn btn-primary'
@@ -60,10 +60,10 @@
 									= case_obj.title
 							.col-xs-12.col-sm-4.p0
 								.btn-area.pull-right
-									- if policy(case_obj).edit?
+									- if policy(case_obj).edit? && case_obj.status != 'funds_allocated'
 										= link_to 'Edit', edit_case_path(case_obj),class: 'btn btn-primary'
-									= link_to 'View', case_path(case_obj) ,class: 'btn btn-info'
-									- if policy(case_obj).destroy?
+									= link_to 'Detail', case_path(case_obj) ,class: 'btn btn-info'
+									- if policy(case_obj).destroy? && case_obj.status != 'funds_allocated'
 										= link_to 'Delete', case_obj, method: :delete, data: { confirm: "You sure?" } ,class: 'btn btn-danger'
 									- if current_user.present? && current_user.admin? && case_obj.pending?
 										= link_to 'Approve', approve_case_path(case_obj), method: :post, class: 'btn btn-primary'
