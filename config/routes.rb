@@ -33,6 +33,7 @@ Rails.application.routes.draw do
       get 'show'
       post 'create'
       get 'donations'
+      get 'cases'
       post 'update_user_role'
       get 'schedule_availability'
       post 'change_image'

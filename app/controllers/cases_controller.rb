@@ -11,7 +11,6 @@ class CasesController < ApplicationController
 
 	def index
 		@cases = current_user.present? && current_user.admin? ? Case.all : Case.approved_cases
-		@denied_cases = current_user ? current_user.cases.denied_cases : []
 	end
 
 	def new
