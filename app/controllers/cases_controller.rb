@@ -20,7 +20,7 @@ class CasesController < ApplicationController
 	end
 
 	def show
-		add_breadcrumb "View", :case_path
+		add_breadcrumb "Detail", :case_path
 		@activity = PublicActivity::Activity.order("created_at desc").where("recipient_id = ? and key = ?", @case.id, "donation.amount_allocated")
 	end
 
