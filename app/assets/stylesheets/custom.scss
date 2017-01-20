@@ -323,7 +323,6 @@ input:-webkit-autofill {
     border-radius: 0;
     .panel-heading{
       h3{
-        text-transform: uppercase;
         font-weight: 500;
         letter-spacing: 3px;
       }
@@ -358,6 +357,9 @@ input:-webkit-autofill {
     margin-bottom: 5px;
   }
   #logs-body-content{
+    .log-status{
+      color: #a94442;
+    }
     .donat-list{
       background-color: #fff;
       padding: 5px;
@@ -368,6 +370,7 @@ input:-webkit-autofill {
       }
       a{
         color: #2DBCB5;
+        font-weight: bold;
       }
     }
   }
@@ -475,4 +478,10 @@ input:-webkit-autofill {
 }
 .js-flash-notification-div {
   text-align: center;
+}
+.p-10{
+  padding: 10px;
+}
+.ml-10{
+  margin-left: 10px;
 }

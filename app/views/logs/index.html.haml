@@ -4,28 +4,31 @@
       .col-sm-8.col-md-6.col-md-offset-3
         .panel.panel-default.contact-details-box
           .panel-heading
-            %h3.text-center Donations & Funds Allocations Logs
+            %h3.text-center Transactions Detail
           .panel-body
             #logs-body-content
               -@requested_amount.each do |req_amount|
                 .donat-list
-                  %strong +
-                  =link_to req_amount.user.name, req_amount.user, target: '_blank'
-                  %span= "donated #{formatted_ammount(req_amount.amount)}/-PKR"
-                  %span.balance-block= " Balance: #{total_remaining_ammount}/-PKR"
-                  %p
-                    %strong.label-warning pending
+                  .fa.fa-plus
+                  %span.ml-10
+                    =link_to req_amount.user.name.titleize, req_amount.user, target: '_blank'
+                    %span= "donated #{formatted_ammount(req_amount.amount)}/-PKR"
+                    %span.balance-block= " Balance: #{total_remaining_ammount}/-PKR"
+                    %span.pull-right
+                      %strong.log-status pending
               - @logs.each_with_index do |log, index|
                 - donation = log.owner
                 - if log.key == "donation.amount_received"
                   .donat-list
-                    %strong +
-                    =link_to donation.user.name, donation.user, target: '_blank'
-                    %span= "donated #{formatted_ammount(donation.original_amount)}/-PKR"
-                    %span.balance-block= " Balance: #{formatted_ammount(log.parameters[:balance])}/-PKR"
+                    .fa.fa-plus
+                    %span.ml-10
+                      =link_to donation.user.name.titleize, donation.user, target: '_blank'
+                      %span= "donated #{formatted_ammount(donation.original_amount)}/-PKR"
+                      %span.balance-block= " Balance: #{formatted_ammount(log.parameters[:balance])}/-PKR"
                 - if log.key == "case.amount_donated"
                   .donat-list
-                    %strong -
-                    %span= "#{formatted_ammount(donation.allocated_amount)}/-PKR donated to"
-                    =link_to donation.identifier, case_path(donation.id), target: '_blank'
-                    %span.balance-block= " Balance: #{formatted_ammount(log.parameters[:balance])}/-PKR"
+                    .fa.fa-minus
+                    %span.ml-10
+                      %span= "#{formatted_ammount(donation.allocated_amount)}/-PKR donated to"
+                      =link_to donation.identifier, case_path(donation.id), target: '_blank'
+                      %span.balance-block= " Balance: #{formatted_ammount(log.parameters[:balance])}/-PKR"

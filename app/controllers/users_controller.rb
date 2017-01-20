@@ -72,9 +72,10 @@
   end
 
   def show
-    if Rails.application.routes.recognize_path(request.referer)[:controller].downcase == "logs"
-      add_breadcrumb "History", :logs_path
-    end
+    # todo: latter will be used for breadcrums
+    # if Rails.application.routes.recognize_path(request.referer)[:controller].downcase == "logs"
+    #   add_breadcrumb "History", :logs_path
+    # end
     add_breadcrumb "Profile", :user_path
   end
 

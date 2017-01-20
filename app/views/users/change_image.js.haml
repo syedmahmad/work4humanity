@@ -4,5 +4,5 @@
   $('.user-avatar').attr('src','#{escape_javascript(@user.avatar.url(:thumb))}');
   $('.content-wrapper').prepend( "<p class='js-flash-notification-div alert alert-success'> successfully updated</p>" );
 
-$(".alert").slideDown(500, function(){setTimeout(function(){$(".alert").slideUp(500, function(){$(".js-flash-notification-div").remove()});},4000);});
+$(".alert").slideDown(500, function(){setTimeout(function(){$(".alert").slideUp(500, function(){$(".js-flash-notification-div").remove()});},3000);});
 
