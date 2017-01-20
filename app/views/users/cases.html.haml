@@ -1,0 +1,51 @@
+.container
+  .row
+    .col-md-12.text-center.create-case-btn-holder
+      - if current_user.present?
+        = link_to 'Create case', new_case_path, class: 'btn btn-primary hvr-sweep-to-top'
+  -if @user_cases.present?
+    .col-md-12.list-cases-holder.p0
+      %h3 My Cases
+      - @user_cases.each do |case_obj|
+        .col-md-12.p0
+          .panel.panel-default{class: case_obj.deny? ? 'block-holder' : ''}
+            .header-holder
+              .col-xs-12.col-sm-8.p0
+                %h4
+                  = case_obj.title
+              .col-xs-12.col-sm-4.p0
+                .btn-area.pull-right
+                  - if policy(case_obj).edit? && case_obj.status != 'funds_allocated'
+                    = link_to 'Edit', edit_case_path(case_obj),class: 'btn btn-primary'
+                  = link_to 'Detail', case_path(case_obj) ,class: 'btn btn-info'
+                  - if policy(case_obj).destroy? && case_obj.status != 'funds_allocated'
+                    = link_to 'Delete', case_obj, method: :delete, data: { confirm: "You sure?" } ,class: 'btn btn-danger'
+
+            .panel-body
+              - if case_obj.deny?
+                .block-box
+                  %h3
+                    Case has been block by System. Please update content so we can review.
+              .row
+                .col-sm-12.donations.cases-details
+
+                  %p.text-details
+                    = case_obj.description
+                  %ul
+                    %li
+                      %p
+                        %span
+                          Status:
+                        = case_obj.status.titleize
+                    %li
+                      %p
+                        %span
+                          Amount:
+                        = case_obj.amount_required.to_s
+
+                    - if case_obj.hospital.present?
+                      %li
+                        %p
+                          %span
+                            location:
+                          = case_obj.hospital.name

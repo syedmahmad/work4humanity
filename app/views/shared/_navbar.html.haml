@@ -2,7 +2,7 @@
   .top-bar
     .amount-holder-desktop
       %h4
-        = "Amount: #{total_remaining_ammount}/- PKR"
+        = "Available Funds: PKR #{total_remaining_ammount}/-"
         %a{:href => logs_path}
           %i.im-plus.mr10.text-success>
           History
@@ -36,6 +36,8 @@
             - else
               %li
                 = link_to 'My Schedule', user_schedules_path(current_user)
+              %li
+                = link_to 'My Cases', cases_user_path(current_user)
             %li
               = link_to 'Contact us', contact_us_path
         %ul.nav.navbar-nav.navbar-right

@@ -1,7 +1,7 @@
   class UsersController < ApplicationController
   respond_to :xlsx, :html, :js
   before_action :authenticate_user!, only: [:manage_users, :donations, :update_user_role, :schedule_availability, :change_image]
-  before_action :set_user, only: [:show, :authorize_user, :donations, :update_user_role, :update_availability_details, :change_image]
+  before_action :set_user, only: [:show, :cases, :authorize_user, :donations, :update_user_role, :update_availability_details, :change_image]
   before_action :authorize_user, only: [:donations, :manage_users, :update_user_role]
   before_action :validate_user_details, except: [:onboarding, :update_contact_details]
 
@@ -9,6 +9,11 @@
   def donations
     @donations = @user.donations
     add_breadcrumb "Donations", :donations_user_path
+  end
+
+  def cases
+    @user_cases = current_user ? current_user.cases : []
+    add_breadcrumb "My Cases", :cases_user_path
   end
 
   def manage_users
