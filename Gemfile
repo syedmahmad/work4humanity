@@ -8,6 +8,7 @@ gem 'pg'
 
 gem "select2-rails"
 gem "breadcrumbs_on_rails"
+gem "letter_opener", :group => :development
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
