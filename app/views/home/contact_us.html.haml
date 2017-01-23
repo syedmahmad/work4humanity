@@ -8,15 +8,6 @@
       %img{:alt => "divider", :src => "/assets/divider.png"}
       %address
         %ul
-          %li
-            %strong
-              Mobile:
-            %span
-              %a{:href => "tel:+92-322-2822224"} +92-322-2822224
-
-          %li
-            %strong Phone:
-            %a{:href => "tel:+92-423-5741249"} +92-423-5741249
 
           %li
             %strong Address:
@@ -26,20 +17,20 @@
               %a{:href => "mailto:Work4Humanity@gmail.com"} Work4Humanity@gmail.com
 
 
-        %form#contact_form{:action => send_mail_path, :enctype => "multipart/form-data", :method => "POST"}
-          .row
-            %label{:for => "name"} Your name:
-            %br/
-            %input#name.input{:name => "name", :size => "30", :type => "text", :value => ""}/
-            %br/
-          .row
-            %label{:for => "email"} Your email:
-            %br/
-            %input#email.input{:name => "email", :size => "30", :type => "text", :value => ""}/
-            %br/
-          .row
-            %label{:for => "message"} Your message:
-            %br/
-            %textarea#message.input{:cols => "30", :name => "message", :rows => "7"}
-            %br/
-          %input#submit_button{:type => "submit", :value => "Send email"}/
+        / %form#contact_form{:action => send_mail_path, :enctype => "multipart/form-data", :method => "POST"}
+        /   .row
+        /     %label{:for => "name"} Your name:
+        /     %br/
+        /     %input#name.input{:name => "name", :size => "30", :type => "text", :value => ""}/
+        /     %br/
+        /   .row
+        /     %label{:for => "email"} Your email:
+        /     %br/
+        /     %input#email.input{:name => "email", :size => "30", :type => "text", :value => ""}/
+        /     %br/
+        /   .row
+        /     %label{:for => "message"} Your message:
+        /     %br/
+        /     %textarea#message.input{:cols => "30", :name => "message", :rows => "7"}
+        /     %br/
+        /   %input#submit_button{:type => "submit", :value => "Send email"}/
