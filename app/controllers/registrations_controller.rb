@@ -1,6 +1,10 @@
 class RegistrationsController < Devise::RegistrationsController
 
   def create
+    phone = params[:user][:mobile_number].gsub(/[^0-9a-z ]/i, '')
+    if phone[0 .. 1] == "92"
+      params[:user][:mobile_number] = "0"+phone[2 .. -1]
+    end
     path = :back
     user = User.find_by_mobile_number(params[:user][:mobile_number])
     if user

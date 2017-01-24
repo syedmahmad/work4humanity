@@ -1,7 +1,7 @@
   class UsersController < ApplicationController
   respond_to :xlsx, :html, :js
   before_action :authenticate_user!, only: [:manage_users, :donations, :update_user_role, :schedule_availability, :change_image]
-  before_action :set_user, only: [:show, :cases, :authorize_user, :donations, :update_user_role, :update_availability_details, :change_image]
+  before_action :set_user, only: [:show, :cases, :authorize_user, :donations, :update_user_role, :change_image, :update_availability_details]
   before_action :authorize_user, only: [:donations, :manage_users, :update_user_role]
   before_action :validate_user_details, except: [:onboarding, :update_contact_details]
 
@@ -36,13 +36,18 @@
   end
 
   def update_availability_details
-    dates = params[:available_days].reject(&:empty?)
-    dates.each do |d|
-      date = Date.parse(d)
-      @user.schedules.find_or_create_by(selected_date: date)
+    if params[:user][:available_days].present?
+      dates = params[:user][:available_days].split(',');
+      dates.each do |d|
+        date = d.to_date
+        @user.schedules.find_or_create_by(selected_date: date)
+      end
+      flash[:success] = "Thanks we’ve registered your time availability"
+      redirect_to user_schedules_path(@user)
+    else
+      flash[:error] = "Please select your schedule."
+      redirect_to :back
     end
-    flash[:success] = "Thanks we’ve registered your time availability"
-    redirect_to user_schedules_path(@user)
   end
 
   def volunteers
@@ -50,6 +55,10 @@
   end
 
   def update_contact_details
+    phone = params[:user][:mobile_number].gsub(/[^0-9a-z ]/i, '')
+    if phone[0 .. 1] == "92"
+      params[:user][:mobile_number] = "0"+phone[2 .. -1]
+    end
     @user = User.find_by_id(params[:user][:id]) || User.new
     @user.assign_attributes(user_contact_params)
 
@@ -88,9 +97,9 @@
     @user = current_user
   end
 
-  def add_availability_field
-    render :partial =>'set_availability_field'
-  end
+  # def add_availability_field
+  #   render :partial =>'set_availability_field'
+  # end
 
   private
 

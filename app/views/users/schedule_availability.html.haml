@@ -8,11 +8,21 @@
           .panel-body
             = form_for @user, url: update_availability_details_users_path, method: 'post', html: { multipart: true, class: 'form-horizontal group-border hover-stripped' } do |f|
               = f.hidden_field :id, value: @user.id
-              = f.hidden_field "available_days[]", value: 
+              = f.hidden_field "available_days",  value: ""
               .form-group#availability_fields_div
                 = render 'set_availability_field'
               .btn-block
-                / .add_more_button
-                /   = link_to "add more", 'javascript:void(0)', "data-url": add_availability_field_users_path
                 .form-group.btn-submit
-                  = f.submit "submit", class: 'btn btn-primary'
+                  = f.submit "submit", class: 'btn btn-primary', id: "select_days"
+
+
+
+:javascript
+  $(function() {
+    $("#select_days").click(function(e) {
+      e.preventDefault();
+      var dates = $('#availability-div').datepicker('getDates');
+      $('#user_available_days').val(dates);
+      $(this).closest('form').submit();
+    });
+  });
