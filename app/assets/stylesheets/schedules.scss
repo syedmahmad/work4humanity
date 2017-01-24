@@ -72,8 +72,9 @@
 .activeClass{
     background: #2DBCB5;
   }
- .datepicker datepicker-inline {
- 	.table-condensed{
+ .datepicker-inline {
+ 		width: 100% !important
+ }
+ 	.table-condensed {
  		width: 100% !important
  	}
- }
