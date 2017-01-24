@@ -3,18 +3,18 @@
     %ul
       - unless current_user.admin?
         %li
-          = link_to "Donate your Time", schedule_availability_user_path(current_user)
+          = link_to "Donate Time", schedule_availability_user_path(current_user)
       %li
         = link_to "Create case", cases_path
       %li
-        = link_to "Donate your Fund", current_user.admin? ? donations_path : donations_user_path(current_user)
+        = link_to "Donate Fund", current_user.admin? ? donations_path : donations_user_path(current_user)
 
   .col-sm-8.col-md-6.col-md-offset-3.col-sm-offset-2.available-block
     .panel.panel-default.holder
       .panel-heading
         %h3.text-center Available Days
       .panel-body
-        - if schedules.count > 0 
+        - if schedules.count > 0
           - schedules.each do |sh|
             %p
               - if user_type == 'admin'

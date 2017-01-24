@@ -3,7 +3,7 @@ class HomeController < ApplicationController
   skip_before_filter :verify_authenticity_token, :only => :send_mail
   def index
     if current_user
-     redirect_to current_user.donner? ? donations_user_path(current_user) : "/cases"
+     redirect_to current_user.donner? ? donations_user_path(current_user) : schedule_availability_user_path(current_user)
     end
   end
 

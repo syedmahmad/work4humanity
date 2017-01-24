@@ -10,7 +10,7 @@
               .form-group
                 / = f.label 'Phone *', class: 'col-lg-2 col-md-2 col-sm-12 control-label'
                 .col-lg-12
-                  = f.text_field :mobile_number, class: 'form-control', pattern: '\d{11}$', required: true, oninvalid: "setCustomValidity('Plz enter valid phone number')", onchange: "try{setCustomValidity('')}catch(e){}", placeholder: "phone number"
+                  = f.text_field :mobile_number, class: 'form-control', pattern: '((\+92)|(0))-{0,1}(3)\d{2}-(?!1234567)(?!1111111)(?!7654321)[0-9]{7}', required: true, oninvalid: "setCustomValidity('Plz enter valid number with formate 0321-4455336 or +92321-9997999')", onchange: "try{setCustomValidity('')}catch(e){}", placeholder: "0321-4455446"
               .form-group
                 / = f.label 'Password', class: 'col-lg-2 col-md-2 col-sm-12 control-label'
                 .col-lg-12

@@ -1,2 +1,12 @@
-.col-md-12
-  = text_field_tag "available_days[]", "", id: "available_days_field", class: "hasDatepicker", "data-provide": 'datepicker', "data-date-format": "dd/mm/yyyy", "data-date-start-date": "d", "data-date-autoclose": "true", placeholder: "select day"
+.col-md-12#availability-div
+
+:javascript
+	$('#availability-div').datepicker({
+	    inline: true,
+	    format: 'dd/mm/yyyy',
+	    startDate: 'd',
+	    multidate: true
+	}).on("change",function(){
+		var selected = $(this).val();
+		alert(selected);
+	});
