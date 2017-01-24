@@ -38,8 +38,8 @@
                 = link_to 'My Schedule', user_schedules_path(current_user)
               %li
                 = link_to 'My Cases', cases_user_path(current_user)
-            %li
-              = link_to 'Contact us', contact_us_path
+          %li
+            = link_to 'Contact us', contact_us_path
         %ul.nav.navbar-nav.navbar-right
           - if user_signed_in?
             %li.non_mobile_nav

@@ -52,6 +52,7 @@ Rails.application.routes.draw do
 
   get 'not_authorized' => 'home#not_authorized'
   get 'contact_us' => 'home#contact_us'
+  post 'send_mail' => 'home#send_mail'
   match '*a', :to => 'errors#routing', :via => [:get]
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

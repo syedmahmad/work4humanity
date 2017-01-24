@@ -13,9 +13,9 @@
  *= require main
  *= require font-awesome.min
  *= require_self
- *= require select2
- *= require select2-bootstrap
  *= require_tree .
  *= require bootstrap-datepicker
+ *= require select2
+ *= require select2-bootstrap
  *= require global
  */
