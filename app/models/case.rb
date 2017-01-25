@@ -64,8 +64,6 @@
 					donation.amount = donation.amount - detuctable_amount
 					required_amount = required_amount - detuctable_amount
 					total_amount = total_amount - detuctable_amount
-					amount_to_deduct = get_avg_amount(required_amount, total_amount)
-
 					donation.save
 					record_hash[donation.id] = record_hash[donation.id].present? ? record_hash[donation.id] + detuctable_amount : detuctable_amount
 
@@ -76,6 +74,7 @@
 
 			break if break_loop
 			donations = donations.reload.received.order('id asc')
+			amount_to_deduct = get_avg_amount(required_amount, total_amount)
 		end
 
 		donations.each do |donation|

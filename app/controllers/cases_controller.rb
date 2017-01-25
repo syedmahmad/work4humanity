@@ -70,7 +70,7 @@ class CasesController < ApplicationController
 	def confirm_funds_allocation
 		@case.enable_funds_validation = true
 		@case.form_amount = params[:case][:allocated_amount].to_i
-		if @case.valid?
+		if @case.valid? && @case.errors.present?
 			@case.assign_amout_to_case
 			if @case.errors.present?
 				flash[:alert] = "#{@case.errors.full_messages.to_sentence}."
