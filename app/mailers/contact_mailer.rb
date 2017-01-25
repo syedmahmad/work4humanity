@@ -6,9 +6,9 @@ class ContactMailer < ApplicationMailer
   #   en.contact_mailer.contact_us.subject
   #
   def contact_us(param)
-    @user = {name: param[:name], email: param[:email], message: param[:message]}
+    @user = {name: param[:name], phone: param[:phone], email: param[:email], message: param[:message]}
     @greeting = @user[:message]
 
-    mail to: "devzaeem.khan@gmail.com", from: @user[:email]
+    mail to: "info@fliclicks.com", from: @user[:email]
   end
 end
