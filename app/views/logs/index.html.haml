@@ -11,7 +11,7 @@
                 .donat-list
                   .fa.fa-plus
                   %span.ml-10
-                    =link_to req_amount.user.name.titleize, req_amount.user, target: '_blank'
+                    =link_to req_amount.user.name.titleize, req_amount.user
                     %span= "donated #{formatted_ammount(req_amount.amount)}/-PKR"
                     %span.balance-block= " Balance: #{total_remaining_ammount}/-PKR"
                     %span.pull-right
@@ -22,7 +22,7 @@
                   .donat-list
                     .fa.fa-plus
                     %span.ml-10
-                      =link_to donation.user.name.titleize, donation.user, target: '_blank'
+                      =link_to donation.user.name.titleize, donation.user
                       %span= "donated #{formatted_ammount(donation.original_amount)}/-PKR"
                       %span.balance-block= " Balance: #{formatted_ammount(log.parameters[:balance])}/-PKR"
                 - if log.key == "case.amount_donated"
@@ -30,5 +30,5 @@
                     .fa.fa-minus
                     %span.ml-10
                       %span= "#{formatted_ammount(donation.allocated_amount)}/-PKR donated to"
-                      =link_to donation.identifier, case_path(donation.id), target: '_blank'
+                      =link_to donation.identifier, case_path(donation.id)
                       %span.balance-block= " Balance: #{formatted_ammount(log.parameters[:balance])}/-PKR"
