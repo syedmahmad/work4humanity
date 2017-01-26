@@ -1,3 +1,4 @@
+= javascript_include_tag "page_specific/phone_validation"
 .container
   .outlet
     .row
@@ -5,7 +6,7 @@
         .panel.panel-default.contact-details-box
           .panel-heading
             %h3.text-center Contact Details
-          .panel-body
+          .panel-body.dp-block
             = form_for @user, url: update_contact_details_users_path, method: 'post', html: { multipart: true, class: 'form-horizontal group-border hover-stripped' } do |f|
               = f.hidden_field :id, value: @user.id
               = f.hidden_field :u_type, value: @user.u_type
@@ -20,11 +21,11 @@
               .form-group
                 / = f.label 'Phone *', class: 'col-lg-2 col-md-2 col-sm-12 control-label'
                 .col-lg-12
-                  = f.text_field :mobile_number, class: 'form-control', pattern: '((\+92)|(0))-{0,1}(3)\d{2}-(?!1234567)(?!1111111)(?!7654321)[0-9]{7}', required: true, oninvalid: "setCustomValidity('Plz enter valid number with formate 0321-4455336 or +92321-9997999')", onchange: "try{setCustomValidity('')}catch(e){}", placeholder: "0321-44xxx46"
+                  %input#phone{:type => "tel", name: 'user[mobile_number]', class: 'form-control', placeholder: "0321-44xxx46"}
               - if !f.object.id.present?
                 .form-group
                   / = f.label 'Password', class: 'col-lg-2 col-md-2 col-sm-12 control-label'
                   .col-lg-12
                     = f.password_field :password, class: 'form-control', required: true, placeholder: "Password"
               .form-group.btn-submit
-                = f.submit "submit", class: 'btn btn-primary'
+                = f.submit "submit", class: 'btn btn-primary', id: 'check_phone'

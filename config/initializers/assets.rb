@@ -8,4 +8,6 @@ Rails.application.config.assets.version = '1.0'
 
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
-# Rails.application.config.assets.precompile += %w( search.js )
+# Rails.application.config.assets.precompile += %w()
+page_specific_js_files = %w( phone_validation.js )
+Rails.application.config.assets.precompile += page_specific_js_files.map! {|path| "page_specific/" + path }

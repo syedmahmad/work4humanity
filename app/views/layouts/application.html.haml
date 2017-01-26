@@ -1,6 +1,7 @@
 %html
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    = display_meta_tags site: 'Work4humanity'
     %title Work4humanity
     %meta{:content => "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0", :name => "viewport"}/
     / Fav and touch icons
@@ -26,9 +27,9 @@
       =# render '/layouts/partials/top_alert'
       .outlet
         -# .container
-        - if breadcrumbs.present?
-          .breadcrumb.container
-            = render_breadcrumbs tag: :li
+        / - if breadcrumbs.present?
+        /   .breadcrumb.container
+        /     = render_breadcrumbs tag: :li
         = render partial: 'layouts/partials/flash_messages', flash: flash
         = yield
 
