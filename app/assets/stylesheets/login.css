@@ -12,3 +12,12 @@ body.login-page #login .login-wrapper{
 	background: #fff;
 	border: 1px solid #2DBCB5;
 }
+
+.dp-block .form-horizontal,
+.dp-block .form-group,
+.dp-block .intl-tel-input {
+  display: block !important;
+}
+
+
+

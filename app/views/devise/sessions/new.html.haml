@@ -1,3 +1,4 @@
+= javascript_include_tag "page_specific/phone_validation"
 .container
   .outlet
     .row
@@ -5,17 +6,19 @@
         .panel.panel-default.contact-details-box
           .panel-heading
             %h3.text-center Sign In
-          .panel-body
+          .panel-body.dp-block
             = form_for @user, url: users_path, method: 'post', html: { multipart: true, class: 'form-horizontal group-border hover-stripped' } do |f|
               .form-group
                 / = f.label 'Phone *', class: 'col-lg-2 col-md-2 col-sm-12 control-label'
                 .col-lg-12
-                  = f.text_field :mobile_number, class: 'form-control', pattern: '((\+92)|(0))-{0,1}(3)\d{2}-(?!1234567)(?!1111111)(?!7654321)[0-9]{7}', required: true, oninvalid: "setCustomValidity('Plz enter valid number with formate 0321-4455336 or +92321-9997999')", onchange: "try{setCustomValidity('')}catch(e){}", placeholder: "0321-44xxx46"
+                  %input#phone{:type => "tel", name: 'user[mobile_number]', class: 'form-control', placeholder: "0321-44xxx46"}
               .form-group
                 / = f.label 'Password', class: 'col-lg-2 col-md-2 col-sm-12 control-label'
                 .col-lg-12
                   = f.password_field :password, class: 'form-control', required: true, placeholder: "Password"
               .form-group.btn-submit.mb10
-                = f.submit "Login", class: 'btn btn-primary hvr-sweep-to-left'
+                = f.submit "Login", class: 'btn btn-primary hvr-sweep-to-left', id: "check_phone"
               .form-group.btn-submit
                 = link_to "Register Now", onboarding_users_path(user_type: @user_type), class: 'btn btn-primary hvr-sweep-to-left'
+
+

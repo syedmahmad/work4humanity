@@ -6,6 +6,8 @@ gem 'rails', '4.2.1'
 # Use sqlite3 as the database for Active Record
 gem 'pg'
 
+gem 'intl-tel-input-rails'
+gem 'meta-tags'
 gem "select2-rails"
 gem "breadcrumbs_on_rails"
 gem "letter_opener", :group => :development

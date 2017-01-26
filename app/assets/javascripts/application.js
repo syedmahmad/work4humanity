@@ -14,6 +14,8 @@
 //= require jquery_ujs
 //= require jquery.remotipart
 //= require twitter/bootstrap
+//= require intlTelInput
+//= require libphonenumber/utils
 //= require bootstrap-datepicker
 //= require select2-full
 //= require cocoon

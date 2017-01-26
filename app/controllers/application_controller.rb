@@ -1,6 +1,9 @@
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
+
+  before_action :prepare_meta_tags, if: "request.get?"
+  #robust and scaleable authorization system pundit
   include Pundit
   protect_from_forgery with: :exception
   # To prevent back button come to unauthorized page after logout
@@ -38,4 +41,34 @@ class ApplicationController < ActionController::Base
       redirect_to "/users/onboarding"
     end
   end
+
+  def prepare_meta_tags(options={})
+    site_name   = "Work4humanity"
+    title       = [controller_name, action_name].join(" ")
+    description = "Sacrificing one weekend can actually save someone's life"
+    image       = options[:image] || "/assets/weblogo.png"
+    current_url = request.url
+
+    # Let's prepare a nice set of defaults
+    defaults = {
+      site:        site_name,
+      title:       title,
+      image:       image,
+      description: description,
+      keywords:    %w[cases donation donations, sacrifice],
+      og: {
+        url: current_url,
+        site_name: site_name,
+        title: title,
+        image: image,
+        description: description,
+        type: 'website'
+      }
+    }
+
+    options.reverse_merge!(defaults)
+
+    set_meta_tags options
+  end
+
 end
