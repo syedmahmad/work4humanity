@@ -10,7 +10,7 @@
         .col-lg-12.spacing-elements
           %input#name.form-control{:name => "name", :placeholder => "Name", :type => "text", :value => "", required: true}
         .col-lg-12.spacing-elements
-          %input#phone{:type => "tel", name: 'phone', class: 'form-control', placeholder: "0321-44xxx46"}
+          %input#phone{:type => "tel", name: 'phone', class: 'form-control', placeholder: "321-44xxx46"}
           / %input#name.form-control{:name => "phone", pattern: '((\+92)|(0))-{0,1}(3)\d{2}-(?!1234567)(?!1111111)(?!7654321)[0-9]{7}', required: true, oninvalid: "setCustomValidity('Plz enter valid number with formate 0321-4455336 or +92321-9997999')", onchange: "try{setCustomValidity('')}catch(e){}", placeholder: "0321-44xxx46"}
         .col-lg-12.spacing-elements
           %input#email.form-control{:name => "email", :placeholder => "email@domain.com", :type => "email", :value => "", required: true}
@@ -18,7 +18,7 @@
           %textarea.form-control{:name => "message", :rows => "4", :placeholder => "Message", required: true}
         .form-group
           .col-lg-12.spacing-elements
-            %input#submit.btn.btn-primary{:name => "submit", :type => "submit", :value => "Send"}
+            %input#submit.btn.btn-primary{id: "check_phone", :type => "submit", :value => "Send"}
 
       / %img{:alt => "divider", :src => "/assets/divider.png"}
       / %address

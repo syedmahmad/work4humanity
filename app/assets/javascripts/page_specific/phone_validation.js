@@ -5,8 +5,7 @@ $(function() {
     separateDialCode: true
   });
 
-  $("#check_phone").click(function(e) {
-      debugger
+  $("#check_phone, #submit_check_phone").click(function(e) {
       e.preventDefault();
       if($("#phone").intlTelInput("isValidNumber")) {
         var dialCode = $("#phone").intlTelInput("getSelectedCountryData").dialCode

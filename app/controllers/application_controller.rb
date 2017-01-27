@@ -43,7 +43,7 @@ class ApplicationController < ActionController::Base
   end
 
   def prepare_meta_tags(options={})
-    site_name   = "Work4humanity"
+    site_name   = "www.work4humanity"
     title       = [controller_name, action_name].join(" ")
     description = "Sacrificing one weekend can actually save someone's life"
     image       = options[:image] || "/assets/weblogo.png"
@@ -60,7 +60,7 @@ class ApplicationController < ActionController::Base
         url: current_url,
         site_name: site_name,
         title: title,
-        image: image,
+        image: {_:image, width: 500, height: 500},
         description: description,
         type: 'website'
       }
