@@ -19,6 +19,10 @@
           %img{:alt => "logo", :src => "/assets/weblogo.png"}
       #bs-example-navbar-collapse-1.collapse.navbar-collapse
         %ul.nav.navbar-nav
+          - if !user_signed_in?
+            %li
+              %a{href: '#my-modal-1', "data-toggle" => "modal"}
+                Login
           %li
             %a{:href => "#{cases_path}"}
               Cases
@@ -52,3 +56,8 @@
                 Logout
       / /.navbar-collapse
     / /.container-fluid
+
+#my-modal-1.modal.fade.login-modal.bs-example-modal-sm{:title => "My modal"}
+  .modal-dialog.modal-sm{:role => "document"}
+    .modal-content
+      = render '/home/registration_form_data', user_type: "volunteer"

@@ -4,7 +4,7 @@
       .col-md-12.case-veiw
         .panel.panel-default.panelMove.toggle.panelRefresh.panelClose.add-new-case
           .panel-heading.case_study_heading
-            %h2.panel-title= @case.title
+            %h2.panel-title= @case.identifier.titleize
             .pull-right
               = link_to 'Back', redirect_user_path, class: 'btn btn-primary'
               - if policy(@case).allocate_funds?
@@ -13,6 +13,9 @@
             .row
               .col-md-12
                 %ul.details-box
+                  %li.title-breaking
+                    %h4 Title:
+                    %p= @case.title
                   %li
                     %h4 Description:
                     %p= @case.description

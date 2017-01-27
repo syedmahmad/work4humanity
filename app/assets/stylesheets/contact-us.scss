@@ -55,3 +55,11 @@
 .spacing-elements {
   margin-top:20px;
 }
+.dp-block .form-horizontal,
+.dp-block .form-group,
+.dp-block .intl-tel-input {
+  display: block !important;
+}
+.intl-tel-input, .allow-dropdown, .separate-dial-code, .iti-sdc-3 {
+  text-align: left !important;
+}

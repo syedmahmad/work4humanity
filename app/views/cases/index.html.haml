@@ -12,7 +12,7 @@
 						.header-holder
 							.col-xs-12.col-sm-8.p0
 								%h4
-									= case_obj.title
+									= case_obj.identifier.titleize
 							.col-xs-12.col-sm-4.p0
 								.btn-area.pull-right
 									- if policy(case_obj).edit?

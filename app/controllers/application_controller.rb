@@ -44,8 +44,8 @@ class ApplicationController < ActionController::Base
 
   def prepare_meta_tags(options={})
     site_name   = "Work4humanity"
-    description = "Sacrificing one weekend can actually save someone's life"
-    image       = options[:image] || "/assets/fb_sharing.png"
+    description = "Sacrificing one weekend party can actually save someone's life."
+    image       = options[:image] || "/assets/newapp.png"
     current_url = request.url
 
     # Let's prepare a nice set of defaults
