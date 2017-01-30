@@ -6,6 +6,7 @@ gem 'rails', '4.2.1'
 # Use sqlite3 as the database for Active Record
 gem 'pg'
 
+gem "slack-notifier"
 gem 'intl-tel-input-rails'
 gem 'meta-tags'
 gem "select2-rails"

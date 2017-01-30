@@ -48,4 +48,6 @@
 													%span
 														location:
 													= case_obj.hospital.name
-
+	- else
+		.text-center.no-data-box
+			%p No record found.
