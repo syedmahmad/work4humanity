@@ -5,11 +5,18 @@
     .span10.offset1
       .registration-modal.text-center
         %ul
-          %l
-            %a.btn.btn-primary.btn-fb-login.p25.mb10{href: user_facebook_omniauth_authorize_path(user_type: user_type)}
+          %li
+            %button.btn.btn-primary.btn-fb-login.p25.mb10.fb_clickEvent
               %i.fa.fa-facebook-square.s24.icon-fa
               Continue with Facebook
+              %input.hidden.fb_val{value: user_facebook_omniauth_authorize_path(user_type: user_type)}
           %li
             %a.btn.btn-info.btn-email-login.p10.mb10{href: new_user_session_path(user_type: user_type)}
               %i.fa.fa-envelope-o.s24.icon-fa
               Continue with Phone
+
+:javascript
+  $('body').on('click', '.fb_clickEvent' , function(event){
+    $(this).addClass('disabled');
+    window.document.location = $('.fb_val').val();
+  });

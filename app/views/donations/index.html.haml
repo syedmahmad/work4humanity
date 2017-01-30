@@ -4,16 +4,12 @@
       %li.active{:role => "presentation"}
         %a{"aria-controls" => "Requested", "data-toggle" => "tab", :href => "#requested", :role => "tab"} Requested
       %li{:role => "presentation"}
-        %a{"aria-controls" => "accepted", "data-toggle" => "tab", :href => "#accepted", :role => "tab"} Accepted
-      %li{:role => "presentation"}
         %a{"aria-controls" => "rejected", "data-toggle" => "tab", :href => "#rejected", :role => "tab"} Rejected
       %li{:role => "presentation"}
         %a{"aria-controls" => "received", "data-toggle" => "tab", :href => "#received", :role => "tab"} Received
     .tab-content
       #requested.tab-pane.active{:role => "tabpanel"}
         = render partial: 'donations/partials/donation_grid', locals: {donations: @requested_donations, type: "requested"}
-      #accepted.tab-pane{:role => "tabpanel"}
-        = render partial: 'donations/partials/donation_grid', locals: {donations: @accepted_donations, type: "accepted"}
       #rejected.tab-pane{:role => "tabpanel"}
         = render partial: 'donations/partials/donation_grid', locals: {donations: @rejected_donations, type: "rejected"}
       #received.tab-pane{:role => "tabpanel"}

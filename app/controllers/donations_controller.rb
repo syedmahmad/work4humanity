@@ -1,4 +1,7 @@
 class DonationsController < ApplicationController
+  # including bcz want to use helper in controller
+  include ActionView::Helpers::NumberHelper
+  include LogsHelper
 
   before_action :authenticate_user!
   before_action :set_donation, only: [:edit, :show, :update, :destroy, :accept, :reject, :receive, :authorize_donation]
@@ -21,6 +24,8 @@ class DonationsController < ApplicationController
     donation = current_user.donations.create(donation_params)
     if donation.id.present?
       flash[:notice] = "Thank you"
+      amnt = formatted_ammount(donation.amount)
+      SLACK_NOTIFIER.ping("#{donation.user.name.titleize} donated #{amnt}/- having phone: #{donation.user.mobile_number}")
       redirect_to donations_user_path(donation.user)
     else
       flash[:notice] = "Less than 10 million if you don't mind"
