@@ -68,6 +68,8 @@ class DonationsController < ApplicationController
   end
 
   def destroy
+    amnt = formatted_ammount(@donation.amount)
+    SLACK_NOTIFIER.ping("NOTE:  #{@donation.user.name.titleize} deleted #{amnt}/- having phone: #{@donation.user.mobile_number}")
     @donation.destroy
     redirect_to :back
   end
