@@ -23,4 +23,20 @@ $("document").ready(function(){
   setTimeout(function() {
     $('.alert-msg').slideUp();
   }, 3000);
+
+  // $('#availability-div').datepicker({
+  //     inline: true,
+  //     format: 'dd/mm/yyyy',
+  //     startDate: 'd',
+  //     multidate: true,
+  //     update: "02-16-2017"
+  //   }).on("change",function(){
+  //     var selected = $(this).val();
+  //     alert(selected);
+  //   });
+  // var $j = jQuery.noConflict();
+
+    $('#availability-div').datespicker();
+  // $('#availability-div').datepicker('update', "02-16-2017");
+
 })
